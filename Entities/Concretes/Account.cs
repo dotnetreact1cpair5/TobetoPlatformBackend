@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Entities.Concretes
 {
     public class Account : Entity<int>
-    {
+    {//
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string NationalId { get; set; }

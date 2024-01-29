@@ -11,35 +11,35 @@ namespace DataAccess.EntityConfigurations
             builder.ToTable("AccountEducations").HasKey(a => a.Id);
             builder.Property(a => a.Id).HasColumnName("Id").IsRequired();
             builder.Property(a => a.AccountId).HasColumnName("AccountId").IsRequired();
-            builder.Property(a => a.UniversityId).HasColumnName("UniversityId");
-            builder.Property(a => a.EducationProgramId).HasColumnName("EducationProgramId");
-            builder.Property(a => a.EducationStatusId).HasColumnName("EducationStatusId");
+            builder.Property(a => a.EducationStatusId).HasColumnName("EducationStatusId").IsRequired();
+            builder.Property(a => a.EducationProgramId).HasColumnName("EducationProgramId").IsRequired();
+            builder.Property(a => a.UniversityId).HasColumnName("UniversityId").IsRequired();
             builder.Property(a => a.StartYear).HasColumnName("StartYear");
             builder.Property(a => a.GraduationYear).HasColumnName("GraduationYear");
             builder.Property(a => a.IsGraduated).HasColumnName("IsGraduated");
             builder.HasQueryFilter(e => !e.DeletedDate.HasValue);
 
             builder.HasOne(a => a.Account)
-                    .WithMany(city => city.AccountEducations)
-                    .HasForeignKey(d => d.AccountId)
-                    .IsRequired()
-                    .OnDelete(DeleteBehavior.NoAction);
-
-            builder.HasOne(a => a.University)
-                .WithOne(b => b.AccountEducation)
-                .HasForeignKey<AccountEducation>(b => b.UniversityId)
-                .IsRequired()
-                .OnDelete(DeleteBehavior.NoAction);
-
-            builder.HasOne(a => a.EducationProgram)
-                .WithOne(b => b.AccountEducation)
-                .HasForeignKey<AccountEducation>(b => b.EducationProgramId)
+                .WithMany(account => account.AccountEducations)
+                .HasForeignKey(a => a.AccountId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.NoAction);
 
             builder.HasOne(a => a.EducationStatus)
-                .WithOne(b => b.AccountEducation)
-                .HasForeignKey<AccountEducation>(b => b.EducationStatusId)
+                .WithMany()
+                .HasForeignKey(a => a.EducationStatusId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.HasOne(a => a.EducationProgram)
+                .WithMany()
+                .HasForeignKey(a => a.EducationProgramId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.HasOne(a => a.University)
+                .WithMany()
+                .HasForeignKey(a => a.UniversityId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.NoAction);
         }

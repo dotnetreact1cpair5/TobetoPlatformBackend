@@ -26,14 +26,14 @@ namespace DataAccess.EntityConfigurations
             builder.HasQueryFilter(e => !e.DeletedDate.HasValue);
 
             builder.HasOne(a => a.Account)
-     .WithMany(account => account.AccountExperiences)
-     .HasForeignKey(a => a.AccountId)
-     .IsRequired()
-     .OnDelete(DeleteBehavior.NoAction);
+               .WithMany(account => account.AccountExperiences)
+               .HasForeignKey(a => a.AccountId)
+               .IsRequired()
+               .OnDelete(DeleteBehavior.NoAction);
 
             builder.HasOne(a => a.City)
-                .WithOne(b => b.AccountExperience)
-                .HasForeignKey<AccountExperience>(b => b.CityId)
+                .WithMany()
+                .HasForeignKey(a => a.CityId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.NoAction);
         }

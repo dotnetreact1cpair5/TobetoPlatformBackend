@@ -16,21 +16,21 @@ namespace DataAccess.EntityConfigurations
             builder.ToTable("AccountSocialMedias").HasKey(a => a.Id);
             builder.Property(a => a.Id).HasColumnName("Id").IsRequired();
             builder.Property(a => a.AccountId).HasColumnName("AccountId").IsRequired();
+            builder.Property(a => a.SocialMediaPlatformId).HasColumnName("SocialMediaPlatformId").IsRequired();
             builder.Property(a => a.Link).HasColumnName("Link").IsRequired();
-            builder.Property(a => a.SocialMediaPlatformId).HasColumnName("SocialMediaPlatformId");
             builder.HasQueryFilter(e => !e.DeletedDate.HasValue);
 
             builder.HasOne(a => a.Account)
-    .WithMany(account => account.AccountSocialMedias)
-    .HasForeignKey(d => d.AccountId)
-    .IsRequired()
-    .OnDelete(DeleteBehavior.NoAction);
+                .WithMany(account => account.AccountSocialMedias)
+                .HasForeignKey(a => a.AccountId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.NoAction);
 
             builder.HasOne(a => a.SocialMediaPlatforms)
-    .WithOne(b => b.AccountSocialMedia)
-    .HasForeignKey<AccountSocialMedia>(b => b.SocialMediaPlatformId)
-    .IsRequired()
-    .OnDelete(DeleteBehavior.NoAction);
+                .WithMany()
+                .HasForeignKey(a => a.SocialMediaPlatformId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

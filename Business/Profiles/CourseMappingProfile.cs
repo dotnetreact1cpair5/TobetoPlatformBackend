@@ -19,8 +19,10 @@ namespace Business.Profiles
             CreateMap<UpdateCourseRequest, Course>().ReverseMap();
             CreateMap<DeleteCourseRequest, Course>().ReverseMap();
 
+            CreateMap<Course, GetListCourseResponse>()
+                
+                .ReverseMap();
 
-            CreateMap<Course, GetListCourseResponse>().ReverseMap();
             CreateMap<Paginate<Course>, Paginate<GetListCourseResponse>>().ReverseMap();
 
             CreateMap<Course, CreatedCourseResponse>().ReverseMap();

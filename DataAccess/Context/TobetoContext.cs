@@ -8,6 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace DataAccess.Context
 {
@@ -15,7 +16,6 @@ namespace DataAccess.Context
     {
         protected IConfiguration Configuration { get; set; }
 
-        public DbSet<Course> Courses { get; set; }
         public DbSet<Account> Accounts { get; set; }
         public DbSet<AccountCertificate> AccountCertificates { get; set; }
         public DbSet<AccountEducation> AccountEducations { get; set; }
@@ -33,6 +33,28 @@ namespace DataAccess.Context
         public DbSet<Skill> Skills { get; set; }
         public DbSet<SocialMediaPlatform> SocialMediaPlatforms { get; set; }
         public DbSet<University> Universities { get; set; }
+
+
+        /*Course Tables Field*/
+        public DbSet<ClassCourse> ClassCourses { get; set; }
+        public DbSet<AccountStudentClass> AccountStudentClasses { get; set; }
+        public DbSet<StudentClass> StudentClasses { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<ContentType> ContentTypes { get; set; }
+        public DbSet<CourseCompletion> CourseCompletions { get; set; }
+        public DbSet<Lesson> Lessons { get; set; }
+        public DbSet<LessonStatus> LessonStatuses { get; set; }
+        public DbSet<LessonFavourite> LessonFavourites { get; set; }
+        public DbSet<CoursePage> CoursePages { get; set; }
+        public DbSet<CoursePageLesson> CoursePageLessons { get; set; }
+        public DbSet<CourseCoursePage> CourseCoursePages { get; set; }
+        public DbSet<ContentCoursePage> ContentCoursePages { get; set; }
+        public DbSet<CourseTimeSpent> CourseTimeSpents { get; set; }
+        public DbSet<Content> Contents { get; set; }
+        public DbSet<CourseFavourite> CourseFavourites { get; set; }
+
+
 
         public TobetoContext(DbContextOptions dbContextOptions, IConfiguration configuration) : base(dbContextOptions)
         {

@@ -4,6 +4,7 @@ using Business.Rules;
 using Business.ValidationRules.FluentValidation;
 using Core.Security.JWT;
 using DataAccess.Abstracts;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace Business
     {
         public static IServiceCollection AddBusinessServices(this IServiceCollection services)
         {
-            services.AddScoped<ICourseService, CourseManager>();
+           
             services.AddScoped<IAccountService, AccountManager>();
             services.AddScoped<IAccountCertificateService, AccountCertificateManager>();
             services.AddScoped<IAccountExperienceService, AccountExperienceManager>();
@@ -36,6 +37,30 @@ namespace Business
             services.AddScoped<ISkillService, SkillManager>();
             services.AddScoped<ISocialMediaPlatformService, SocialMediaPlatformManager>();
             services.AddScoped<IUniversityService, UniversityManager>();
+
+
+
+
+
+
+            services.AddScoped<IStudentClassService, StudentClassManager>();
+            services.AddScoped<ICourseCategoryService, CourseCategoryManager>();
+            services.AddScoped<IContentService, ContentManager>();
+            services.AddScoped<ICourseContentTypeService, CourseContentTypeManager>();
+            services.AddScoped<ICourseService, CourseManager>();
+            services.AddScoped<ILessonService, LessonManager>();
+            services.AddScoped<ILessonFavouriteService, LessonFavouriteManager>();
+            services.AddScoped<ILessonStatusService, LessonStatusManager>();
+            services.AddScoped<IAccountStudentClassService, AccountStudentClassManager>();
+            services.AddScoped<ICoursePageService, CoursePageManager>();
+            services.AddScoped<ICoursePageLessonService, CoursePageLessonManager>();
+            services.AddScoped<ICourseCoursePageService, CourseCoursePageManager>();
+            services.AddScoped<IContentCoursePageService, ContentCoursePageManager>();
+            services.AddScoped<ICourseFavouriteService, CourseFavouriteManager>();
+            
+
+
+
 
             // ----------------------FOR RULES-----------------------
             services.AddScoped<AccountCertificateBusinessRules>();

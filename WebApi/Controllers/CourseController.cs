@@ -16,10 +16,12 @@ namespace WebApi.Controllers
             _courseService = courseService;
         }
 
+
+
         [HttpGet]
-        public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
+        public async Task<IActionResult> GetList()
         {
-            var result = await _courseService.GetListCourse(pageRequest);
+            var result = await _courseService.GetListCourse();
             return Ok(result);
         }
 

@@ -21,7 +21,6 @@ namespace Entities.Concretes
         public int CountryId { get; set; }
         public int CityId { get; set; }
         public int DistrictId { get; set; }
-
         public Country Country { get; set; }
         public City City { get; set; }
         public District District { get; set; }

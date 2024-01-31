@@ -18,7 +18,7 @@ namespace DataAccess
         {
             services.AddDbContext<TobetoContext>(options => options.UseSqlServer(configuration.GetConnectionString("Tobeto")));
 
-            services.AddScoped<ICourseDal, EfCourseDal>();
+
             services.AddScoped<ICountryDal, EfCountryDal>();
             services.AddScoped<ICityDal, EfCityDal>();
             services.AddScoped<IDistrictDal, EfDistrictDal>();
@@ -36,6 +36,43 @@ namespace DataAccess
             services.AddScoped<IAccountForeignLanguageDal, EfAccountForeignLanguageDal>();
             services.AddScoped<IAccountCertificateDal, EfAccountCertificateDal>();
             services.AddScoped<IAccountExperienceDal, EfAccountExperienceDal>();
+            services.AddScoped<IClassLessonDal, EfClassLessonDal>();
+            services.AddScoped<ICountryDal, EfCountryDal>();
+            services.AddScoped<ICityDal, EfCityDal>();
+            services.AddScoped<IDistrictDal, EfDistrictDal>();
+            services.AddScoped<IAccountStudentClassDal, EfAccountStudentClassDal>();
+            services.AddScoped<IClassLessonDal, EfClassLessonDal>();
+            services.AddScoped<IStudentClassDal, EfStudentClassDal>();
+            services.AddScoped<IStudentClassDal, EfStudentClassDal>();
+            services.AddScoped<ISocialMediaPlatformDal, EfSocialMediaPlatformDal>();
+            services.AddScoped<IAccountSocialMediaDal, EfAccountSocialMediaDal>();
+            services.AddScoped<IEducationStatusDal, EfEducationStatusDal>();
+            services.AddScoped<IUniversityDal, EfUniversityDal>();
+            services.AddScoped<IEducationProgramDal, EfEducationProgramDal>();
+            services.AddScoped<IAccountEducationDal, EfAccountEducationDal>();
+            services.AddScoped<ISkillDal, EfSkillDal>();
+
+            /*Course Services Field*/
+            services.AddScoped<ICourseCategoryDal, EfCourseCategoryDal>();
+            services.AddScoped<ICourseContentTypeDal, EfCourseContentTypeDal>();
+            services.AddScoped<ICourseContentDal, EfCourseContentDal>();
+            services.AddScoped<ILessonDal, EfLessonDal>();
+            services.AddScoped<ILessonStatusDal, EfLessonStatusDal>();
+            services.AddScoped<ICourseDal, EfCourseDal>();
+            services.AddScoped<ICourseDetailDal, EfCourseDetailDal>();
+            services.AddScoped<IAccountCourseLessonDal, EfAccountCourseLessonDal>();
+            services.AddScoped<IAccountStudentClassDal, EfAccountStudentClassDal>();
+            services.AddScoped<ICoursePageDal, EfCoursePageDal>();
+            services.AddScoped<ICoursePageLessonDal, EfCoursePageLessonDal>();
+            services.AddScoped<ICourseCoursePageDal, EfCourseCoursePageDal>();
+            services.AddScoped<ICourseDal, EfCourseDal>();
+            services.AddScoped<IContentDal, EfContentDal>();
+            services.AddScoped<IContentCoursePageDal, EfContentCoursePageDal>();
+            services.AddScoped<ILessonFavouriteDal, EfLessonFavouriteDal>();
+            services.AddScoped<ICourseFavouriteDal, EfCourseFavouriteDal>();
+            services.AddScoped<ICourseCompletionDal, EfCourseCompletionDal>();
+
+
             return services;
         }
     }

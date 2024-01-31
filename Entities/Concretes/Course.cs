@@ -9,19 +9,22 @@ namespace Entities.Concretes
 {
     public class Course : Entity<int>
     {
-        //public int CourseContentId { get; set; }
-        //public int CourseAboutId { get; set; }
-        //public int LessonId { get; set; }
-        public string Image { get; set; }
+        public int CategoryId { get; set; }
+        public int OrganizationId { get; set; }
+        public int ContentTypeId { get; set; }
         public string Name { get; set; }
-        public int Duration { get; set; }
+       // public string Path { get; set; }
+        public string EstimatedVideoDuration { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+        public ContentType? ContentType { get; set; }
+        public Category? Category { get; set; }
+
+        public Organization? Organization { get; set; }
+        public ICollection<CourseCoursePage>? CourseCoursePages { get; set; }
+        public ICollection<ClassCourse>? ClassCourses { get; set; }
 
 
-        //Navigation Properties
-        //public CourseDetail CourseDetail { get; set; }
-        //public virtual ICollection<CourseContent> CourseContents { get; set; }
-        //public virtual ICollection<AccountCourse> AccountCourse { get; set; }
     }
 }
+

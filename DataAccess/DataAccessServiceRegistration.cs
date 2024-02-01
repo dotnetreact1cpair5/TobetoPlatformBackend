@@ -67,8 +67,10 @@ namespace DataAccess
             services.AddScoped<ICourseFavouriteDal, EfCourseFavouriteDal>();
             services.AddScoped<ICourseCompletionDal, EfCourseCompletionDal>();
             services.AddScoped<IInstructorDal, EfInstructorDal>();
+            services.AddScoped<ISessionRecordDal, EfSessionRecordDal>();
 
-
+            /*PathFile Service */
+            services.AddScoped<IPathFileDal, EfPathFileDal>();  
 
             return services;
         }

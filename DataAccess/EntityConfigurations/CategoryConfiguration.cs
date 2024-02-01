@@ -13,7 +13,7 @@ namespace DataAccess.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Category> builder)
         {
-            builder.ToTable("CourseCategories").HasKey(cc => cc.Id);
+            builder.ToTable("Categories").HasKey(cc => cc.Id);
             builder.Property(cc => cc.Id).HasColumnName("Id").IsRequired();
             builder.Property(cc => cc.Name).HasColumnName("Name").IsRequired();
             builder.HasQueryFilter(cc => !cc.DeletedDate.HasValue);

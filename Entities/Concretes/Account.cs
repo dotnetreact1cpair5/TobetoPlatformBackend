@@ -26,6 +26,7 @@ namespace Entities.Concretes
         public City City { get; set; }
         public District District { get; set; }
         public User User { get; set; }
+        public PathFile? PathFile { get; set; }
         public ICollection<AccountExperience> AccountExperiences { get; set; }
         public ICollection<AccountEducation> AccountEducations { get; set; }
         public ICollection<AccountSkill> AccountSkills { get; set; }

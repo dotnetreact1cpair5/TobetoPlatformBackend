@@ -19,7 +19,7 @@ namespace Business
     {
         public static IServiceCollection AddBusinessServices(this IServiceCollection services)
         {
-           
+
             services.AddScoped<IAccountService, AccountManager>();
             services.AddScoped<IAccountCertificateService, AccountCertificateManager>();
             services.AddScoped<IAccountExperienceService, AccountExperienceManager>();
@@ -53,8 +53,8 @@ namespace Business
             services.AddScoped<ICourseCoursePageService, CourseCoursePageManager>();
             services.AddScoped<IContentCoursePageService, ContentCoursePageManager>();
             services.AddScoped<ICourseFavouriteService, CourseFavouriteManager>();
-            
-
+            services.AddScoped<IInstructorService, InstructorManager>();
+            services.AddScoped<ISessionRecordService, SessionRecordManager>();
 
 
 

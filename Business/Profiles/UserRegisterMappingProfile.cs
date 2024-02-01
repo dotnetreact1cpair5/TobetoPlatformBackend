@@ -11,16 +11,15 @@ using System.Threading.Tasks;
 
 namespace Business.Profiles
 {
-    public class UserRegisterMappingProfile :Profile
+    public class UserRegisterMappingProfile : Profile
     {
         public UserRegisterMappingProfile()
         {
-            
-            CreateMap<User,CreatedUserRegisterResponse>().ReverseMap();
 
+            CreateMap<User, CreatedUserRegisterResponse>().ReverseMap();
             CreateMap<OperationClaim, User>().ReverseMap();
-            CreateMap<OperationClaim,UserOperationClaim>().ReverseMap();
-    
+            CreateMap<OperationClaim, UserOperationClaim>().ReverseMap();
+
 
         }
     }

@@ -58,8 +58,10 @@ namespace DataAccess.Context
         public DbSet<Content> Contents { get; set; }
         public DbSet<CourseFavourite> CourseFavourites { get; set; }
         public DbSet<Instructor> Instructors { get; set; }
+        public DbSet<SessionRecord> SessionRecords { get; set; }
 
-
+        /*PathFile Table Field*/
+        public DbSet<PathFile> PathFiles { get; set; }
 
         public TobetoContext(DbContextOptions dbContextOptions, IConfiguration configuration) : base(dbContextOptions)
         {

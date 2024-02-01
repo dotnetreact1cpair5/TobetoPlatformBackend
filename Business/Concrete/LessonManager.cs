@@ -20,21 +20,18 @@ namespace Business.Concrete
 
         ILessonDal _lessonDal;
         IMapper _mapper;
-        // LessonBusinessRules _lessonBusinessRules;
+        LessonBusinessRules _lessonBusinessRules;
 
-        public LessonManager(ILessonDal lessonDal, IMapper mapper)
+        public LessonManager(ILessonDal lessonDal, IMapper mapper, LessonBusinessRules lessonBusinessRules)
         {
             _lessonDal = lessonDal;
             _mapper = mapper;
-
+            _lessonBusinessRules = lessonBusinessRules;
         }
 
         public async Task<CreatedLessonResponse> Add(CreateLessonRequest createLessonRequest)
         {
-            // await _lessonBusinessRules.LessonNameCantBeNull(createLessonRequest.Name);
-            //  await _lessonBusinessRules.MustBeCourseDefined(createLessonRequest.CourseId);
-            // await _lessonBusinessRules.MustBeContentDefined(createLessonRequest.CourseContentId);
-
+            await _lessonBusinessRules.CheckIfLessonNameExists(createLessonRequest.Name);
             Lesson lesson = _mapper.Map<Lesson>(createLessonRequest);
             var createdLesson = await _lessonDal.AddAsync(lesson);
             CreatedLessonResponse result = _mapper.Map<CreatedLessonResponse>(createdLesson);
@@ -59,10 +56,7 @@ namespace Business.Concrete
 
         public async Task<UpdatedLessonResponse> Update(UpdateLessonRequest updateLessonRequest)
         {
-            //await _lessonBusinessRules.LessonNameCantBeNull(updateLessonRequest.Name);
-            // await _lessonBusinessRules.MustBeCourseDefined(updateLessonRequest.CourseId);
-            // await _lessonBusinessRules.MustBeContentDefined(updateLessonRequest.CourseContentId);
-
+            await _lessonBusinessRules.CheckIfLessonNameExists(updateLessonRequest.Name);
             Lesson Lesson = _mapper.Map<Lesson>(updateLessonRequest);
             var updatedLesson = await _lessonDal.UpdateAsync(Lesson);
             UpdatedLessonResponse result = _mapper.Map<UpdatedLessonResponse>(updatedLesson);

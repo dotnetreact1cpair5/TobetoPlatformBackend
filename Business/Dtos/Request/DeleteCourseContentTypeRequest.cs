@@ -1,6 +1,6 @@
 ﻿namespace Business.Dtos.Request
 {
-    public class DeleteCourseContentTypeRequest
+    public class DeleteContentTypeRequest
     {
         public int Id { get; set; }
 

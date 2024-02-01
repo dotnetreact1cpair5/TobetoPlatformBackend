@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace DataAccess.EntityConfigurations
 {
-    public class CourseContentTypeConfiguration : IEntityTypeConfiguration<ContentType>
+    public class ContentTypeConfiguration : IEntityTypeConfiguration<ContentType>
     {
         public void Configure(EntityTypeBuilder<ContentType> builder)
         {
-            builder.ToTable("CourseContentTypes").HasKey(cct => cct.Id);
+            builder.ToTable("ContentTypes").HasKey(cct => cct.Id);
             builder.Property(cct => cct.Id).HasColumnName("Id").IsRequired();
             builder.Property(cct => cct.Name).HasColumnName("Name").IsRequired();
             builder.HasQueryFilter(cct => !cct.DeletedDate.HasValue);

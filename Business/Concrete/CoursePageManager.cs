@@ -32,7 +32,7 @@ namespace Business.Concrete
         
         public async Task<CreatedCoursePageResponse> Add(CreateCoursePageRequest createCoursePageRequest)
         {
-            await _coursePageBusinessRules.CourseNameOfTheSameName(createCoursePageRequest.Name);
+            await _coursePageBusinessRules.CheckIfCoursePageNameExists(createCoursePageRequest.Name);
             CoursePage coursePage = _mapper.Map<CoursePage>(createCoursePageRequest);
             var createdCoursePage = await _coursePageDal.AddAsync(coursePage);
             CreatedCoursePageResponse result = _mapper.Map<CreatedCoursePageResponse>(createdCoursePage);
@@ -69,6 +69,7 @@ namespace Business.Concrete
 
         public async Task<UpdatedCoursePageResponse> Update(UpdateCoursePageRequest updateCoursePageRequest)
         {
+            await _coursePageBusinessRules.CheckIfCoursePageNameExists(updateCoursePageRequest.Name);
             CoursePage coursePage = _mapper.Map<CoursePage>(updateCoursePageRequest);
             var updatedCoursePage = await _coursePageDal.UpdateAsync(coursePage);
             UpdatedCoursePageResponse result = _mapper.Map<UpdatedCoursePageResponse>(updatedCoursePage);

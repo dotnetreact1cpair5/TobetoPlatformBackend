@@ -19,14 +19,17 @@ namespace Business.Concrete
 
         IContentDal _contentDal;
         IMapper _mapper;
-        public ContentManager(IContentDal contentDal, IMapper mapper)
+        ContentBusinessRules _contentBusinessRules;
+        public ContentManager(IContentDal contentDal, IMapper mapper, ContentBusinessRules contentBusinessRules)
         {
             _contentDal = contentDal;
             _mapper = mapper;
+            _contentBusinessRules = contentBusinessRules;
         }
 
         public async Task<CreatedContentResponse> Add(CreateContentRequest createContentRequest)
         {
+            await _contentBusinessRules.CheckIfContentNameExists(createContentRequest.Name);
             Content content = _mapper.Map<Content>(createContentRequest);
             var createdContent = await _contentDal.AddAsync(content);
             CreatedContentResponse result = _mapper.Map<CreatedContentResponse>(createdContent);
@@ -57,6 +60,7 @@ namespace Business.Concrete
 
         public async Task<UpdatedContentResponse> Update(UpdateContentRequest updateContentRequest)
         {
+            await _contentBusinessRules.CheckIfContentNameExists(updateContentRequest.Name);
             Content content = _mapper.Map<Content>(updateContentRequest);
             var updatedContent = await _contentDal.UpdateAsync(content);
             UpdatedContentResponse result = _mapper.Map<UpdatedContentResponse>(updatedContent);

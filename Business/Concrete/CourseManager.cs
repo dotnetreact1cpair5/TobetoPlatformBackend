@@ -3,6 +3,8 @@ using Business.Abstract;
 using Business.Dtos.Request;
 using Business.Dtos.Response;
 using Business.Rules;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
 using Entities.Concretes;
@@ -28,11 +30,10 @@ namespace Business.Concrete
             _courseBusinessRules = courseBusinessRules;
         }
 
+        [ValidationAspect(typeof(CourseValidator))]
         public async Task<CreatedCourseResponse> Add(CreateCourseRequest createCourseRequest)
         {
-           // await _courseBusinessRules.CourseNameCantBeNull(createCourseRequest.Name);
-          //  await _courseBusinessRules.PathPathCantBeNull(createCourseRequest.PathPath);
-
+            await _courseBusinessRules.CheckIfCourseNameExists(createCourseRequest.Name);
             Course course = _mapper.Map<Course>(createCourseRequest);
             var createdCourse = await _courseDal.AddAsync(course);
             CreatedCourseResponse result = _mapper.Map<CreatedCourseResponse>(createdCourse);
@@ -50,9 +51,9 @@ namespace Business.Concrete
         public async Task<IPaginate<GetListCourseResponse>> GetListCourse()
         {
             var course = await _courseDal.GetListAsync(
-                include:c=>c.Include(c=>c.Category) 
-                .Include(c=>c.Organization)
-                .Include(c=>c.ContentType)
+                include: c => c.Include(c => c.Category)
+                .Include(c => c.Organization)
+                .Include(c => c.ContentType)
                );
             var result = _mapper.Map<Paginate<GetListCourseResponse>>(course);
             return result;
@@ -60,9 +61,8 @@ namespace Business.Concrete
 
         public async Task<UpdatedCourseResponse> Update(UpdateCourseRequest updateCourseRequest)
         {
-            //await _courseBusinessRules.CourseNameCantBeNull(updateCourseRequest.Name);
-            //await _courseBusinessRules.PathPathCantBeNull(updateCourseRequest.PathPath);
 
+            await _courseBusinessRules.CheckIfCourseNameExists(updateCourseRequest.Name);
             Course course = _mapper.Map<Course>(updateCourseRequest);
             var updatedCourse = await _courseDal.UpdateAsync(course);
             UpdatedCourseResponse result = _mapper.Map<UpdatedCourseResponse>(updatedCourse);

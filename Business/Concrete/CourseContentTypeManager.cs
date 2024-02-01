@@ -14,54 +14,52 @@ using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
-    public class CourseContentTypeManager :ICourseContentTypeService
+    public class CourseContentTypeManager : IContentTypeService
     {
 
-        ICourseContentTypeDal _courseContentTypeDal;
+        IContentTypeDal _courseContentTypeDal;
         IMapper _mapper;
-        CourseContentTypeBusinessRules _courseContentTypeBusinessRules;
-        public CourseContentTypeManager(ICourseContentTypeDal courseContentTypeDal, IMapper mapper, CourseContentTypeBusinessRules courseContentTypeBusinessRules)
+        ContentTypeBusinessRules _contentTypeBusinessRules;
+        public CourseContentTypeManager(IContentTypeDal courseContentTypeDal, IMapper mapper, ContentTypeBusinessRules contentTypeBusinessRules)
         {
             _courseContentTypeDal = courseContentTypeDal;
             _mapper = mapper;
-            _courseContentTypeBusinessRules = courseContentTypeBusinessRules;
+            _contentTypeBusinessRules = contentTypeBusinessRules;
         }
 
-        public async Task<CreatedCourseContentTypeResponse> Add(CreateCourseContentTypeRequest createCourseContentTypeRequest)
+        public async Task<CreatedContentTypeResponse> Add(CreateContentTypeRequest createCourseContentTypeRequest)
         {
-            await _courseContentTypeBusinessRules.ContentTypeNameCantBeNull(createCourseContentTypeRequest.Name);
-
+            await _contentTypeBusinessRules.CheckIfContentTypeNameExists(createCourseContentTypeRequest.Name);
             ContentType courseContentType = _mapper.Map<ContentType>(createCourseContentTypeRequest);
             var createdCourseContentType = await _courseContentTypeDal.AddAsync(courseContentType);
-            CreatedCourseContentTypeResponse result = _mapper.Map<CreatedCourseContentTypeResponse>(createdCourseContentType);
+            CreatedContentTypeResponse result = _mapper.Map<CreatedContentTypeResponse>(createdCourseContentType);
             return result;
         }
 
-        public async Task<DeletedCourseContentTypeResponse> Delete(DeleteCourseContentTypeRequest deleteCourseContentTypeRequest)
+        public async Task<DeletedContentTypeResponse> Delete(DeleteContentTypeRequest deleteCourseContentTypeRequest)
         {
             ContentType courseContentType = _mapper.Map<ContentType>(deleteCourseContentTypeRequest);
             var deletedCourseContentType = await _courseContentTypeDal.DeleteAsync(courseContentType, false);
-            DeletedCourseContentTypeResponse result = _mapper.Map<DeletedCourseContentTypeResponse>(deletedCourseContentType);
+            DeletedContentTypeResponse result = _mapper.Map<DeletedContentTypeResponse>(deletedCourseContentType);
             return result;
         }
 
-        public async Task<IPaginate<GetListCourseContentTypeResponse>> GetListCourseContentType(PageRequest pageRequest)
+        public async Task<IPaginate<GetListContentTypeResponse>> GetListCourseContentType(PageRequest pageRequest)
         {
             var courseContentType = await _courseContentTypeDal.GetListAsync(
                 orderBy: c => c.OrderBy(c => c.Id),
                 index: pageRequest.PageIndex,
                 size: pageRequest.PageSize);
-            var result = _mapper.Map<Paginate<GetListCourseContentTypeResponse>>(courseContentType);
+            var result = _mapper.Map<Paginate<GetListContentTypeResponse>>(courseContentType);
             return result;
         }
 
-        public async Task<UpdatedCourseContentTypeResponse> Update(UpdateCourseContentTypeRequest updateCourseContentTypeRequest)
+        public async Task<UpdatedContentTypeResponse> Update(UpdateContentTypeRequest updateCourseContentTypeRequest)
         {
-            await _courseContentTypeBusinessRules.ContentTypeNameCantBeNull(updateCourseContentTypeRequest.Name);
-
+            await _contentTypeBusinessRules.CheckIfContentTypeNameExists(updateCourseContentTypeRequest.Name);
             ContentType courseContentType = _mapper.Map<ContentType>(updateCourseContentTypeRequest);
             var updatedCourseContentType = await _courseContentTypeDal.UpdateAsync(courseContentType);
-            UpdatedCourseContentTypeResponse result = _mapper.Map<UpdatedCourseContentTypeResponse>(updatedCourseContentType);
+            UpdatedContentTypeResponse result = _mapper.Map<UpdatedContentTypeResponse>(updatedCourseContentType);
             return result;
         }
     }

@@ -20,7 +20,7 @@ namespace Business.Concrete
         ICourseCategoryDal _courseCategoryDal;
         IMapper _mapper;
         CourseCategoryBusinessRules _courseCategoryBusinessRules;
-        public CourseCategoryManager(ICourseCategoryDal courseCategoryDal,IMapper mapper, CourseCategoryBusinessRules courseCategoryBusinessRules)
+        public CourseCategoryManager(ICourseCategoryDal courseCategoryDal, IMapper mapper, CourseCategoryBusinessRules courseCategoryBusinessRules)
         {
             _courseCategoryDal = courseCategoryDal;
             _mapper = mapper;
@@ -29,8 +29,7 @@ namespace Business.Concrete
 
         public async Task<CreatedCategoryResponse> Add(CreateCategoryRequest createCourseCategoryRequest)
         {
-           // await _courseCategoryBusinessRules.CategoryNameCantBeNull(createCourseCategoryRequest.Name);
-
+            await _courseCategoryBusinessRules.CheckIfCourseCategoryNameExists(createCourseCategoryRequest.Name);
             Category courseCategory = _mapper.Map<Category>(createCourseCategoryRequest);
             var createdCourseCategory = await _courseCategoryDal.AddAsync(courseCategory);
             CreatedCategoryResponse result = _mapper.Map<CreatedCategoryResponse>(createdCourseCategory);
@@ -48,15 +47,14 @@ namespace Business.Concrete
         public async Task<IPaginate<GetListCategoryResponse>> GetListCourseCategory()
         {
             var courseCategory = await _courseCategoryDal.GetListAsync();
-                
+
             var result = _mapper.Map<Paginate<GetListCategoryResponse>>(courseCategory);
             return result;
         }
 
         public async Task<UpdatedCategoryResponse> Update(UpdateCategoryRequest updateCourseCategoryRequest)
         {
-            //await _courseCategoryBusinessRules.CategoryNameCantBeNull(updateCourseCategoryRequest.Name);
-
+            await _courseCategoryBusinessRules.CheckIfCourseCategoryNameExists(updateCourseCategoryRequest.Name);
             Category CourseCategory = _mapper.Map<Category>(updateCourseCategoryRequest);
             var updatedCourseCategory = await _courseCategoryDal.UpdateAsync(CourseCategory);
             UpdatedCategoryResponse result = _mapper.Map<UpdatedCategoryResponse>(updatedCourseCategory);

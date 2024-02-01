@@ -10,8 +10,8 @@ namespace WebApi.Controllers
     [ApiController]
     public class CourseContentTypeController : ControllerBase
     {
-        ICourseContentTypeService _courseContentTypeService;
-        public CourseContentTypeController(ICourseContentTypeService courseContentTypeService)
+        IContentTypeService _courseContentTypeService;
+        public CourseContentTypeController(IContentTypeService courseContentTypeService)
         {
             _courseContentTypeService = courseContentTypeService;
         }
@@ -26,21 +26,21 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add([FromBody] CreateCourseContentTypeRequest createCourseContentTypeRequest)
+        public async Task<IActionResult> Add([FromBody] CreateContentTypeRequest createCourseContentTypeRequest)
         {
             var result = await _courseContentTypeService.Add(createCourseContentTypeRequest);
             return Ok(result);
         }
 
         [HttpPost("Update")]
-        public async Task<IActionResult> Update([FromBody] UpdateCourseContentTypeRequest updateCourseContentTypeRequest)
+        public async Task<IActionResult> Update([FromBody] UpdateContentTypeRequest updateCourseContentTypeRequest)
         {
             var result = await _courseContentTypeService.Update(updateCourseContentTypeRequest);
             return Ok(result);
         }
 
         [HttpPost("Delete")]
-        public async Task<IActionResult> Delete([FromBody] DeleteCourseContentTypeRequest deleteCourseContentTypeRequest)
+        public async Task<IActionResult> Delete([FromBody] DeleteContentTypeRequest deleteCourseContentTypeRequest)
         {
 
             var result = await _courseContentTypeService.Delete(deleteCourseContentTypeRequest);

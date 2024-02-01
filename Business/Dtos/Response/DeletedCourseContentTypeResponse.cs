@@ -1,6 +1,6 @@
 ﻿namespace Business.Dtos.Response
 {
-    public class DeletedCourseContentTypeResponse
+    public class DeletedContentTypeResponse
     {
         public int Id { get; set; }
        

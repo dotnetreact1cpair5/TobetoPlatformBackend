@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstracts
 {
-    public interface ICourseContentTypeDal: IRepository<ContentType, int>, IAsyncRepository<ContentType, int>
+    public interface IContentTypeDal : IRepository<ContentType, int>, IAsyncRepository<ContentType, int>
     {
     }
+
 }

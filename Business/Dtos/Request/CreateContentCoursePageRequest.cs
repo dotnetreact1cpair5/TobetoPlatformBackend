@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Business.Dtos.Request
 {
-    public class CreateContentTypeRequest
+    public class CreateContentCoursePageRequest
     {
-        public string Name { get; set; }
-        
+        public int CoursePageId { get; set; }
+        public int ContentId { get; set; }
     }
 
 }

@@ -1,4 +1,5 @@
-﻿using Castle.DynamicProxy;
+﻿using Business.Constants.Messages;
+using Castle.DynamicProxy;
 using Core.Extensions;
 using Core.IoC;
 using Core.Utilities.Interceptors;
@@ -34,7 +35,7 @@ namespace Business.BusinessAspects.Autofac
                     return;
                 }
             }
-            throw new Exception("yetki reddedildi");
+            throw new Exception(BusinessMessages.AccessDenied);
         }
     }
 }

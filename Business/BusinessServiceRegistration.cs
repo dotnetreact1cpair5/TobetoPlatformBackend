@@ -38,15 +38,11 @@ namespace Business
             services.AddScoped<ISocialMediaPlatformService, SocialMediaPlatformManager>();
             services.AddScoped<IUniversityService, UniversityManager>();
 
-
-
-
-
-
+            /*Course Services */
             services.AddScoped<IStudentClassService, StudentClassManager>();
             services.AddScoped<ICourseCategoryService, CourseCategoryManager>();
             services.AddScoped<IContentService, ContentManager>();
-            services.AddScoped<ICourseContentTypeService, CourseContentTypeManager>();
+            services.AddScoped<IContentTypeService, CourseContentTypeManager>();
             services.AddScoped<ICourseService, CourseManager>();
             services.AddScoped<ILessonService, LessonManager>();
             services.AddScoped<ILessonFavouriteService, LessonFavouriteManager>();

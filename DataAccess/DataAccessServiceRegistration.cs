@@ -52,9 +52,9 @@ namespace DataAccess
             services.AddScoped<IAccountEducationDal, EfAccountEducationDal>();
             services.AddScoped<ISkillDal, EfSkillDal>();
 
-            /*Course Services Field*/
+            /*Course Services */
             services.AddScoped<ICourseCategoryDal, EfCourseCategoryDal>();
-            services.AddScoped<ICourseContentTypeDal, EfCourseContentTypeDal>();
+            services.AddScoped<IContentTypeDal, EfContentTypeDal>();
             services.AddScoped<ICourseContentDal, EfCourseContentDal>();
             services.AddScoped<ILessonDal, EfLessonDal>();
             services.AddScoped<ILessonStatusDal, EfLessonStatusDal>();
@@ -71,6 +71,7 @@ namespace DataAccess
             services.AddScoped<ILessonFavouriteDal, EfLessonFavouriteDal>();
             services.AddScoped<ICourseFavouriteDal, EfCourseFavouriteDal>();
             services.AddScoped<ICourseCompletionDal, EfCourseCompletionDal>();
+           
 
 
             return services;

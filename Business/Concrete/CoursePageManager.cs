@@ -1,7 +1,12 @@
 ﻿using AutoMapper;
 using Business.Abstract;
-using Business.Dtos.Request;
-using Business.Dtos.Response;
+using Business.Dtos.Request.CreateRequest;
+using Business.Dtos.Request.DeleteRequest;
+using Business.Dtos.Request.UpdateRequest;
+using Business.Dtos.Response.CreatedResponse;
+using Business.Dtos.Response.DeletedResponse;
+using Business.Dtos.Response.GetListResponse;
+using Business.Dtos.Response.UpdatedResponse;
 using Business.Rules;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
@@ -59,9 +64,9 @@ namespace Business.Concrete
         public async Task<IPaginate<GetListCoursePageResponse>> GetListCoursePage()
         {
             var coursePage = await _coursePageDal.GetListAsync(
-                // include: c => c.Include(c => c.ContentCoursePages).ThenInclude(cp => cp.Content)
-                //.Include(c => c.CourseCoursePages).ThenInclude(cp => cp.Course)
-                //.Include(c => c.CoursePageLessons).ThenInclude(cp => cp.Lesson)
+                 include: c => c.Include(c => c.ContentCoursePages).ThenInclude(cp => cp.Content)
+                .Include(c => c.CourseCoursePages).ThenInclude(cp => cp.Course)
+                .Include(c => c.CoursePageLessons).ThenInclude(cp => cp.Lesson)
                 );
             var result = _mapper.Map<Paginate<GetListCoursePageResponse>>(coursePage);
             return result;

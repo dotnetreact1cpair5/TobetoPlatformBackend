@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Business.Dtos.Request;
-using Business.Dtos.Response;
+using Business.Dtos.Response.CreatedResponse;
 using Core.Entities.Concrete;
 using Entities.Concretes;
 using System;

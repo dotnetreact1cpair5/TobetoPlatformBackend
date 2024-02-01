@@ -60,7 +60,7 @@ namespace Business.Constants.Messages
         public static string SameCountryCodeError = "Aynı ülke kodu.";
         public static string AccessDenied = "Yetki Reddedildi";
 
-        /* Course Business Rules Messages*/
+        /* Course Messages*/
         public static string SameCourseNameError = "Aynı isimli Kurs Adı bulunmaktadır.";
         public static string SameLessonNameError = "Aynı isimli Ders Adı bulunmaktadır.";
         public static string SameLessonStatusNameError = "Aynı isimli Ders Statü Adı bulunmaktadır.";
@@ -80,5 +80,8 @@ namespace Business.Constants.Messages
         public static string TokenCreated = "Token Oluşturuldu";
         public static string PasswordResetLinkHasBeenSentToYourEmailAddress = "Şifre sıfırlama linki mail adresinize gönderilmiştir.";
         public static string ThisEmailAddressIsNotRegisteredInTheSystem = "Sistemde bu mail adresi kayıtlı degildir.";
+
+        /*Survey Messages*/
+        public static string SameSurveyLinkError = "Bu Anket Linki sistemde bulunmaktadır.";
     }
 }

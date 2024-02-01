@@ -36,14 +36,10 @@ namespace DataAccess
             services.AddScoped<IAccountForeignLanguageDal, EfAccountForeignLanguageDal>();
             services.AddScoped<IAccountCertificateDal, EfAccountCertificateDal>();
             services.AddScoped<IAccountExperienceDal, EfAccountExperienceDal>();
-            services.AddScoped<IClassLessonDal, EfClassLessonDal>();
             services.AddScoped<ICountryDal, EfCountryDal>();
             services.AddScoped<ICityDal, EfCityDal>();
             services.AddScoped<IDistrictDal, EfDistrictDal>();
             services.AddScoped<IAccountStudentClassDal, EfAccountStudentClassDal>();
-            services.AddScoped<IClassLessonDal, EfClassLessonDal>();
-            services.AddScoped<IStudentClassDal, EfStudentClassDal>();
-            services.AddScoped<IStudentClassDal, EfStudentClassDal>();
             services.AddScoped<ISocialMediaPlatformDal, EfSocialMediaPlatformDal>();
             services.AddScoped<IAccountSocialMediaDal, EfAccountSocialMediaDal>();
             services.AddScoped<IEducationStatusDal, EfEducationStatusDal>();
@@ -53,14 +49,13 @@ namespace DataAccess
             services.AddScoped<ISkillDal, EfSkillDal>();
 
             /*Course Services */
-            services.AddScoped<ICourseCategoryDal, EfCourseCategoryDal>();
+            services.AddScoped<ICategoryDal, EfCategoryDal>();
             services.AddScoped<IContentTypeDal, EfContentTypeDal>();
             services.AddScoped<ICourseContentDal, EfCourseContentDal>();
             services.AddScoped<ILessonDal, EfLessonDal>();
             services.AddScoped<ILessonStatusDal, EfLessonStatusDal>();
             services.AddScoped<ICourseDal, EfCourseDal>();
             services.AddScoped<ICourseDetailDal, EfCourseDetailDal>();
-            services.AddScoped<IAccountCourseLessonDal, EfAccountCourseLessonDal>();
             services.AddScoped<IAccountStudentClassDal, EfAccountStudentClassDal>();
             services.AddScoped<ICoursePageDal, EfCoursePageDal>();
             services.AddScoped<ICoursePageLessonDal, EfCoursePageLessonDal>();
@@ -71,7 +66,8 @@ namespace DataAccess
             services.AddScoped<ILessonFavouriteDal, EfLessonFavouriteDal>();
             services.AddScoped<ICourseFavouriteDal, EfCourseFavouriteDal>();
             services.AddScoped<ICourseCompletionDal, EfCourseCompletionDal>();
-           
+            services.AddScoped<IInstructorDal, EfInstructorDal>();
+
 
 
             return services;

@@ -34,6 +34,10 @@ namespace DataAccess.Context
         public DbSet<SocialMediaPlatform> SocialMediaPlatforms { get; set; }
         public DbSet<University> Universities { get; set; }
 
+        /*User Tables Field*/
+        public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<OperationClaim> OperationClaims { get; set; }
 
         /*Course Tables Field*/
         public DbSet<ClassCourse> ClassCourses { get; set; }
@@ -53,6 +57,7 @@ namespace DataAccess.Context
         public DbSet<CourseTimeSpent> CourseTimeSpents { get; set; }
         public DbSet<Content> Contents { get; set; }
         public DbSet<CourseFavourite> CourseFavourites { get; set; }
+        public DbSet<Instructor> Instructors { get; set; }
 
 
 

@@ -12,8 +12,8 @@ namespace Business.Rules
 {
     public class CourseCategoryBusinessRules : BaseBusinessRules
     {
-        private readonly ICourseCategoryDal _courseCategoryDal;
-        public CourseCategoryBusinessRules(ICourseCategoryDal courseCategoryDal)
+        private readonly ICategoryDal _courseCategoryDal;
+        public CourseCategoryBusinessRules(ICategoryDal courseCategoryDal)
         {
             _courseCategoryDal = courseCategoryDal;
         }

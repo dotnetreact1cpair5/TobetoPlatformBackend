@@ -9,14 +9,12 @@ namespace Entities.Concretes
 {
     public class CoursePage : Entity<int>
     {
-
+        public int PathFileId { get; set; }
         public string Name { get; set; }
-        public string Path { get; set; }
-
-
+       // public PathFile? PathFile { get; set; }
         public ICollection<CoursePageLesson>? CoursePageLessons { get; set; }
-        public ICollection<CourseCoursePage>? CourseCoursePages {  get; set; }   
-        public ICollection<ContentCoursePage>? ContentCoursePages { get; set;}
+        public ICollection<CourseCoursePage>? CourseCoursePages { get; set; }
+        public ICollection<ContentCoursePage>? ContentCoursePages { get; set; }
 
 
     }

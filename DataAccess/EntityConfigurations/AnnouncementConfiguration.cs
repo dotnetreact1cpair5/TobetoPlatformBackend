@@ -20,10 +20,7 @@ namespace DataAccess.EntityConfigurations
             builder.Property(a => a.Subject).HasColumnName("Subject");
             builder.Property(a => a.Description).HasColumnName("Description");
             builder.Property(a => a.PublishedDate).HasColumnName("PublishedDate");
-            builder.Property(a => a.Priority).HasColumnName("Priority");
-            builder.Property(a => a.Visibility).HasColumnName("Visibility");
-           // builder.HasIndex(indexExpression: a => a.AnnouncementTypeId, name: "FK_Announcements_AnnouncementTypes");
-          //  builder.HasIndex(indexExpression: a => a.OrganizationId, name: "FK_Announcements_Organizations");
+           
             builder.HasQueryFilter(a => !a.DeletedDate.HasValue);
         }
     }

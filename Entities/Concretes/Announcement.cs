@@ -9,14 +9,15 @@ namespace Entities.Concretes
 {
     public class Announcement : Entity<int>
     {
+       
         public int AnnouncementTypeId { get; set; }
         public int OrganizationId { get; set; }
         public string Subject { get; set; }
         public string Description { get; set; }
         public DateTime PublishedDate { get; set; }
-
-        public int Priority { get; set; }
-        public bool Visibility { get; set; }
+        public Organization? Organization { get; set; }
+        public AnnouncementType? AnnouncementType { get; set; }
+       
     }
 }
 

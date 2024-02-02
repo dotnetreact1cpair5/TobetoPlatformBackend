@@ -13,8 +13,6 @@ namespace Entities.Concretes
         public string Title { get; set; }
         public string Description { get; set; }
         public string Link { get; set; }
-        public int Priority { get; set; }
-        public bool Visibility { get; set; }
         public Organization? Organization { get; set; }
 
     }

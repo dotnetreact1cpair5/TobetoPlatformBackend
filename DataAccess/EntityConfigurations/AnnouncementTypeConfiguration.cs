@@ -16,8 +16,7 @@ namespace DataAccess.EntityConfigurations
             builder.ToTable("AnnouncementTypes").HasKey(at => at.Id);
             builder.Property(at => at.Id).HasColumnName("Id").IsRequired();
             builder.Property(at => at.Name).HasColumnName("Name");
-            builder.Property(at => at.Priority).HasColumnName("Priority");
-            builder.Property(at => at.Visibility).HasColumnName("Visibility");
+           
             builder.HasQueryFilter(at => !at.DeletedDate.HasValue);
         }
     }

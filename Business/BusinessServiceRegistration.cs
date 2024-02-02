@@ -2,7 +2,9 @@
 using Business.Concrete;
 using Business.Rules;
 using Business.ValidationRules.FluentValidation;
+using Core.Business.Rules;
 using Core.Security.JWT;
+using Core.Utilities.FileUpload;
 using DataAccess.Abstracts;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
@@ -57,21 +59,32 @@ namespace Business
             services.AddScoped<ISessionRecordService, SessionRecordManager>();
 
 
+            /*User Services */
+            services.AddScoped<IUserService, UserManager>();
+            services.AddScoped<IAuthService, AuthManager>();
 
-            // ----------------------FOR RULES-----------------------
-            services.AddScoped<AccountCertificateBusinessRules>();
-            services.AddScoped<AccountEducationBusinessRules>();
-            services.AddScoped<AccountSocialMediaBusinessRules>();
-            services.AddScoped<CityBusinessRules>();
-            services.AddScoped<CountryBusinessRules>();
-            services.AddScoped<EducationProgramBusinessRules>();
-            services.AddScoped<AccountExperienceBusinessRules>();
-            services.AddScoped<SocialMediaPlatformBusinessRules>();
-            services.AddScoped<UniversityBusinessRules>();
-            services.AddScoped<AccountBusinessRules>();
-            services.AddScoped<SkillBusinessRules>();
+            /*Path Service */
+            services.AddScoped<IPathFileService,PathFileManager>();
+            services.AddScoped<IFileUploadAdapter, CloudinaryAdapter>();
 
+
+            
+
+            services.AddSubClassesOfType(Assembly.GetExecutingAssembly(), typeof(BaseBusinessRules));
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            return services;
+        }
+
+        public static IServiceCollection AddSubClassesOfType(this IServiceCollection services,
+       Assembly assembly, Type type, Func<IServiceCollection, Type, IServiceCollection>? addWithLifeCycle = null)
+        {
+            var types = assembly.GetTypes().Where(t => t.IsSubclassOf(type) && type != t).ToList();
+            foreach (var item in types)
+                if (addWithLifeCycle == null)
+                    services.AddScoped(item);
+
+                else
+                    addWithLifeCycle(services, type);
             return services;
         }
     }

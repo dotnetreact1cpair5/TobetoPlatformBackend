@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Business.Constants.Messages
 {
-    public class BusinessMessages
+    public static class BusinessMessages
     {
         public static string SameAccountSocialMediaLinkError = "Eklemeye çalıştığınız link mevcuttur!";
         public static string SameUniversityNameError = "Eklemeye çalıştığınız üniversite mevcuttur!";

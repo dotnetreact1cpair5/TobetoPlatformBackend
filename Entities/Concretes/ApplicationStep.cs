@@ -10,6 +10,6 @@ namespace Entities.Concretes
     public class ApplicationStep:Entity<int>
     {
         public string Name { get; set; }
-
+        ICollection<Application>? Applications { get; set; }
     }
 }

@@ -15,7 +15,6 @@ namespace Entities.Concretes
         public string Title { get; set; }
         public string DocumentName { get; set; }
 
-       
         public  ApplicationStep? ApplicationStep { get; set; }
         public  Organization? Organization { get; set; }
 

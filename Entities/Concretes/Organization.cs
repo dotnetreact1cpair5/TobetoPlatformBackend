@@ -18,5 +18,7 @@ namespace Entities.Concretes
 
         public ICollection<Lesson>? Lessons { get; set; }
         public ICollection<Course>? Courses { get; set; }
+        public ICollection<Application>? Applications { get; set; }
+        public ICollection<Announcement>? Announcements { get; set; }
     }
 }

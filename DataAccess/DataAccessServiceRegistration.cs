@@ -69,6 +69,9 @@ namespace DataAccess
             services.AddScoped<IInstructorDal, EfInstructorDal>();
             services.AddScoped<ISessionRecordDal, EfSessionRecordDal>();
 
+            /*User Service */
+            services.AddScoped<IUserDal, EfUserDal>();
+
             /*PathFile Service */
             services.AddScoped<IPathFileDal, EfPathFileDal>();  
 

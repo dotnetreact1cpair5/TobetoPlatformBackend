@@ -9,6 +9,7 @@ using Business.Dtos.Response.GetListResponse;
 using Business.Dtos.Response.UpdatedResponse;
 using Business.Rules;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Validation;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
@@ -36,6 +37,7 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(CourseValidator))]
+        [CacheRemoveAspect("ICourseService.Get")]
         public async Task<CreatedCourseResponse> Add(CreateCourseRequest createCourseRequest)
         {
             await _courseBusinessRules.CheckIfCourseNameExists(createCourseRequest.Name);
@@ -44,7 +46,7 @@ namespace Business.Concrete
             CreatedCourseResponse result = _mapper.Map<CreatedCourseResponse>(createdCourse);
             return result;
         }
-
+        
         public async Task<DeletedCourseResponse> Delete(DeleteCourseRequest deleteCourseRequest)
         {
             Course course = _mapper.Map<Course>(deleteCourseRequest);
@@ -52,7 +54,7 @@ namespace Business.Concrete
             DeletedCourseResponse result = _mapper.Map<DeletedCourseResponse>(deletedCourse);
             return result;
         }
-
+        [CacheAspect]
         public async Task<IPaginate<GetListCourseResponse>> GetListCourse()
         {
             var course = await _courseDal.GetListAsync(
@@ -64,6 +66,8 @@ namespace Business.Concrete
             return result;
         }
 
+        [ValidationAspect(typeof(CourseValidator))]
+        [CacheRemoveAspect("ICourseService.Get")]
         public async Task<UpdatedCourseResponse> Update(UpdateCourseRequest updateCourseRequest)
         {
 

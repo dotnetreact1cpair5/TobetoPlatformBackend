@@ -17,7 +17,7 @@ namespace Business.Abstract
     public interface IContentTypeService
     {
         Task<CreatedContentTypeResponse> Add(CreateContentTypeRequest contentTypeRequest);
-        Task<IPaginate<GetListContentTypeResponse>> GetListCourseContentType(PageRequest pageRequest);
+        Task<IPaginate<GetListContentTypeResponse>> GetListContentType(PageRequest pageRequest);
         Task<UpdatedContentTypeResponse> Update(UpdateContentTypeRequest contentTypeRequest);
         Task<DeletedContentTypeResponse> Delete(DeleteContentTypeRequest courseContentTypeRequest);
     }

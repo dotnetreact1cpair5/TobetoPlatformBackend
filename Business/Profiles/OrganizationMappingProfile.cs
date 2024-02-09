@@ -28,7 +28,11 @@ namespace Business.Profiles
             CreateMap<Organization, UpdatedOrganizationResponse>().ReverseMap();
             CreateMap<Organization, DeletedOrganizationResponse>().ReverseMap();
 
-            CreateMap<Organization, GetListOrganizationResponse>().ReverseMap();
+            CreateMap<Organization, GetListOrganizationResponse>()
+                .ForMember(dest=>dest.DistrictName,opt=>opt.MapFrom(src=>src.District.Name))
+                .ForMember(dest => dest.CityName, opt => opt.MapFrom(src => src.City.Name))
+                .ForMember(dest => dest.CountryName, opt => opt.MapFrom(src => src.Country.Name))
+                .ReverseMap();
             CreateMap<Paginate<Organization>, Paginate<GetListOrganizationResponse>>().ReverseMap();
         }
     }

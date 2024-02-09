@@ -42,9 +42,9 @@ namespace Business
 
             /*Course Services */
             services.AddScoped<IStudentClassService, StudentClassManager>();
-            services.AddScoped<ICourseCategoryService, CourseCategoryManager>();
+            services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<IContentService, ContentManager>();
-            services.AddScoped<IContentTypeService, CourseContentTypeManager>();
+            services.AddScoped<IContentTypeService, ContentTypeManager>();
             services.AddScoped<ICourseService, CourseManager>();
             services.AddScoped<ILessonService, LessonManager>();
             services.AddScoped<ILessonFavouriteService, LessonFavouriteManager>();
@@ -67,7 +67,7 @@ namespace Business
             services.AddScoped<IPathFileService,PathFileManager>();
             services.AddScoped<IFileUploadAdapter, CloudinaryAdapter>();
 
-
+            services.AddScoped<IOrganizationService, OrganizationManager>();
             
 
             services.AddSubClassesOfType(Assembly.GetExecutingAssembly(), typeof(BaseBusinessRules));

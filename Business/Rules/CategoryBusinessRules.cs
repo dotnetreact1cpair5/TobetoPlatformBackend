@@ -10,20 +10,20 @@ using System.Threading.Tasks;
 
 namespace Business.Rules
 {
-    public class CourseCategoryBusinessRules : BaseBusinessRules
+    public class CategoryBusinessRules : BaseBusinessRules
     {
         private readonly ICategoryDal _courseCategoryDal;
-        public CourseCategoryBusinessRules(ICategoryDal courseCategoryDal)
+        public CategoryBusinessRules(ICategoryDal courseCategoryDal)
         {
             _courseCategoryDal = courseCategoryDal;
         }
 
-        public async Task CheckIfCourseCategoryNameExists(string courseCategoryName)
+        public async Task CheckIfCategoryNameExists(string courseCategoryName)
         {
             var result = await _courseCategoryDal.GetListAsync(c => c.Name == courseCategoryName);
             if (result.Count > 0)
             {
-                throw new BusinessException(BusinessMessages.SameCourseCategoryNameError);
+                throw new BusinessException(BusinessMessages.SameCategoryNameError);
             }
         }
     }

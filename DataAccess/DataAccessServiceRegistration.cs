@@ -75,6 +75,8 @@ namespace DataAccess
             /*PathFile Service */
             services.AddScoped<IPathFileDal, EfPathFileDal>();  
 
+            services.AddScoped<IOrganizationDal, EfOrganizationDal>();
+
             return services;
         }
     }

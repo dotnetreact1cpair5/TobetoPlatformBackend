@@ -3,6 +3,7 @@ using Business.Abstract;
 using Business.Constants.Messages;
 using Business.Dtos.Request;
 using Business.Dtos.Response;
+using Business.Dtos.Response.CreatedResponse;
 using Business.Rules;
 using Core.DataAccess.Paging;
 using Core.Entities.Concrete;
@@ -83,6 +84,7 @@ namespace Business.Concrete
             return new SuccessDataResult<AccessToken>(accessToken, BusinessMessages.TokenCreated);
         }
 
+       
         public IResult EmailForPasswordUpdate(string email)
         {
             if (_userService.GetByMail(email) != null)
@@ -91,6 +93,8 @@ namespace Business.Concrete
             }
             return new ErrorResult(BusinessMessages.ThisEmailAddressIsNotRegisteredInTheSystem);
         }
+
+      
     }
 }
 

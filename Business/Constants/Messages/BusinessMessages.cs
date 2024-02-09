@@ -68,7 +68,7 @@ namespace Business.Constants.Messages
         public static string SameContentNameError = "Aynı isimli İçerik Adı bulunmaktadır.";
         public static string SameContentTypeNameError = "Aynı isimli İçerik Tipi Adı bulunmaktadır.";
         public static string SameCoursePageNameError = "Kurs Sayfasında aynı isimli kurs adı bulunmaktadır.";
-        public static string SameCourseCategoryNameError = "Aynı isimli Kurs Kategori Adı bulunmaktadır.";
+        public static string SameCategoryNameError = "Aynı isimli Kurs Kategori Adı bulunmaktadır.";
         public static string? SameSessionRecordNameError = "Aynı isimli Oturum Kayıt Adı bulunmaktadır.";
 
         /*User Messages*/
@@ -84,6 +84,6 @@ namespace Business.Constants.Messages
         /*Survey Messages*/
         public static string SameSurveyLinkError = "Bu Anket Linki sistemde bulunmaktadır.";
 
-        
+        public static string SameOrganizationNameError = "Aynı isimli Organizasyon Adı bulunmaktadır.";
     }
 }

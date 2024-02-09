@@ -1,4 +1,5 @@
 using Core.Entities.Concrete;
+using Core.Security.JWT;
 using Entities.Concretes;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -34,10 +35,11 @@ namespace DataAccess.Context
         public DbSet<SocialMediaPlatform> SocialMediaPlatforms { get; set; }
         public DbSet<University> Universities { get; set; }
 
-        /*User Tables Field*/
+        /*User & Claim Field*/
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<OperationClaim> OperationClaims { get; set; }
+     
 
         /*Course Tables Field*/
         public DbSet<ClassCourse> ClassCourses { get; set; }
@@ -66,7 +68,7 @@ namespace DataAccess.Context
         public TobetoContext(DbContextOptions dbContextOptions, IConfiguration configuration) : base(dbContextOptions)
         {
             Configuration = configuration;
-           // Database.EnsureCreated();
+            Database.EnsureCreated();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

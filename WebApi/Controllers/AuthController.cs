@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
+using Core.Entities.Concrete;
 using Core.Entities.Dtos;
+using Core.Security.JWT;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -53,6 +55,8 @@ namespace WebApi.Controllers
             return BadRequest(result.Message);
         }
 
+
+
         [HttpPost("passwordupdate")]
         public ActionResult EmailForPasswordUpdate(UserForPasswordUpdate userForPasswordUpdate)
         {
@@ -62,6 +66,19 @@ namespace WebApi.Controllers
                 return Ok(result.Message);
             }
             return BadRequest(result.Message);
+        }
+
+
+        private void SetRefreshTokenInCookie(string refreshtoken, DateTime expired)
+        {
+            var cookieOption = new CookieOptions()
+            {
+                HttpOnly = true,
+                Expires = expired.ToLocalTime(),
+
+            };
+            Response.Cookies.Append("refreshtoken", refreshtoken, cookieOption);
+
         }
     }
 }

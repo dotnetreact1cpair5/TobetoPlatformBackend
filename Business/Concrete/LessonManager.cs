@@ -51,6 +51,20 @@ namespace Business.Concrete
             return result;
         }
 
+        public async Task<IPaginate<GetListLessonResponse>> GetByCourseId(int courseId)
+        {
+            var lesson = await _lessonDal.GetListAsync(predicate: c => c.Id == courseId);
+            var result = _mapper.Map<Paginate<GetListLessonResponse>>(lesson);
+            return result;
+        }
+
+        public async Task<IPaginate<GetListLessonResponse>> GetByLessonId(int accountId)
+        {
+            var lesson = await _lessonDal.GetListAsync(predicate: c => c.Id == accountId);
+            var result = _mapper.Map<Paginate<GetListLessonResponse>>(lesson);
+            return result;
+        }
+
         public async Task<IPaginate<GetListLessonResponse>> GetListLesson()
         {
             var Lesson = await _lessonDal.GetListAsync(

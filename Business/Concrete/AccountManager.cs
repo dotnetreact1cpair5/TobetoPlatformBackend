@@ -53,7 +53,7 @@ namespace Business.Concrete
         public async Task<IPaginate<GetListAccountResponse>> GetListAccount(PageRequest pageRequest)
         {
             var account = await _accountDal.GetListAsync(
-                include: a => a.Include(b => b.Country).ThenInclude(c => c.Cities).ThenInclude(d => d.Districts),
+                include: a => a.Include(b => b.Country).ThenInclude(c => c.Cities).ThenInclude(d => d.Districts).Include(a => a.User),
                 orderBy: a => a.OrderBy(a => a.Id),
                 index: pageRequest.PageIndex,
                 size: pageRequest.PageSize);

@@ -12,6 +12,7 @@ using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
 using DataAccess.Concretes;
 using Entities.Concretes;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,10 +36,7 @@ namespace Business.Concrete
 
         public async Task<CreatedOrganizationResponse> Add(CreateOrganizationRequest createOrganizationRequest)
         {
-            //await _organizationBusinessRules.OrganizationNameCantBeNull(createOrganizationRequest.Name);
-            //await _organizationBusinessRules.ContactNumberCantBeNull(createOrganizationRequest.ContactNumber);
-            //await _organizationBusinessRules.MustBeAddressDefined(createOrganizationRequest.AddressId);
-
+            await _organizationBusinessRules.CheckIfOrganizationNameExists(createOrganizationRequest.Name);
             Organization organization = _mapper.Map<Organization>(createOrganizationRequest);
             var createdOrganization = await _organizationDal.AddAsync(organization);
             CreatedOrganizationResponse result = _mapper.Map<CreatedOrganizationResponse>(createdOrganization);
@@ -55,7 +53,8 @@ namespace Business.Concrete
 
         public async Task<IPaginate<GetListOrganizationResponse>> GetListOrganization(PageRequest pageRequest)
         {
-            var organization = await _organizationDal.GetListAsync(
+            var organization = await _organizationDal.GetListAsync(include:o=>o.Include(o=>o.City)
+                .Include(o=>o.District).Include(o=>o.Country),
                 orderBy: o => o.OrderBy(o => o.Id),
                 index: pageRequest.PageIndex,
                 size: pageRequest.PageSize);
@@ -65,10 +64,7 @@ namespace Business.Concrete
 
         public async Task<UpdatedOrganizationResponse> Update(UpdateOrganizationRequest updateOrganizationRequest)
         {
-            //await _organizationBusinessRules.OrganizationNameCantBeNull(updateOrganizationRequest.Name);
-            //await _organizationBusinessRules.ContactNumberCantBeNull(updateOrganizationRequest.ContactNumber);
-            //await _organizationBusinessRules.MustBeAddressDefined(updateOrganizationRequest.AddressId);
-
+            await _organizationBusinessRules.CheckIfOrganizationNameExists(updateOrganizationRequest.Name);
             Organization organization = _mapper.Map<Organization>(updateOrganizationRequest);
             var updatedOrganization = await _organizationDal.UpdateAsync(organization);
             UpdatedOrganizationResponse result = _mapper.Map<UpdatedOrganizationResponse>(updatedOrganization);

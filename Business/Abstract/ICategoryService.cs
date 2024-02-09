@@ -14,10 +14,10 @@ using System.Threading.Tasks;
 
 namespace Business.Abstract
 {
-    public interface ICourseCategoryService
+    public interface ICategoryService
     {
         Task<CreatedCategoryResponse> Add(CreateCategoryRequest createCourseCategoryRequest);
-        Task<IPaginate<GetListCategoryResponse>> GetListCourseCategory();
+        Task<IPaginate<GetListCategoryResponse>> GetListCategory();
         Task<UpdatedCategoryResponse> Update(UpdateCategoryRequest updateCourseCategoryRequest);
         Task<DeletedCategoryResponse> Delete(DeleteCategoryRequest deleteCourseCategoryRequest);
     }

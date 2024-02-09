@@ -10,11 +10,14 @@ using Business.Dtos.Response.UpdatedResponse;
 using Business.Rules;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Performance;
+using Core.Aspects.Autofac.Transaction;
 using Core.Aspects.Autofac.Validation;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
 using Entities.Concretes;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,7 +40,7 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(CourseValidator))]
-        [CacheRemoveAspect("ICourseService.Get")]
+       // [CacheRemoveAspect("ICourseService.Get")]
         public async Task<CreatedCourseResponse> Add(CreateCourseRequest createCourseRequest)
         {
             await _courseBusinessRules.CheckIfCourseNameExists(createCourseRequest.Name);
@@ -54,20 +57,40 @@ namespace Business.Concrete
             DeletedCourseResponse result = _mapper.Map<DeletedCourseResponse>(deletedCourse);
             return result;
         }
-        [CacheAspect]
+
+        public async Task<IPaginate<GetListCourseResponse>> GetByAccountId(int accountId)
+        {
+            var course = await _courseDal.GetListAsync(predicate: c => c.Id == accountId,
+                include:c=>c.Include(ca=>ca.Account));
+            var result=_mapper.Map<Paginate<GetListCourseResponse>>(course);
+            return result;
+        }
+
+        public async Task<IPaginate<GetListCourseResponse>> GetByCourseId(int courseId)
+        {
+            var course = await _courseDal.GetListAsync(predicate: c => c.Id == courseId);
+            var result = _mapper.Map<Paginate<GetListCourseResponse>>(course);
+            return result;
+        }
+
+        // [CacheAspect]
+        // [PerformanceAspect(5)]//gecen sure 5snyeyi gecerse bildir
         public async Task<IPaginate<GetListCourseResponse>> GetListCourse()
         {
             var course = await _courseDal.GetListAsync(
                 include: c => c.Include(c => c.Category)
                 .Include(c => c.Organization)
                 .Include(c => c.ContentType)
+                .Include(c=>c.Account)
+                .Include(c=>c.PathFile)
                );
             var result = _mapper.Map<Paginate<GetListCourseResponse>>(course);
             return result;
         }
 
         [ValidationAspect(typeof(CourseValidator))]
-        [CacheRemoveAspect("ICourseService.Get")]
+      //  [CacheRemoveAspect("ICourseService.Get")]
+      //  [TransactionScopeAspect]
         public async Task<UpdatedCourseResponse> Update(UpdateCourseRequest updateCourseRequest)
         {
 

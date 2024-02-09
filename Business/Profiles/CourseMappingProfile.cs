@@ -25,7 +25,10 @@ namespace Business.Profiles
             CreateMap<DeleteCourseRequest, Course>().ReverseMap();
 
             CreateMap<Course, GetListCourseResponse>()
-                
+                .ForMember(dest=>dest.ContentTypeName,opt=>opt.MapFrom(src=>src.ContentType.Name))
+                .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.Name))
+                .ForMember(dest => dest.OrganizationName, opt => opt.MapFrom(src => src.Organization.Name))
+              
                 .ReverseMap();
 
             CreateMap<Paginate<Course>, Paginate<GetListCourseResponse>>().ReverseMap();

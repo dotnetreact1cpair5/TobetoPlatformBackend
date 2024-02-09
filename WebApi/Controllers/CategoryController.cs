@@ -10,10 +10,10 @@ namespace WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CourseCategoryController : ControllerBase
+    public class CategoryController : ControllerBase
     {
-        ICourseCategoryService _courseCategoryService;
-        public CourseCategoryController(ICourseCategoryService courseCategoryService)
+        ICategoryService _courseCategoryService;
+        public CategoryController(ICategoryService courseCategoryService)
         {
             _courseCategoryService = courseCategoryService;
         }
@@ -23,7 +23,7 @@ namespace WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetList()
         {
-            var result = await _courseCategoryService.GetListCourseCategory();
+            var result = await _courseCategoryService.GetListCategory();
             return Ok(result);
         }
 

@@ -18,12 +18,24 @@ namespace WebApi.Controllers
             _courseService = courseService;
         }
 
-
-
         [HttpGet]
         public async Task<IActionResult> GetList()
         {
             var result = await _courseService.GetListCourse();
+            return Ok(result);
+        }
+
+        [HttpGet("getbyaccountid")]
+        public async Task<IActionResult> GetByAccountId([FromQuery] int accountId)
+        {
+            var result = await _courseService.GetByAccountId(accountId);
+            return Ok(result);
+        }
+
+        [HttpGet("getbycourseid")]
+        public async Task<IActionResult> GetByCourseId([FromQuery] int courseId)
+        {
+            var result = await _courseService.GetByCourseId(courseId);
             return Ok(result);
         }
 
@@ -33,6 +45,7 @@ namespace WebApi.Controllers
             var result = await _courseService.Add(createCourseRequest);
             return Ok(result);
         }
+
 
         [HttpPost("Update")]
         public async Task<IActionResult> Update([FromBody] UpdateCourseRequest updateCourseRequest)

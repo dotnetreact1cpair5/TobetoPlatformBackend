@@ -20,5 +20,7 @@ namespace Business.Abstract
         Task<IPaginate<GetListLessonResponse>> GetListLesson();
         Task<UpdatedLessonResponse> Update(UpdateLessonRequest updateLessonRequest);
         Task<DeletedLessonResponse> Delete(DeleteLessonRequest deleteLessonRequest);
+        Task<IPaginate<GetListLessonResponse>> GetByCourseId(int courseId);
+        Task<IPaginate<GetListLessonResponse>> GetByLessonId(int accountId);
     }
 }

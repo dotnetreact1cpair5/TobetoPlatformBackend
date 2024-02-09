@@ -19,11 +19,26 @@ namespace WebApi.Controllers
         }
 
 
-
         [HttpGet]
         public async Task<IActionResult> GetList()
         {
             var result = await _lessonService.GetListLesson();
+            return Ok(result);
+        }
+
+
+        [HttpGet("getbycourseid")]
+        public async Task<IActionResult> GetByCourseId([FromQuery] int courseId)
+        {
+            var result = await _lessonService.GetByCourseId(courseId);
+            return Ok(result);
+        }
+
+
+        [HttpGet("getbylessonid")]
+        public async Task<IActionResult> GetByLessonId([FromQuery] int lessonId)
+        {
+            var result = await _lessonService.GetByLessonId(lessonId);
             return Ok(result);
         }
 

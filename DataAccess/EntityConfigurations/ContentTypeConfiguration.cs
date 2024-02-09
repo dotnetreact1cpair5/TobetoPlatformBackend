@@ -16,6 +16,7 @@ namespace DataAccess.EntityConfigurations
             builder.ToTable("ContentTypes").HasKey(cct => cct.Id);
             builder.Property(cct => cct.Id).HasColumnName("Id").IsRequired();
             builder.Property(cct => cct.Name).HasColumnName("Name").IsRequired();
+
             builder.HasQueryFilter(cct => !cct.DeletedDate.HasValue);
         }
     }

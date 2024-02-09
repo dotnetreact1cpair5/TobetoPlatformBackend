@@ -1,5 +1,6 @@
 ﻿using Business.Dtos.Request;
 using Business.Dtos.Response;
+using Business.Dtos.Response.CreatedResponse;
 using Core.Entities.Concrete;
 using Core.Entities.Dtos;
 using Core.Results;
@@ -19,7 +20,7 @@ namespace Business.Abstract
         IDataResult<User> Login(UserForLoginDto userForLoginDto);
         IResult UserExists(string email);
         IDataResult<AccessToken> CreateAccessToken(User user);
-
         IResult EmailForPasswordUpdate(string email);
+
     }
 }

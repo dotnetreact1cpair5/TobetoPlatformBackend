@@ -26,7 +26,7 @@ namespace Entities.Concretes
         public Content? Content { get; set; }
         public ContentType? ContentType { get; set; }
         public Organization? Organization { get; set; }
-        public Category? CourseCategory { get; set; }
+        public Category? Category { get; set; }
         public SessionRecord? SessionRecord { get; set; }
         public Instructor? Instructor { get; set; }
         public PathFile? PathFile { get; set; }

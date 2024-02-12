@@ -15,7 +15,7 @@ namespace Business.ValidationRules.FluentValidation
         {
             RuleFor(c => c.Name).NotEmpty().WithMessage(BusinessMessages.RequiredField);
             RuleFor(c => c.Name).MinimumLength(2).WithMessage(BusinessMessages.MinLengthError2);
-            RuleFor(c => c.Name).MaximumLength(30).WithMessage(BusinessMessages.MaxLengthError30);
+            RuleFor(c => c.Name).MaximumLength(70).WithMessage(BusinessMessages.MaxLengthError30);
         }
     }
 

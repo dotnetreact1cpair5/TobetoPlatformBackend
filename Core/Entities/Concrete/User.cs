@@ -6,6 +6,7 @@ using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Core.Entities.Concrete
 {
     public class User : Entity<int>
@@ -19,7 +20,7 @@ namespace Core.Entities.Concrete
         public bool Status { get; set; }
 
         public virtual ICollection<UserOperationClaim>? UserOperationClaims { get; set; } = null!;
-       
 
+       
     }
 }

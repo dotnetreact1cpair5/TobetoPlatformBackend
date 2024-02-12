@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using Core.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace Entities.Concretes
     public class Course : Entity<int>
     {
         public int AccountId { get; set; }
+        public int UserId { get; set; }
         public int CategoryId { get; set; }
         public int OrganizationId { get; set; }
         public int ContentTypeId { get; set; }
@@ -19,6 +21,7 @@ namespace Entities.Concretes
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public Account? Account { get; set; }
+        public User? User { get; set; }  
         public ContentType? ContentType { get; set; }
         public Category? Category { get; set; }
         public PathFile? PathFile { get; set; }

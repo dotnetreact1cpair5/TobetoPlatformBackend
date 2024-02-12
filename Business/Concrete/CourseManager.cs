@@ -43,7 +43,7 @@ namespace Business.Concrete
        // [CacheRemoveAspect("ICourseService.Get")]
         public async Task<CreatedCourseResponse> Add(CreateCourseRequest createCourseRequest)
         {
-            await _courseBusinessRules.CheckIfCourseNameExists(createCourseRequest.Name);
+           // await _courseBusinessRules.CheckIfCourseNameExists(createCourseRequest.Name);
             Course course = _mapper.Map<Course>(createCourseRequest);
             var createdCourse = await _courseDal.AddAsync(course);
             CreatedCourseResponse result = _mapper.Map<CreatedCourseResponse>(createdCourse);
@@ -60,15 +60,36 @@ namespace Business.Concrete
 
         public async Task<IPaginate<GetListCourseResponse>> GetByAccountId(int accountId)
         {
-            var course = await _courseDal.GetListAsync(predicate: c => c.Id == accountId,
-                include:c=>c.Include(ca=>ca.Account));
+            var course = await _courseDal.GetListAsync(predicate: c => c.AccountId == accountId,
+                  include: c => c.Include(c => c.Category)
+                .Include(c => c.Organization)
+                .Include(c => c.ContentType)
+                .Include(c => c.Account)
+                .Include(c => c.PathFile).Include(c => c.User));
             var result=_mapper.Map<Paginate<GetListCourseResponse>>(course);
+            return result;
+        }
+
+        public async Task<IPaginate<GetListCourseResponse>> GetByUserId(int userId)
+        {
+            var course = await _courseDal.GetListAsync(predicate: c => c.UserId == userId,
+                  include: c => c.Include(c => c.Category)
+                .Include(c => c.Organization)
+                .Include(c => c.ContentType)
+                .Include(c => c.Account)
+                .Include(c => c.PathFile).Include(c => c.User));
+            var result = _mapper.Map<Paginate<GetListCourseResponse>>(course);
             return result;
         }
 
         public async Task<IPaginate<GetListCourseResponse>> GetByCourseId(int courseId)
         {
-            var course = await _courseDal.GetListAsync(predicate: c => c.Id == courseId);
+            var course = await _courseDal.GetListAsync(predicate: c => c.Id == courseId,
+                  include: c => c.Include(c => c.Category)
+                .Include(c => c.Organization)
+                .Include(c => c.ContentType)
+                .Include(c => c.Account)
+                .Include(c => c.PathFile).Include(c => c.User));
             var result = _mapper.Map<Paginate<GetListCourseResponse>>(course);
             return result;
         }
@@ -82,7 +103,7 @@ namespace Business.Concrete
                 .Include(c => c.Organization)
                 .Include(c => c.ContentType)
                 .Include(c=>c.Account)
-                .Include(c=>c.PathFile)
+                .Include(c=>c.PathFile).Include(c=>c.User)
                );
             var result = _mapper.Map<Paginate<GetListCourseResponse>>(course);
             return result;

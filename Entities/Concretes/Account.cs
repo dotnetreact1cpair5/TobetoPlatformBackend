@@ -33,5 +33,6 @@ namespace Entities.Concretes
         public ICollection<AccountCertificate> AccountCertificates { get; set; }
         public ICollection<AccountSocialMedia> AccountSocialMedias { get; set; }
         public ICollection<AccountForeignLanguage> AccountForeignLanguages { get; set; }
+
     }
 }

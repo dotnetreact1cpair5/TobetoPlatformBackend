@@ -22,5 +22,6 @@ namespace Business.Abstract
         Task<DeletedCourseResponse> Delete(DeleteCourseRequest deleteCourseRequest);
         Task<IPaginate<GetListCourseResponse>> GetByCourseId(int courseId);
         Task<IPaginate<GetListCourseResponse>> GetByAccountId(int accountId);
+         Task<IPaginate<GetListCourseResponse>> GetByUserId(int userId);
     }
 }

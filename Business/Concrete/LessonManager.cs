@@ -12,6 +12,7 @@ using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
 using DataAccess.Concretes;
 using Entities.Concretes;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,7 +54,7 @@ namespace Business.Concrete
 
         public async Task<IPaginate<GetListLessonResponse>> GetByCourseId(int courseId)
         {
-            var lesson = await _lessonDal.GetListAsync(predicate: c => c.Id == courseId);
+            var lesson = await _lessonDal.GetListAsync(predicate: c => c.CourseId == courseId);
             var result = _mapper.Map<Paginate<GetListLessonResponse>>(lesson);
             return result;
         }
@@ -68,7 +69,14 @@ namespace Business.Concrete
         public async Task<IPaginate<GetListLessonResponse>> GetListLesson()
         {
             var Lesson = await _lessonDal.GetListAsync(
-                orderBy: l => l.OrderBy(l => l.Id));
+                include: c => c.Include(c => c.Course)
+                .Include(c => c.Content)
+                .Include(c => c.ContentType)
+                .Include(c => c.Organization)
+                .Include(c => c.Category)
+                .Include(c => c.SessionRecord)
+                .Include(c => c.PathFile)
+                 .Include(c => c.Instructor));
             var result = _mapper.Map<Paginate<GetListLessonResponse>>(Lesson);
             return result;
         }

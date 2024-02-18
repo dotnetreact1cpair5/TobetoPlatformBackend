@@ -9,7 +9,7 @@ namespace Business.Dtos.Response.CreatedResponse
     public class CreatedAccountCourseResponse
     {
         public int Id { get; set; }
-        public int AccountId { get; set; }
-        public int StudentClassId { get; set; }
+        public int? UserId { get; set; }
+        public int LessonId { get; set; }
     }
 }

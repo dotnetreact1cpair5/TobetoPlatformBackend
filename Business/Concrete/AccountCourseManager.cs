@@ -66,6 +66,26 @@ namespace Business.Concrete
             return result;
         }
 
+        public async Task<IPaginate<GetListAccountCourseResponse>> GetByCourseId(int courseId)
+        {
+            var accountCourse = await _accountCourseDal.GetListAsync(predicate: a => a.Lesson.Course.Id == courseId,
+                 include: c => c.Include(c => c.User)
+                .Include(c => c.Lesson).ThenInclude(c => c.Course).ThenInclude(c => c.Organization)
+                .Include(c => c.Lesson).ThenInclude(c => c.Course).ThenInclude(c => c.Category)
+                .Include(c => c.Lesson).ThenInclude(c => c.Course).ThenInclude(c => c.ContentType)
+                .Include(c => c.Lesson).ThenInclude(c => c.Course).ThenInclude(c => c.PathFile)
+                .Include(c => c.Lesson).ThenInclude(c => c.Content)
+                .Include(c => c.Lesson).ThenInclude(c => c.Instructor)
+                .Include(c => c.Lesson).ThenInclude(c => c.SessionRecord)
+                .Include(c => c.Lesson).ThenInclude(c => c.ContentType)
+                .Include(c => c.Lesson).ThenInclude(c => c.Category)
+                .Include(c => c.Lesson).ThenInclude(c => c.PathFile)
+
+               );
+            var result = _mapper.Map<Paginate<GetListAccountCourseResponse>>(accountCourse);
+            return result;
+        }
+
         public async Task<IPaginate<GetListAccountCourseResponse>> GetListAccountCourse()
         {
             var accountCourse = await _accountCourseDal.GetListAsync(

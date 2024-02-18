@@ -32,6 +32,13 @@ namespace WebApi.Controllers
             return Ok(result);
         }
 
+        [HttpGet("getbycourseid")]
+        public async Task<IActionResult> GetByCourseId([FromQuery] int courseId)
+        {
+            var result = await _accountCourseService.GetByCourseId(courseId);
+            return Ok(result);
+        }
+
 
         [HttpPost]
         public async Task<IActionResult> Add([FromBody] CreateAccountCourseRequest createAccountCourseRequest )

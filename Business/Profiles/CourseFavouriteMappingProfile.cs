@@ -25,7 +25,7 @@ namespace Business.Profiles
             CreateMap<DeleteCourseFavouriteRequest, CourseFavourite>().ReverseMap();
 
             CreateMap<CourseFavourite, GetListCourseFavouriteResponse>()
-                 .ForMember(dest => dest.AccountId, opt => opt.MapFrom(src => src.AccountId))
+                 .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId))
                  .ForMember(dest => dest.CourseName, opt => opt.MapFrom(src => src.Course.Name))
                 .ReverseMap();
 

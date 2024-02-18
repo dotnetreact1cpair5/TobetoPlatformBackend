@@ -19,10 +19,7 @@ namespace DataAccess.EntityConfigurations
             builder.Property(l => l.CategoryId).HasColumnName("CategoryId");
             builder.Property(l => l.ContentTypeId).HasColumnName("ContentTypeId");
             builder.Property(l => l.OrganizationId).HasColumnName("OrganizationId");
-            //builder.Property(l => l.LessonStatusId).HasColumnName("LessonStatusId");
             builder.Property(l => l.Name).HasColumnName("Name");
-            builder.Property(l => l.Description).HasColumnName("Description");
-          //  builder.Property(l => l.Path).HasColumnName("Path");
             builder.Property(l => l.Language).HasColumnName("Language");
             builder.Property(l => l.VideoDuration).HasColumnName("VideoDuration");
             builder.Property(l => l.StartDate).HasColumnName("StartDate");

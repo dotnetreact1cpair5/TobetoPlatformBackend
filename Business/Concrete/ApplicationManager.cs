@@ -51,10 +51,23 @@ namespace Business.Concrete
             return result;
         }
 
+        public async Task<IPaginate<GetListApplicationResponse>> GetByUserId(int userId)
+        {
+            var application = await _applicationDal.GetListAsync(predicate: c => c.UserId == userId,
+                 include: c => c.Include(c => c.User)
+                 .Include(c=>c.ApplicationStep)
+                 .Include(c=>c.Organization)
+                 );
+            var result = _mapper.Map<Paginate<GetListApplicationResponse>>(application);
+            return result;
+        }
+
         public async Task<IPaginate<GetListApplicationResponse>> GetListApplication(PageRequest pageRequest)
         {
             var application = await _applicationDal.GetListAsync(
-             
+              include: c => c.Include(c => c.User)
+                 .Include(c => c.ApplicationStep)
+                 .Include(c => c.Organization),
                 index: pageRequest.PageIndex,
                 size: pageRequest.PageSize);
             var result = _mapper.Map<Paginate<GetListApplicationResponse>>(application);

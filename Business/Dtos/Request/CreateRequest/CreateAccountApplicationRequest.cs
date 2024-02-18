@@ -2,9 +2,8 @@
 {
     public class CreateAccountApplicationRequest
     {
-        public int AccountId { get; set; }
-
-        public int ApplicationStepId { get; set; }
-        public string DocumentName { get; set; }
+        public int UserId { get; set; }
+        public int ApplicationId { get; set; }
+        public string Description { get; set; }
     }
 }

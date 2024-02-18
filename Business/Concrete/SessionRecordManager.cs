@@ -33,7 +33,7 @@ namespace Business.Concrete
             _mapper = mapper;
             _sessionRecordBusinessRules = sessionRecordBusinessRules;
         }
-        [ValidationAspect(typeof(CityValidator))]
+     //   [ValidationAspect(typeof(SessionRecordValidator))]
         public async Task<CreatedSessionRecordResponse> Add(CreateSessionRecordRequest createSessionRecordRequest)
         {
             await _sessionRecordBusinessRules.CheckIfSessionRecordNameExists(createSessionRecordRequest.Name);

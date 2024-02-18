@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Dtos.Request.CreateRequest;
 using Business.Dtos.Request.DeleteRequest;
 using Business.Dtos.Request.UpdateRequest;
@@ -15,6 +16,7 @@ using Core.Aspects.Autofac.Transaction;
 using Core.Aspects.Autofac.Validation;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
+using DataAccess.Concretes;
 using Entities.Concretes;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
@@ -38,46 +40,36 @@ namespace Business.Concrete
             _mapper = mapper;
             _courseBusinessRules = courseBusinessRules;
         }
-
+        //  [SecuredOperation("admin")]
         [ValidationAspect(typeof(CourseValidator))]
-       // [CacheRemoveAspect("ICourseService.Get")]
+        // [CacheRemoveAspect("ICourseService.Get")]
         public async Task<CreatedCourseResponse> Add(CreateCourseRequest createCourseRequest)
         {
-           // await _courseBusinessRules.CheckIfCourseNameExists(createCourseRequest.Name);
+            // await _courseBusinessRules.CheckIfCourseNameExists(createCourseRequest.Name);
             Course course = _mapper.Map<Course>(createCourseRequest);
             var createdCourse = await _courseDal.AddAsync(course);
             CreatedCourseResponse result = _mapper.Map<CreatedCourseResponse>(createdCourse);
             return result;
         }
-        
+
         public async Task<DeletedCourseResponse> Delete(DeleteCourseRequest deleteCourseRequest)
         {
-            Course course = _mapper.Map<Course>(deleteCourseRequest);
+            Course course = await _courseDal.GetAsync(predicate: a => a.Id == deleteCourseRequest.Id);
             var deletedCourse = await _courseDal.DeleteAsync(course, false);
             DeletedCourseResponse result = _mapper.Map<DeletedCourseResponse>(deletedCourse);
             return result;
         }
 
-        public async Task<IPaginate<GetListCourseResponse>> GetByAccountId(int accountId)
-        {
-            var course = await _courseDal.GetListAsync(predicate: c => c.AccountId == accountId,
-                  include: c => c.Include(c => c.Category)
-                .Include(c => c.Organization)
-                .Include(c => c.ContentType)
-                .Include(c => c.Account)
-                .Include(c => c.PathFile).Include(c => c.User));
-            var result=_mapper.Map<Paginate<GetListCourseResponse>>(course);
-            return result;
-        }
 
         public async Task<IPaginate<GetListCourseResponse>> GetByUserId(int userId)
         {
-            var course = await _courseDal.GetListAsync(predicate: c => c.UserId == userId,
+            var course = await _courseDal.GetListAsync(predicate: c => c.Id == userId,
                   include: c => c.Include(c => c.Category)
                 .Include(c => c.Organization)
                 .Include(c => c.ContentType)
-                .Include(c => c.Account)
-                .Include(c => c.PathFile).Include(c => c.User));
+                .Include(c => c.PathFile)
+              //  .Include(c => c.User)
+                );
             var result = _mapper.Map<Paginate<GetListCourseResponse>>(course);
             return result;
         }
@@ -88,8 +80,9 @@ namespace Business.Concrete
                   include: c => c.Include(c => c.Category)
                 .Include(c => c.Organization)
                 .Include(c => c.ContentType)
-                .Include(c => c.Account)
-                .Include(c => c.PathFile).Include(c => c.User));
+                .Include(c => c.PathFile)
+                //.Include(c => c.User)
+                );
             var result = _mapper.Map<Paginate<GetListCourseResponse>>(course);
             return result;
         }
@@ -102,16 +95,16 @@ namespace Business.Concrete
                 include: c => c.Include(c => c.Category)
                 .Include(c => c.Organization)
                 .Include(c => c.ContentType)
-                .Include(c=>c.Account)
-                .Include(c=>c.PathFile).Include(c=>c.User)
+                .Include(c => c.PathFile)
+                //.Include(c => c.User)
                );
             var result = _mapper.Map<Paginate<GetListCourseResponse>>(course);
             return result;
         }
 
         [ValidationAspect(typeof(CourseValidator))]
-      //  [CacheRemoveAspect("ICourseService.Get")]
-      //  [TransactionScopeAspect]
+        //  [CacheRemoveAspect("ICourseService.Get")]
+        //  [TransactionScopeAspect]
         public async Task<UpdatedCourseResponse> Update(UpdateCourseRequest updateCourseRequest)
         {
 

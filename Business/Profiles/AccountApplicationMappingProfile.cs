@@ -24,8 +24,10 @@ namespace Business.Profiles
             CreateMap<AccountApplication, DeletedAccountApplicationResponse>().ReverseMap();
 
             CreateMap<AccountApplication, GetListAccountApplicationResponse>()
-                //.ForMember(dest=>dest.AccountName,opt=>opt.MapFrom(src=>src.Account.User.FirstName+ ""+src.Account.User.LastName))
-                //.ForMember(dest=>dest.ApplicationStepName,opt=>opt.MapFrom(src=>src.ApplicationStep.Name))
+                .ForMember(dest=>dest.UserFirsLastName,opt=>opt.MapFrom(src=>src.User.FirstName+ " "+src.User.LastName))
+                 .ForMember(dest=>dest.ApplicationName,opt=>opt.MapFrom(src=>src.Application.DocumentName))
+                  .ForMember(dest => dest.Organization, opt => opt.MapFrom(src => src.Application.Organization.Name))
+                   .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.Application.Title))
                 .ReverseMap();
             CreateMap<Paginate<AccountApplication>, Paginate<GetListAccountApplicationResponse>>().ReverseMap();
         }

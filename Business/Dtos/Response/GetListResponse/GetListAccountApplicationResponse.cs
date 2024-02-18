@@ -2,13 +2,11 @@
 {
     public class GetListAccountApplicationResponse
     {
-        public int Id { get; set; }
-
-        public int AccountId { get; set; }
-        public int ApplicationId { get; set; }
-        public int ApplicationStepId { get; set; }
-        //public string AccountName { get; set; }
-        //public string DocumentName { get; set; }
-        //public string ApplicationStepName { get; set; }
+        public int UserId { get; set; }
+        public string ApplicationName { get; set; }
+        public string UserFirsLastName { get; set; }
+        public string Organization {  get; set; }   
+        public string Title {  get; set; }
+        public string? Description { get; set; }
     }
 }

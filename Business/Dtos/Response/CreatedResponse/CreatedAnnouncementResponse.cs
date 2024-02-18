@@ -9,9 +9,10 @@ namespace Business.Dtos.Response.CreatedResponse
     public class CreatedAnnouncementResponse
     {
         public int Id { get; set; }
-        public int ProfileId { get; set; }
-        public string? Subject { get; set; }
-        public string? Description { get; set; }
-        public DateTime AnnouncementDate { get; set; }
+        public int AnnouncementTypeId { get; set; }
+        public int OrganizationId { get; set; }
+        public string Subject { get; set; }
+        public string Description { get; set; }
+        public DateTime PublishedDate { get; set; }
     }
 }

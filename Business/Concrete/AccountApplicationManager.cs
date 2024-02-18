@@ -11,6 +11,7 @@ using Business.Rules;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
 using Core.DataAccess.Paging;
+using Core.Entities.Concrete;
 using DataAccess.Abstracts;
 using DataAccess.Concretes;
 using Entities.Concretes;
@@ -50,10 +51,24 @@ namespace Business.Concrete
             return result;
         }
 
+        public async Task<IPaginate<GetListAccountApplicationResponse>> GetByUserId(int userId)
+        {
+            var accountApplication = await _accountApplicationDal.GetListAsync(predicate: a => a.UserId == userId,
+                 include: a => a.Include(a => a.User)
+                 .Include(a=>a.Application)
+                  .Include(a => a.Application).ThenInclude(a => a.Organization)
+                 );
+            var result = _mapper.Map<Paginate<GetListAccountApplicationResponse>>(accountApplication);
+            return result;
+        }
+
+     
         public async Task<IPaginate<GetListAccountApplicationResponse>> GetListAccountApplication(PageRequest pageRequest)
         {
             var accountApplication = await _accountApplicationDal.GetListAsync(
-               //include: a=>a.Include(a=>a.ApplicationStep).Include(a=>a.Account),
+               include: a=>a.Include(a=>a.Application)
+               .Include(a=>a.User)
+                .Include(a => a.Application).ThenInclude(a=>a.Organization),
                 index: pageRequest.PageIndex,
                 size: pageRequest.PageSize);
             var result = _mapper.Map<Paginate<GetListAccountApplicationResponse>>(accountApplication);

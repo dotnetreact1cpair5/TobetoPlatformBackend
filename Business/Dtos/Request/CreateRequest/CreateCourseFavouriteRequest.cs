@@ -8,7 +8,7 @@ namespace Business.Dtos.Request.CreateRequest
 {
     public class CreateCourseFavouriteRequest
     {
-        public int AccountId { get; set; }
+        public int UserId { get; set; }
         public int CourseId { get; set; }
     }
 

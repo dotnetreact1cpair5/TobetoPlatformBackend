@@ -48,14 +48,14 @@ namespace Business.Concrete
 
         public async Task<IPaginate<GetListCourseCompletionResponse>> GetById(int accountCourseCompletionId)
         {
-            var courseCompletion = await _courseCompletionDal.GetListAsync(predicate: a => a.AccountId == accountCourseCompletionId,include:c=>c.Include(cc=>cc.Account).Include(cc=>cc.Course));
+            var courseCompletion = await _courseCompletionDal.GetListAsync(predicate: a => a.UserId == accountCourseCompletionId,include:c=>c.Include(cc=>cc.User).Include(cc=>cc.Course));
             var result = _mapper.Map<Paginate<GetListCourseCompletionResponse>>(courseCompletion);
             return result;
         }
 
         public async Task<IPaginate<GetListCourseCompletionResponse>> GetListCourseCompletion()
         {
-            var courseCompletion = await _courseCompletionDal.GetListAsync(include:c=>c.Include(cc=>cc.Account).Include(cc=>cc.Course)
+            var courseCompletion = await _courseCompletionDal.GetListAsync(include:c=>c.Include(cc=>cc.User).Include(cc=>cc.Course)
                 );
             var result = _mapper.Map<Paginate<GetListCourseCompletionResponse>>(courseCompletion);
             return result;

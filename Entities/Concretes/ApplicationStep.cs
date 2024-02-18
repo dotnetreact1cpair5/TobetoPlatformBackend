@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Entities.Concretes
 {
-    public class ApplicationStep:Entity<int>
+    public class ApplicationStep : Entity<int>
     {
         public string Name { get; set; }
-        ICollection<Application>? Applications { get; set; }
+        public ICollection<Application>? Applications { get; set; }
     }
 }

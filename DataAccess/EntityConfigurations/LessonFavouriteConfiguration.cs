@@ -15,8 +15,8 @@ namespace DataAccess.EntityConfigurations
         {
             builder.ToTable("LessonFavourites").HasKey(ac => ac.Id);
             builder.Property(ac => ac.Id).HasColumnName("Id").IsRequired();
-            builder.Property(ac => ac.AccountId).HasColumnName("AccountId");
-            builder.Property(ac => ac.LessonId).HasColumnName("LessonId").IsRequired();
+            builder.Property(ac => ac.UserId).HasColumnName("UserId");
+            builder.Property(ac => ac.LessonId).HasColumnName("LessonId");
           
             builder.HasQueryFilter(ac => !ac.DeletedDate.HasValue);
   

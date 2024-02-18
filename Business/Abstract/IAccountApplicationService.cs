@@ -15,5 +15,7 @@ namespace Business.Abstract
         Task<CreatedAccountApplicationResponse> Add(CreateAccountApplicationRequest createAccountApplicationRequest);
         Task<UpdatedAccountApplicationResponse> Update(UpdateAccountApplicationRequest updateAccountApplicationRequest);
         Task<DeletedAccountApplicationResponse> Delete(DeleteAccountApplicationRequest deleteAccountApplicationRequest);
+        Task<IPaginate<GetListAccountApplicationResponse>> GetByUserId(int userId);
+
     }
 }

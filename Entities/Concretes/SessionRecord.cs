@@ -11,6 +11,6 @@ namespace Entities.Concretes
     {
         public string Name { get; set; }
         public string Description { get; set; }
-        public Lesson? Lesson { get; set; }
+        public virtual ICollection<Lesson>? Lessons { get; set; }
     }
 }

@@ -10,6 +10,6 @@ namespace Entities.Concretes
     public class AnnouncementType : Entity<int>
     {
         public string Name { get; set; }
-      ICollection<Announcement>? Announcements { get; set; }
+        public ICollection<Announcement>? Announcements { get; set; }
     }
 }

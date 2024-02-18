@@ -41,7 +41,7 @@ namespace Business
             services.AddScoped<IUniversityService, UniversityManager>();
 
             /*Course Services */
-            services.AddScoped<IStudentClassService, StudentClassManager>();
+
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<IContentService, ContentManager>();
             services.AddScoped<IContentTypeService, ContentTypeManager>();
@@ -49,26 +49,31 @@ namespace Business
             services.AddScoped<ILessonService, LessonManager>();
             services.AddScoped<ILessonFavouriteService, LessonFavouriteManager>();
             services.AddScoped<ILessonStatusService, LessonStatusManager>();
-            services.AddScoped<IAccountStudentClassService, AccountStudentClassManager>();
-            services.AddScoped<ICoursePageService, CoursePageManager>();
-            services.AddScoped<ICoursePageLessonService, CoursePageLessonManager>();
-            services.AddScoped<ICourseCoursePageService, CourseCoursePageManager>();
-            services.AddScoped<IContentCoursePageService, ContentCoursePageManager>();
+            services.AddScoped<IAccountCourseService, AccountCourseManager>();
             services.AddScoped<ICourseFavouriteService, CourseFavouriteManager>();
             services.AddScoped<IInstructorService, InstructorManager>();
             services.AddScoped<ISessionRecordService, SessionRecordManager>();
 
+            /*Application Services */
+            services.AddScoped<IAccountApplicationService, AccountApplicationManager>();
+            services.AddScoped<IApplicationService, ApplicationManager>();
+            services.AddScoped<IApplicationStepService, ApplicationStepManager>();
+
+            /*Announcement Services */
+            services.AddScoped<IAnnouncementService, AnnouncementManager>();
+            services.AddScoped<IAnnouncementTypeService, AnnouncementTypeManager>();
 
             /*User Services */
             services.AddScoped<IUserService, UserManager>();
             services.AddScoped<IAuthService, AuthManager>();
 
             /*Path Service */
-            services.AddScoped<IPathFileService,PathFileManager>();
+            services.AddScoped<IPathFileService, PathFileManager>();
             services.AddScoped<IFileUploadAdapter, CloudinaryAdapter>();
 
+
             services.AddScoped<IOrganizationService, OrganizationManager>();
-            
+            services.AddScoped<ISurveyService, SurveyManager>();
 
             services.AddSubClassesOfType(Assembly.GetExecutingAssembly(), typeof(BaseBusinessRules));
             services.AddAutoMapper(Assembly.GetExecutingAssembly());

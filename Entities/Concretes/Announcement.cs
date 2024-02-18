@@ -15,8 +15,8 @@ namespace Entities.Concretes
         public string Subject { get; set; }
         public string Description { get; set; }
         public DateTime PublishedDate { get; set; }
-        public Organization? Organization { get; set; }
-        public AnnouncementType? AnnouncementType { get; set; }
+        public virtual Organization? Organization { get; set; }
+        public virtual AnnouncementType? AnnouncementType { get; set; }
        
     }
 }

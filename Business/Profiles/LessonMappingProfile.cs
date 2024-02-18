@@ -31,6 +31,8 @@ namespace Business.Profiles
                 .ForMember(dest => dest.OrganizationName, opt => opt.MapFrom(src => src.Organization.Name))
                  .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.Name))
                 .ForMember(dest => dest.SessionRecordName, opt => opt.MapFrom(src => src.SessionRecord.Name))
+                .ForMember(dest => dest.InstructorName, opt => opt.MapFrom(src => src.Instructor.FirstName +" "+ src.Instructor.LastName))
+                .ForMember(dest => dest.PathFileUrl, opt => opt.MapFrom(src => src.PathFile.FileUrl))
                 .ReverseMap();
             CreateMap<Paginate<Lesson>, Paginate<GetListLessonResponse>>().ReverseMap();
 

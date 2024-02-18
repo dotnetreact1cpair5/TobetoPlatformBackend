@@ -130,123 +130,6 @@ namespace DataAccess.Migrations
                     b.ToTable("UserOperationClaims");
                 });
 
-            modelBuilder.Entity("Core.Security.JWT.EmailAuthenticator", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ActivationKey")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsVerified")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("EmailAuthenticators");
-                });
-
-            modelBuilder.Entity("Core.Security.JWT.OtpAuthenticator", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsVerified")
-                        .HasColumnType("bit");
-
-                    b.Property<byte[]>("SecretKey")
-                        .IsRequired()
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("OtpAuthenticators");
-                });
-
-            modelBuilder.Entity("Core.Security.JWT.RefreshToken", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("CreatedByIp")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("Expires")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ReasonRevoked")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ReplacedByToken")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("Revoked")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("RevokedByIp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Token")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("RefreshTokens");
-                });
-
             modelBuilder.Entity("Entities.Concretes.Account", b =>
                 {
                     b.Property<int>("Id")
@@ -351,10 +234,6 @@ namespace DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AccountId")
-                        .HasColumnType("int")
-                        .HasColumnName("AccountId");
-
                     b.Property<int>("ApplicationId")
                         .HasColumnType("int")
                         .HasColumnName("ApplicationId");
@@ -372,11 +251,15 @@ namespace DataAccess.Migrations
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int")
+                        .HasColumnName("UserId");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("AccountId");
-
                     b.HasIndex("ApplicationId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("AccountApplications", (string)null);
                 });
@@ -413,6 +296,41 @@ namespace DataAccess.Migrations
                     b.HasIndex("AccountId");
 
                     b.ToTable("AccountCertificates", (string)null);
+                });
+
+            modelBuilder.Entity("Entities.Concretes.AccountCourse", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("Id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int")
+                        .HasColumnName("CourseId");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int")
+                        .HasColumnName("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AccountStudentClasses", (string)null);
                 });
 
             modelBuilder.Entity("Entities.Concretes.AccountEducation", b =>
@@ -656,41 +574,6 @@ namespace DataAccess.Migrations
                     b.ToTable("AccountSocialMedias", (string)null);
                 });
 
-            modelBuilder.Entity("Entities.Concretes.AccountStudentClass", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("Id");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AccountId")
-                        .HasColumnType("int")
-                        .HasColumnName("AccountId");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("StudentClassId")
-                        .HasColumnType("int")
-                        .HasColumnName("StudentClassId");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AccountId");
-
-                    b.HasIndex("StudentClassId");
-
-                    b.ToTable("AccountStudentClasses", (string)null);
-                });
-
             modelBuilder.Entity("Entities.Concretes.Announcement", b =>
                 {
                     b.Property<int>("Id")
@@ -804,11 +687,16 @@ namespace DataAccess.Migrations
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ApplicationStepId");
 
                     b.HasIndex("OrganizationId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Applications", (string)null);
                 });
@@ -903,46 +791,6 @@ namespace DataAccess.Migrations
                     b.ToTable("Cities", (string)null);
                 });
 
-            modelBuilder.Entity("Entities.Concretes.ClassCourse", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("Id");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AccountStudentClassId")
-                        .HasColumnType("int")
-                        .HasColumnName("AccountStudentClassId");
-
-                    b.Property<int>("CourseId")
-                        .HasColumnType("int")
-                        .HasColumnName("CourseId");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("StudentClassId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AccountStudentClassId");
-
-                    b.HasIndex("CourseId");
-
-                    b.HasIndex("StudentClassId");
-
-                    b.ToTable("ClassCourses", (string)null);
-                });
-
             modelBuilder.Entity("Entities.Concretes.Content", b =>
                 {
                     b.Property<int>("Id")
@@ -969,38 +817,6 @@ namespace DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Contents", (string)null);
-                });
-
-            modelBuilder.Entity("Entities.Concretes.ContentCoursePage", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ContentId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CoursePageId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ContentId");
-
-                    b.HasIndex("CoursePageId");
-
-                    b.ToTable("ContentCoursePages");
                 });
 
             modelBuilder.Entity("Entities.Concretes.ContentType", b =>
@@ -1117,6 +933,10 @@ namespace DataAccess.Migrations
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int")
+                        .HasColumnName("UserId");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AccountId");
@@ -1128,6 +948,8 @@ namespace DataAccess.Migrations
                     b.HasIndex("OrganizationId");
 
                     b.HasIndex("PathFileId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Courses", (string)null);
                 });
@@ -1141,11 +963,8 @@ namespace DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AccountId")
-                        .HasColumnType("int")
-                        .HasColumnName("AccountId");
-
-                    b.Property<int>("CourseId")
+                    b.Property<int?>("CourseId")
+                        .IsRequired()
                         .HasColumnType("int")
                         .HasColumnName("CourseId");
 
@@ -1166,48 +985,18 @@ namespace DataAccess.Migrations
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("UserId")
+                        .IsRequired()
+                        .HasColumnType("int")
+                        .HasColumnName("UserId");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("AccountId");
-
                     b.HasIndex("CourseId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("CourseCompletions", (string)null);
-                });
-
-            modelBuilder.Entity("Entities.Concretes.CourseCoursePage", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("Id");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CourseId")
-                        .HasColumnType("int")
-                        .HasColumnName("CourseId");
-
-                    b.Property<int>("CoursePageId")
-                        .HasColumnType("int")
-                        .HasColumnName("CoursePageId");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CourseId");
-
-                    b.HasIndex("CoursePageId");
-
-                    b.ToTable("CourseCoursePage", (string)null);
                 });
 
             modelBuilder.Entity("Entities.Concretes.CourseFavourite", b =>
@@ -1219,11 +1008,8 @@ namespace DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AccountId")
-                        .HasColumnType("int")
-                        .HasColumnName("AccountId");
-
-                    b.Property<int>("CourseId")
+                    b.Property<int?>("CourseId")
+                        .IsRequired()
                         .HasColumnType("int")
                         .HasColumnName("CourseId");
 
@@ -1236,82 +1022,17 @@ namespace DataAccess.Migrations
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int")
+                        .HasColumnName("UserId");
 
-                    b.HasIndex("AccountId");
+                    b.HasKey("Id");
 
                     b.HasIndex("CourseId");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("CourseFavourites", (string)null);
-                });
-
-            modelBuilder.Entity("Entities.Concretes.CoursePage", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("Id");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Name");
-
-                    b.Property<int>("PathFileId")
-                        .HasColumnType("int")
-                        .HasColumnName("PathFileId");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PathFileId");
-
-                    b.ToTable("CoursePages", (string)null);
-                });
-
-            modelBuilder.Entity("Entities.Concretes.CoursePageLesson", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("Id");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CoursePageId")
-                        .HasColumnType("int")
-                        .HasColumnName("CoursePageId");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("LessonId")
-                        .HasColumnType("int")
-                        .HasColumnName("LessonId");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CoursePageId");
-
-                    b.HasIndex("LessonId");
-
-                    b.ToTable("CoursePageLesson", (string)null);
                 });
 
             modelBuilder.Entity("Entities.Concretes.CourseTimeSpent", b =>
@@ -1323,11 +1044,8 @@ namespace DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AccountId")
-                        .HasColumnType("int")
-                        .HasColumnName("AccountId");
-
-                    b.Property<int>("CourseId")
+                    b.Property<int?>("CourseId")
+                        .IsRequired()
                         .HasColumnType("int")
                         .HasColumnName("CourseId");
 
@@ -1345,11 +1063,15 @@ namespace DataAccess.Migrations
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int")
+                        .HasColumnName("UserId");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("AccountId");
-
                     b.HasIndex("CourseId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("CourseTimeSpents", (string)null);
                 });
@@ -1647,28 +1369,28 @@ namespace DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AccountId")
-                        .HasColumnType("int")
-                        .HasColumnName("AccountId");
-
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("LessonId")
+                    b.Property<int?>("LessonId")
                         .HasColumnType("int")
                         .HasColumnName("LessonId");
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int")
+                        .HasColumnName("UserId");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("AccountId");
-
                     b.HasIndex("LessonId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("LessonFavourites", (string)null);
                 });
@@ -1682,16 +1404,13 @@ namespace DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AccountId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("LessonId")
+                    b.Property<int?>("LessonId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -1702,11 +1421,14 @@ namespace DataAccess.Migrations
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("AccountId");
-
                     b.HasIndex("LessonId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("LessonStatus", (string)null);
                 });
@@ -1889,34 +1611,6 @@ namespace DataAccess.Migrations
                     b.ToTable("SocialMediaPlatforms", (string)null);
                 });
 
-            modelBuilder.Entity("Entities.Concretes.StudentClass", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("Id");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Name");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("StudentClasses", (string)null);
-                });
-
             modelBuilder.Entity("Entities.Concretes.Survey", b =>
                 {
                     b.Property<int>("Id")
@@ -1998,39 +1692,6 @@ namespace DataAccess.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Core.Security.JWT.EmailAuthenticator", b =>
-                {
-                    b.HasOne("Core.Entities.Concrete.User", "User")
-                        .WithMany("EmailAuthenticators")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Core.Security.JWT.OtpAuthenticator", b =>
-                {
-                    b.HasOne("Core.Entities.Concrete.User", "User")
-                        .WithMany("OtpAuthenticators")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Core.Security.JWT.RefreshToken", b =>
-                {
-                    b.HasOne("Core.Entities.Concrete.User", "User")
-                        .WithMany("RefreshTokens")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Entities.Concretes.Account", b =>
                 {
                     b.HasOne("Entities.Concretes.City", "City")
@@ -2074,21 +1735,19 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Entities.Concretes.AccountApplication", b =>
                 {
-                    b.HasOne("Entities.Concretes.Account", "Account")
-                        .WithMany()
-                        .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Entities.Concretes.Application", "Application")
                         .WithMany()
                         .HasForeignKey("ApplicationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Account");
+                    b.HasOne("Core.Entities.Concrete.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Application");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Entities.Concretes.AccountCertificate", b =>
@@ -2100,6 +1759,23 @@ namespace DataAccess.Migrations
                         .IsRequired();
 
                     b.Navigation("Account");
+                });
+
+            modelBuilder.Entity("Entities.Concretes.AccountCourse", b =>
+                {
+                    b.HasOne("Entities.Concretes.Course", "Course")
+                        .WithMany()
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Core.Entities.Concrete.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Course");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Entities.Concretes.AccountEducation", b =>
@@ -2221,29 +1897,10 @@ namespace DataAccess.Migrations
                     b.Navigation("SocialMediaPlatforms");
                 });
 
-            modelBuilder.Entity("Entities.Concretes.AccountStudentClass", b =>
-                {
-                    b.HasOne("Entities.Concretes.Account", "Account")
-                        .WithMany()
-                        .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Entities.Concretes.StudentClass", "StudentClass")
-                        .WithMany()
-                        .HasForeignKey("StudentClassId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Account");
-
-                    b.Navigation("StudentClass");
-                });
-
             modelBuilder.Entity("Entities.Concretes.Announcement", b =>
                 {
                     b.HasOne("Entities.Concretes.AnnouncementType", "AnnouncementType")
-                        .WithMany()
+                        .WithMany("Announcements")
                         .HasForeignKey("AnnouncementTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -2262,7 +1919,7 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("Entities.Concretes.Application", b =>
                 {
                     b.HasOne("Entities.Concretes.ApplicationStep", "ApplicationStep")
-                        .WithMany()
+                        .WithMany("Applications")
                         .HasForeignKey("ApplicationStepId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -2273,9 +1930,15 @@ namespace DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Core.Entities.Concrete.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
                     b.Navigation("ApplicationStep");
 
                     b.Navigation("Organization");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Entities.Concretes.City", b =>
@@ -2287,48 +1950,6 @@ namespace DataAccess.Migrations
                         .IsRequired();
 
                     b.Navigation("Country");
-                });
-
-            modelBuilder.Entity("Entities.Concretes.ClassCourse", b =>
-                {
-                    b.HasOne("Entities.Concretes.AccountStudentClass", "AccountStudentClass")
-                        .WithMany()
-                        .HasForeignKey("AccountStudentClassId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Entities.Concretes.Course", "Course")
-                        .WithMany("ClassCourses")
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Entities.Concretes.StudentClass", null)
-                        .WithMany("ClassCourses")
-                        .HasForeignKey("StudentClassId");
-
-                    b.Navigation("AccountStudentClass");
-
-                    b.Navigation("Course");
-                });
-
-            modelBuilder.Entity("Entities.Concretes.ContentCoursePage", b =>
-                {
-                    b.HasOne("Entities.Concretes.Content", "Content")
-                        .WithMany("ContentCoursePages")
-                        .HasForeignKey("ContentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Entities.Concretes.CoursePage", "CoursePage")
-                        .WithMany("ContentCoursePages")
-                        .HasForeignKey("CoursePageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Content");
-
-                    b.Navigation("CoursePage");
                 });
 
             modelBuilder.Entity("Entities.Concretes.Course", b =>
@@ -2346,7 +1967,7 @@ namespace DataAccess.Migrations
                         .IsRequired();
 
                     b.HasOne("Entities.Concretes.ContentType", "ContentType")
-                        .WithMany()
+                        .WithMany("Courses")
                         .HasForeignKey("ContentTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -2363,6 +1984,10 @@ namespace DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Core.Entities.Concrete.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
                     b.Navigation("Account");
 
                     b.Navigation("Category");
@@ -2372,112 +1997,61 @@ namespace DataAccess.Migrations
                     b.Navigation("Organization");
 
                     b.Navigation("PathFile");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Entities.Concretes.CourseCompletion", b =>
                 {
-                    b.HasOne("Entities.Concretes.Account", "Account")
-                        .WithMany()
-                        .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Entities.Concretes.Course", "Course")
                         .WithMany()
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Account");
-
-                    b.Navigation("Course");
-                });
-
-            modelBuilder.Entity("Entities.Concretes.CourseCoursePage", b =>
-                {
-                    b.HasOne("Entities.Concretes.Course", "Course")
-                        .WithMany("CourseCoursePages")
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Entities.Concretes.CoursePage", "CoursePage")
-                        .WithMany("CourseCoursePages")
-                        .HasForeignKey("CoursePageId")
+                    b.HasOne("Core.Entities.Concrete.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Course");
 
-                    b.Navigation("CoursePage");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Entities.Concretes.CourseFavourite", b =>
                 {
-                    b.HasOne("Entities.Concretes.Account", "Account")
-                        .WithMany()
-                        .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Entities.Concretes.Course", "Course")
                         .WithMany()
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Account");
+                    b.HasOne("Core.Entities.Concrete.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Course");
-                });
 
-            modelBuilder.Entity("Entities.Concretes.CoursePage", b =>
-                {
-                    b.HasOne("Entities.Concretes.PathFile", "PathFile")
-                        .WithMany()
-                        .HasForeignKey("PathFileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("PathFile");
-                });
-
-            modelBuilder.Entity("Entities.Concretes.CoursePageLesson", b =>
-                {
-                    b.HasOne("Entities.Concretes.CoursePage", "CoursePage")
-                        .WithMany("CoursePageLessons")
-                        .HasForeignKey("CoursePageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Entities.Concretes.Lesson", "Lesson")
-                        .WithMany("CoursePageLessons")
-                        .HasForeignKey("LessonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("CoursePage");
-
-                    b.Navigation("Lesson");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Entities.Concretes.CourseTimeSpent", b =>
                 {
-                    b.HasOne("Entities.Concretes.Account", "Account")
-                        .WithMany()
-                        .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Entities.Concretes.Course", "Course")
                         .WithMany()
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Account");
+                    b.HasOne("Core.Entities.Concrete.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Course");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Entities.Concretes.District", b =>
@@ -2504,14 +2078,14 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Entities.Concretes.Lesson", b =>
                 {
-                    b.HasOne("Entities.Concretes.Category", "CourseCategory")
+                    b.HasOne("Entities.Concretes.Category", "Category")
                         .WithMany("Lessons")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Entities.Concretes.Content", "Content")
-                        .WithMany()
+                        .WithMany("Lessons")
                         .HasForeignKey("ContentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -2523,7 +2097,7 @@ namespace DataAccess.Migrations
                         .IsRequired();
 
                     b.HasOne("Entities.Concretes.Course", "Course")
-                        .WithMany()
+                        .WithMany("Lessons")
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -2550,13 +2124,13 @@ namespace DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Category");
+
                     b.Navigation("Content");
 
                     b.Navigation("ContentType");
 
                     b.Navigation("Course");
-
-                    b.Navigation("CourseCategory");
 
                     b.Navigation("Instructor");
 
@@ -2569,40 +2143,32 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Entities.Concretes.LessonFavourite", b =>
                 {
-                    b.HasOne("Entities.Concretes.Account", "Account")
-                        .WithMany()
-                        .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Entities.Concretes.Lesson", "Lesson")
                         .WithMany()
-                        .HasForeignKey("LessonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("LessonId");
 
-                    b.Navigation("Account");
+                    b.HasOne("Core.Entities.Concrete.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Lesson");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Entities.Concretes.LessonStatus", b =>
                 {
-                    b.HasOne("Entities.Concretes.Account", "Account")
-                        .WithMany()
-                        .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Entities.Concretes.Lesson", "Lesson")
                         .WithMany()
-                        .HasForeignKey("LessonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("LessonId");
 
-                    b.Navigation("Account");
+                    b.HasOne("Core.Entities.Concrete.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Lesson");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Entities.Concretes.Organization", b =>
@@ -2645,12 +2211,6 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Core.Entities.Concrete.User", b =>
                 {
-                    b.Navigation("EmailAuthenticators");
-
-                    b.Navigation("OtpAuthenticators");
-
-                    b.Navigation("RefreshTokens");
-
                     b.Navigation("UserOperationClaims");
                 });
 
@@ -2667,6 +2227,16 @@ namespace DataAccess.Migrations
                     b.Navigation("AccountSkills");
 
                     b.Navigation("AccountSocialMedias");
+                });
+
+            modelBuilder.Entity("Entities.Concretes.AnnouncementType", b =>
+                {
+                    b.Navigation("Announcements");
+                });
+
+            modelBuilder.Entity("Entities.Concretes.ApplicationStep", b =>
+                {
+                    b.Navigation("Applications");
                 });
 
             modelBuilder.Entity("Entities.Concretes.Category", b =>
@@ -2689,11 +2259,13 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Entities.Concretes.Content", b =>
                 {
-                    b.Navigation("ContentCoursePages");
+                    b.Navigation("Lessons");
                 });
 
             modelBuilder.Entity("Entities.Concretes.ContentType", b =>
                 {
+                    b.Navigation("Courses");
+
                     b.Navigation("Lessons");
                 });
 
@@ -2707,18 +2279,7 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Entities.Concretes.Course", b =>
                 {
-                    b.Navigation("ClassCourses");
-
-                    b.Navigation("CourseCoursePages");
-                });
-
-            modelBuilder.Entity("Entities.Concretes.CoursePage", b =>
-                {
-                    b.Navigation("ContentCoursePages");
-
-                    b.Navigation("CourseCoursePages");
-
-                    b.Navigation("CoursePageLessons");
+                    b.Navigation("Lessons");
                 });
 
             modelBuilder.Entity("Entities.Concretes.District", b =>
@@ -2742,11 +2303,6 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("Entities.Concretes.Instructor", b =>
                 {
                     b.Navigation("Lessons");
-                });
-
-            modelBuilder.Entity("Entities.Concretes.Lesson", b =>
-                {
-                    b.Navigation("CoursePageLessons");
                 });
 
             modelBuilder.Entity("Entities.Concretes.Organization", b =>
@@ -2775,11 +2331,6 @@ namespace DataAccess.Migrations
                 {
                     b.Navigation("AccountSocialMedia")
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Entities.Concretes.StudentClass", b =>
-                {
-                    b.Navigation("ClassCourses");
                 });
 
             modelBuilder.Entity("Entities.Concretes.University", b =>

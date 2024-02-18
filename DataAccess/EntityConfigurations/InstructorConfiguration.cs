@@ -13,12 +13,11 @@ namespace DataAccess.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Instructor> builder)
         {
-            builder.ToTable("Instructor").HasKey(c => c.Id);
+            builder.ToTable("Instructors").HasKey(c => c.Id);
             builder.Property(c => c.Id).HasColumnName("Id").IsRequired();
             builder.Property(c => c.FirstName).HasColumnName("FirstName");
             builder.Property(c => c.LastName).HasColumnName("LastName");
-            builder.Property(c => c.Descrription).HasColumnName("Descrription");
-            
+                       
             builder.HasQueryFilter(c => !c.DeletedDate.HasValue);
         }
     }

@@ -1,4 +1,5 @@
 ﻿using Core.Entities.Concrete;
+using Core.Security.Hashing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -21,7 +22,31 @@ namespace DataAccess.EntityConfigurations
             builder.HasIndex(indexExpression: u => u.Email, name: "UK_Users_Email").IsUnique();
           
             builder.HasQueryFilter(u => !u.DeletedDate.HasValue);
-            
+
+        }
+        private IEnumerable<User> getSeeds()
+        {
+            List<User> users = new();
+
+            HashingHelper.CreatePasswordHash(
+                password: "admin",
+                passwordHash: out byte[] passwordHash,
+                passwordSalt: out byte[] passwordSalt
+            );
+            User adminUser =
+                new()
+                {
+                    Id = 1,
+                    FirstName = "admin",
+                    LastName = "admin",
+                    Email = "admin@admin.com",
+                    Status = true,
+                    PasswordHash = passwordHash,
+                    PasswordSalt = passwordSalt
+                };
+            users.Add(adminUser);
+
+            return users.ToArray();
         }
     }
 }

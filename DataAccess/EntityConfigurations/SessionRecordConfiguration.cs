@@ -13,7 +13,7 @@ namespace DataAccess.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<SessionRecord> builder)
         {
-            builder.ToTable("SessionRecord").HasKey(c => c.Id);
+            builder.ToTable("SessionRecords").HasKey(c => c.Id);
             builder.Property(c => c.Id).HasColumnName("Id").IsRequired();
             builder.Property(c => c.Name).HasColumnName("Name");
             builder.Property(c => c.Description).HasColumnName("Description");

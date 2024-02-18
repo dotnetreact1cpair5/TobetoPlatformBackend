@@ -10,8 +10,7 @@ namespace Entities.Concretes
 {
     public class Course : Entity<int>
     {
-        public int AccountId { get; set; }
-        public int UserId { get; set; }
+      //  public int? UserId { get; set; }
         public int CategoryId { get; set; }
         public int OrganizationId { get; set; }
         public int ContentTypeId { get; set; }
@@ -20,14 +19,13 @@ namespace Entities.Concretes
         public string EstimatedVideoDuration { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public Account? Account { get; set; }
-        public User? User { get; set; }  
-        public ContentType? ContentType { get; set; }
-        public Category? Category { get; set; }
-        public PathFile? PathFile { get; set; }
-        public Organization? Organization { get; set; }
-        public ICollection<CourseCoursePage>? CourseCoursePages { get; set; }
-        public ICollection<ClassCourse>? ClassCourses { get; set; }
+      //  public virtual User? User { get; set; }
+        public virtual ContentType? ContentType { get; set; }
+        public virtual Category? Category { get; set; }
+        public virtual PathFile? PathFile { get; set; }
+        public virtual Organization? Organization { get; set; }
+        public virtual ICollection<Lesson>? Lessons { get; set; }
+      
 
 
     }

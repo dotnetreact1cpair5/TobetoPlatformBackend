@@ -15,7 +15,7 @@ namespace DataAccess.EntityConfigurations
         {
             builder.ToTable("CourseCompletions").HasKey(c => c.Id);
             builder.Property(c => c.Id).HasColumnName("Id").IsRequired();
-            builder.Property(c => c.AccountId).HasColumnName("AccountId");
+            builder.Property(c => c.UserId).HasColumnName("UserId");
             builder.Property(c => c.CourseId).HasColumnName("CourseId");
             builder.Property(c => c.PercentageOfCompletion).HasColumnName("PercentageOfCompletion");
             builder.Property(c => c.Point).HasColumnName("Point");

@@ -48,7 +48,7 @@ namespace Business.Concrete
 
         public async Task<GetListCourseFavouriteResponse> GetById(int accountCourseFavouriteId)
         {
-            var courseFavourite = await _courseFavouriteDal.GetAsync(predicate: c => c.AccountId == accountCourseFavouriteId, include: ls => ls.Include(l => l.Account).Include(ls => ls.Course));
+            var courseFavourite = await _courseFavouriteDal.GetAsync(predicate: c => c.UserId == accountCourseFavouriteId, include: ls => ls.Include(l => l.User).Include(ls => ls.Course));
             var result = _mapper.Map<GetListCourseFavouriteResponse>(courseFavourite);
             return result;
         }
@@ -56,7 +56,7 @@ namespace Business.Concrete
         public async Task<IPaginate<GetListCourseFavouriteResponse>> GetListCourseFavourite()
         {
             var courseFavourite = await _courseFavouriteDal.GetListAsync(
-                include:c=>c.Include(cf=>cf.Account).Include(cf=>cf.Course));
+                include:c=>c.Include(cf=>cf.User).Include(cf=>cf.Course));
             var result = _mapper.Map<Paginate<GetListCourseFavouriteResponse>>(courseFavourite);
             return result;
         }

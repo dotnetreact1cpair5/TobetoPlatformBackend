@@ -8,7 +8,7 @@ namespace Business.Dtos.Request.CreateRequest
 {
     public class CreateCourseCompletionRequest
     {
-        public int AccountId { get; set; }
+        public int UserId { get; set; }
         public int CourseId { get; set; }
         public double PercentageOfCompletion { get; set; }
         public double Point { get; set; }

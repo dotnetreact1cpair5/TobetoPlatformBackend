@@ -10,7 +10,7 @@ namespace DataAccess.EntityConfigurations
         {
             builder.ToTable("AccountApplications").HasKey(a => a.Id);
             builder.Property(a => a.Id).HasColumnName("Id").IsRequired();
-            builder.Property(a => a.AccountId).HasColumnName("AccountId");
+            builder.Property(a => a.UserId).HasColumnName("UserId");
             builder.Property(a => a.ApplicationId).HasColumnName("ApplicationId");
           //  builder.Property(a => a.ApplicationStepId).HasColumnName("ApplicationStepId");
 

@@ -9,11 +9,11 @@
         public string OrganizationName { get; set; }
         public string CategoryName { get; set; }
         public string SessionRecordName { get; set; }
-        public int PathFileId { get; set; }
+        public string InstructorName { get; set; }
+        public string PathFileUrl { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }
         public string Language { get; set; }
-        public int VideoDuration { get; set; }
+        public string VideoDuration { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
     }

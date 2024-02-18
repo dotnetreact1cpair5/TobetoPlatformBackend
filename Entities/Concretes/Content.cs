@@ -6,6 +6,6 @@ namespace Entities.Concretes
     {
         public string Name { get; set; }
 
-        public ICollection<ContentCoursePage>? ContentCoursePages { get; set; }
+        public ICollection<Lesson>? Lessons { get; set; }
     }
 }

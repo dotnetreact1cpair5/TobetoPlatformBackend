@@ -25,12 +25,7 @@ namespace WebApi.Controllers
             return Ok(result);
         }
 
-        [HttpGet("getbyaccountid")]
-        public async Task<IActionResult> GetByAccountId([FromQuery] int accountId)
-        {
-            var result = await _courseService.GetByAccountId(accountId);
-            return Ok(result);
-        }
+        
 
         [HttpGet("getbycourseid")]
         public async Task<IActionResult> GetByCourseId([FromQuery] int courseId)

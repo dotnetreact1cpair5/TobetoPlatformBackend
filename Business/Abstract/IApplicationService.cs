@@ -20,5 +20,6 @@ namespace Business.Abstract
         Task<UpdatedApplicationResponse> Update(UpdateApplicationRequest updateApplicationRequest);
         Task<DeletedApplicationResponse> Delete(DeleteApplicationRequest deleteApplicationRequest);
         Task<IPaginate<GetListApplicationResponse>> GetListApplication(PageRequest pageRequest);
+        Task<IPaginate<GetListApplicationResponse>> GetByUserId(int userId);
     }
 }

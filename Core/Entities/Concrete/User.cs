@@ -20,7 +20,7 @@ namespace Core.Entities.Concrete
         public bool Status { get; set; }
 
         public virtual ICollection<UserOperationClaim>? UserOperationClaims { get; set; } = null!;
-
+     
        
     }
 }

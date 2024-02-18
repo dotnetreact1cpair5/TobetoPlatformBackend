@@ -35,16 +35,14 @@ namespace DataAccess.Context
         public DbSet<SocialMediaPlatform> SocialMediaPlatforms { get; set; }
         public DbSet<University> Universities { get; set; }
 
-        /*User & Claim Field*/
+        /*User */
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<OperationClaim> OperationClaims { get; set; }
-     
 
-        /*Course Tables Field*/
-        public DbSet<ClassCourse> ClassCourses { get; set; }
-        public DbSet<AccountStudentClass> AccountStudentClasses { get; set; }
-        public DbSet<StudentClass> StudentClasses { get; set; }
+
+        /*Course */
+        public DbSet<AccountCourse> AccountCourses { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<ContentType> ContentTypes { get; set; }
@@ -52,23 +50,34 @@ namespace DataAccess.Context
         public DbSet<Lesson> Lessons { get; set; }
         public DbSet<LessonStatus> LessonStatuses { get; set; }
         public DbSet<LessonFavourite> LessonFavourites { get; set; }
-        public DbSet<CoursePage> CoursePages { get; set; }
-        public DbSet<CoursePageLesson> CoursePageLessons { get; set; }
-        public DbSet<CourseCoursePage> CourseCoursePages { get; set; }
-        public DbSet<ContentCoursePage> ContentCoursePages { get; set; }
         public DbSet<CourseTimeSpent> CourseTimeSpents { get; set; }
         public DbSet<Content> Contents { get; set; }
         public DbSet<CourseFavourite> CourseFavourites { get; set; }
         public DbSet<Instructor> Instructors { get; set; }
         public DbSet<SessionRecord> SessionRecords { get; set; }
 
-        /*PathFile Table Field*/
+        /*PathFile */
         public DbSet<PathFile> PathFiles { get; set; }
+
+        /*Organization */
+        public DbSet<Organization> Organizations { get; set; }
+
+        /*Survey */
+        public DbSet<Survey> Surveys { get; set; }
+
+        /*Application */
+        public DbSet<AccountApplication> AccountApplications { get; set; }
+        public DbSet<Entities.Concretes.Application> Applications {  get; set; }  
+        public DbSet<ApplicationStep> ApplicationSteps { get; set; }
+
+        /*Announcement */
+        public DbSet<Announcement> Announcements { get; set; }
+        public DbSet<AnnouncementType> AnnouncementTypes { get; set; }
 
         public TobetoContext(DbContextOptions dbContextOptions, IConfiguration configuration) : base(dbContextOptions)
         {
             Configuration = configuration;
-            Database.EnsureCreated();
+           // Database.EnsureCreated();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

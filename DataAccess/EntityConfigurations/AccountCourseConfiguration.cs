@@ -9,16 +9,15 @@ using System.Threading.Tasks;
 
 namespace DataAccess.EntityConfigurations
 {
-    public class AccountCourseConfiguration : IEntityTypeConfiguration<CourseCompletion>
+    public class AccountCourseConfiguration : IEntityTypeConfiguration<AccountCourse>
     {
-        public void Configure(EntityTypeBuilder<CourseCompletion> builder)
+        public void Configure(EntityTypeBuilder<AccountCourse> builder)
         {
-            builder.ToTable("CourseCompletions").HasKey(e => e.Id);
+            builder.ToTable("AccountCourses").HasKey(e => e.Id);
             builder.Property(e => e.Id).HasColumnName("Id").IsRequired();
-            builder.Property(e => e.AccountId).HasColumnName("AccountId").IsRequired();
-            builder.Property(e => e.CourseId).HasColumnName("CourseId").IsRequired();
-            builder.Property(e => e.PercentageOfCompletion).HasColumnName("PercentageOfCompletion");
-            builder.Property(e => e.Point).HasColumnName("Point").IsRequired();
+            builder.Property(e => e.UserId).HasColumnName("UserId");
+            builder.Property(e => e.LessonId).HasColumnName("LessonId");
+           
             
             builder.HasQueryFilter(e => !e.DeletedDate.HasValue);
         }

@@ -1,13 +1,14 @@
 ﻿using Core.Entities;
+using Core.Entities.Concrete;
 
 namespace Entities.Concretes
 {
     public class LessonStatus : Entity<int>
     {
-        public int AccountId { get; set; }
-        public int LessonId { get; set; }
+        public int? UserId { get; set; }
+        public int? LessonId { get; set; }
         public string Name { get; set; }
-        public Account? Account { get; set; }
+        public User? User { get; set; }
         public Lesson? Lesson { get; set; }
 
     }

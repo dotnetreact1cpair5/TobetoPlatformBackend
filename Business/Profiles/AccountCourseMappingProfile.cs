@@ -43,6 +43,7 @@ namespace Business.Profiles
                 .ForMember(dest => dest.StartDate, opt => opt.MapFrom(src => src.Lesson.Course.StartDate))
                 .ForMember(dest => dest.EndDate, opt => opt.MapFrom(src => src.Lesson.Course.EndDate))
              .ReverseMap();
+            CreateMap<List<AccountCourse>, Paginate<GetListAccountCourseResponse>>().ForMember(destinationMember:a=>a.Items,memberOptions:c=>c.MapFrom(ac=>ac.ToList())).ReverseMap();
 
             CreateMap<Paginate<AccountCourse>, Paginate<GetListAccountCourseResponse>>().ReverseMap();
 

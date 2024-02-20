@@ -64,12 +64,12 @@ namespace Business.Concrete
                );
             var result = _mapper.Map<Paginate<GetListAccountCourseResponse>>(accountCourse);
             return result;
-        }
+                    }
 
         public async Task<IPaginate<GetListAccountCourseResponse>> GetByCourseId(int courseId)
         {
-            var accountCourse = await _accountCourseDal.GetListAsync(predicate: a => a.Lesson.Course.Id == courseId,
-                 include: c => c.Include(c => c.User)
+            var accountCourse = await _accountCourseDal.GetListAsync(predicate:c=>c.Lesson.Course.Id==courseId,
+                include:c=>c.Include(c => c.User)
                 .Include(c => c.Lesson).ThenInclude(c => c.Course).ThenInclude(c => c.Organization)
                 .Include(c => c.Lesson).ThenInclude(c => c.Course).ThenInclude(c => c.Category)
                 .Include(c => c.Lesson).ThenInclude(c => c.Course).ThenInclude(c => c.ContentType)
@@ -82,7 +82,8 @@ namespace Business.Concrete
                 .Include(c => c.Lesson).ThenInclude(c => c.PathFile)
 
                );
-            var result = _mapper.Map<Paginate<GetListAccountCourseResponse>>(accountCourse);
+            var filteredCourses = accountCourse.Items.Where(a => a.Lesson.Course.Lessons.Any(c => c.Course.Id == courseId)).ToList();
+            var result = _mapper.Map<Paginate<GetListAccountCourseResponse>>(filteredCourses);
             return result;
         }
 

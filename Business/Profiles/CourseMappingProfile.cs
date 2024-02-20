@@ -33,6 +33,8 @@ namespace Business.Profiles
 
             CreateMap<Paginate<Course>, Paginate<GetListCourseResponse>>().ReverseMap();
 
+            CreateMap<List<Course>, Paginate<GetListCourseResponse>>().ForMember(destinationMember: a => a.Items, memberOptions: c => c.MapFrom(ac => ac.ToList())).ReverseMap();
+
             CreateMap<Course, CreatedCourseResponse>().ReverseMap();
             CreateMap<Course, UpdatedCourseResponse>().ReverseMap();
             CreateMap<Course, DeletedCourseResponse>().ReverseMap();

@@ -76,14 +76,17 @@ namespace Business.Concrete
 
         public async Task<IPaginate<GetListCourseResponse>> GetByCourseId(int courseId)
         {
-            var course = await _courseDal.GetListAsync(predicate: c => c.Id == courseId,
-                  include: c => c.Include(c => c.Category)
+            var courseList = await _courseDal.GetListAsync(
+                  include: c => c.Include(c=>c.Lessons).ThenInclude(cl=>cl.Content)
+                 .Include(c => c.Lessons)
+                 .Include(c => c.Category)
                 .Include(c => c.Organization)
                 .Include(c => c.ContentType)
                 .Include(c => c.PathFile)
-                //.Include(c => c.User)
+                
                 );
-            var result = _mapper.Map<Paginate<GetListCourseResponse>>(course);
+            var filteredCourses = courseList.Items.Where(a => a.Lessons.Any(c => c.CourseId == courseId)).ToList();
+            var result = _mapper.Map<Paginate<GetListCourseResponse>>(filteredCourses);
             return result;
         }
 

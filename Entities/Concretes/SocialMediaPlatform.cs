@@ -10,6 +10,5 @@ namespace Entities.Concretes
     public class SocialMediaPlatform : Entity<int>
     {
         public string Name { get; set; }
-        public AccountSocialMedia AccountSocialMedia { get; set; }
     }
 }

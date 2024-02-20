@@ -3,5 +3,6 @@
     public class DeleteAccountForeignLanguageRequest
     {
         public int Id { get; set; }
+
     }
 }

@@ -9,5 +9,6 @@ namespace Business.Dtos.Request.CreateRequest
     public class CreateAccountSkillRequest
     {
         public int AccountId { get; set; }
+        public int SkillId { get; set; }
     }
 }

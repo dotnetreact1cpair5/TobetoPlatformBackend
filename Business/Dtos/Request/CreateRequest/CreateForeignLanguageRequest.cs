@@ -9,5 +9,7 @@ namespace Business.Dtos.Request.CreateRequest
     public class CreateForeignLanguageRequest
     {
         public string Name { get; set; }
+
     }
+
 }

@@ -39,6 +39,7 @@ namespace Business
             services.AddScoped<ISkillService, SkillManager>();
             services.AddScoped<ISocialMediaPlatformService, SocialMediaPlatformManager>();
             services.AddScoped<IUniversityService, UniversityManager>();
+            services.AddScoped<IUserService, UserManager>();
 
             /*Course Services */
 
@@ -75,7 +76,6 @@ namespace Business
             services.AddScoped<IOrganizationService, OrganizationManager>();
             services.AddScoped<ISurveyService, SurveyManager>();
 
-            services.AddSubClassesOfType(Assembly.GetExecutingAssembly(), typeof(BaseBusinessRules));
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             return services;
         }

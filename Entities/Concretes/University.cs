@@ -11,6 +11,5 @@ namespace Entities.Concretes
     {
         public string Name { get; set; }
         public ICollection<EducationProgram> EducationPrograms { get; set; }
-        public AccountEducation AccountEducation { get; set; }
     }
 }

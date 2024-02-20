@@ -18,11 +18,12 @@ namespace DataAccess.EntityConfigurations
             builder.Property(e => e.AccountId).HasColumnName("AccountId").IsRequired();
             builder.Property(e => e.Name).HasColumnName("Name").IsRequired();
             builder.HasQueryFilter(e => !e.DeletedDate.HasValue);
+            
             builder.HasOne(a => a.Account)
-.WithMany(account => account.AccountCertificates)
-.HasForeignKey(a => a.AccountId)
-.IsRequired()
-.OnDelete(DeleteBehavior.NoAction);
+                .WithMany(account => account.AccountCertificates)
+                .HasForeignKey(a => a.AccountId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

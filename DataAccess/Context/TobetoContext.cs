@@ -18,6 +18,8 @@ namespace DataAccess.Context
         protected IConfiguration Configuration { get; set; }
 
         public DbSet<Account> Accounts { get; set; }
+        public DbSet<AccountAnswer> AccountAnswers { get; set; }
+        public DbSet<AccountQuestionSet> AccountQuestionSets { get; set; }
         public DbSet<AccountCertificate> AccountCertificates { get; set; }
         public DbSet<AccountEducation> AccountEducations { get; set; }
         public DbSet<AccountExperience> AccountExperiences { get; set; }
@@ -34,6 +36,12 @@ namespace DataAccess.Context
         public DbSet<Skill> Skills { get; set; }
         public DbSet<SocialMediaPlatform> SocialMediaPlatforms { get; set; }
         public DbSet<University> Universities { get; set; }
+        public DbSet<Answer> Answers { get; set; }
+        public DbSet<Question> Questions { get; set; }
+        public DbSet<QuestionSet> QuestionSets { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
+        public DbSet<OperationClaim> OperationClaims { get; set; }
 
         /*User */
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; }

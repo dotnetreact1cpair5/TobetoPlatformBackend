@@ -12,6 +12,8 @@ namespace Entities.Concretes
     {
         public int AccountId { get; set; }
         public Account Account { get; set; }
-        public string Name { get; set; }
+        public string Name { get; set; } 
+        //public string Path { get; set; } 
+        //public Guid Key { get; set; }
     }
 }

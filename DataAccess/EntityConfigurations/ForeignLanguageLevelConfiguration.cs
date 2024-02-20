@@ -13,10 +13,10 @@ namespace DataAccess.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<ForeignLanguageLevel> builder)
         {
-            builder.ToTable("ForeignLanguageLevels").HasKey(fll => fll.Id);
-            builder.Property(fll => fll.Id).HasColumnName("Id").IsRequired();
-            builder.Property(fll => fll.Name).HasColumnName("Name").IsRequired();
-            builder.HasQueryFilter(fll => !fll.DeletedDate.HasValue);
+            builder.ToTable("ForeignLanguageLevels").HasKey(c => c.Id);
+            builder.Property(c => c.Id).HasColumnName("Id").IsRequired();
+            builder.Property(c => c.Name).HasColumnName("Name").IsRequired();
+            builder.HasQueryFilter(e => !e.DeletedDate.HasValue);
         }
     }
 }

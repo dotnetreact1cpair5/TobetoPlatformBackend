@@ -16,7 +16,7 @@ namespace DataAccess.EntityConfigurations
             builder.ToTable("Countries").HasKey(c => c.Id);
             builder.Property(c => c.Id).HasColumnName("Id").IsRequired();
             builder.Property(c => c.Name).HasColumnName("Name").IsRequired();
-            builder.HasQueryFilter(c => !c.DeletedDate.HasValue);
+            builder.HasQueryFilter(e => !e.DeletedDate.HasValue);
         }
     }
 }

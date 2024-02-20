@@ -10,6 +10,5 @@ namespace Entities.Concretes
     public class EducationStatus : Entity<int>
     {
         public string Name { get; set; }
-        public AccountEducation AccountEducation { get; set; }
     }
 }

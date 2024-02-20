@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core.Entities.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Business.Constants.Messages
 {
-    public class BusinessMessages
+    public static class BusinessMessages
     {
         public static string SameAccountSocialMediaLinkError = "Eklemeye çalıştığınız link mevcuttur!";
         public static string SameUniversityNameError = "Eklemeye çalıştığınız üniversite mevcuttur!";
@@ -28,7 +29,6 @@ namespace Business.Constants.Messages
         public static string RequiredCourse = "Geçerli bir eğitim için kayıt yapınız";
         public static string NotNullableContentTypeName = "İçerik tipi boş olamaz";
         public static string NotNullableCategoryName = "Kategori boş olamaz";
-        public static string NotNullableLessonStatusName = "Statü boş olamaz";
         public static string NotNullableContentName = "İçerik adı boş olamaz";
         public static string RequiredContentType = "Geçerli bir içerik tipi için kayıt yapınız";
         public static string RequiredContent = "Geçerli bir içerik adı için kayıt yapınız";
@@ -57,6 +57,33 @@ namespace Business.Constants.Messages
         public static string DateFormatError = "Tarih, 'dd.MM.yyyy' formatında olmalıdır.";
         public static string DateComparison = "Mezuniyet yılı, başlangıç yılından küçük olamaz.";
         public static string SameSkillNameError = "Aynı beceri eklenemez.";
-        public static string SameCountryCodeError="Aynı ülke kodu.";
+        public static string SameCountryCodeError = "Aynı ülke kodu.";
+        public static string AccessDenied = "Yetki Reddedildi";
+
+        /* Course Messages*/
+        public static string SameCourseNameError = "Aynı isimli Kurs Adı bulunmaktadır.";
+        public static string SameLessonNameError = "Aynı isimli Ders Adı bulunmaktadır.";
+        public static string SameLessonStatusNameError = "Aynı isimli Ders Statü Adı bulunmaktadır.";
+        public static string NotNullableLessonStatusName = "Ders Statü Adı boş olamaz";
+        public static string SameContentNameError = "Aynı isimli İçerik Adı bulunmaktadır.";
+        public static string SameContentTypeNameError = "Aynı isimli İçerik Tipi Adı bulunmaktadır.";
+        public static string SameCoursePageNameError = "Kurs Sayfasında aynı isimli kurs adı bulunmaktadır.";
+        public static string SameCategoryNameError = "Aynı isimli Kurs Kategori Adı bulunmaktadır.";
+        public static string? SameSessionRecordNameError = "Aynı isimli Oturum Kayıt Adı bulunmaktadır.";
+
+        /*User Messages*/
+        public static string RegistrationSuccessfully = "Kayıt işlemi başarıyla gerçekleşti.";
+        public static string UserOrEmailNotFound = "Kayıtlı Kullanıcı Adı veya Email Bulunamadı.";
+        public static string PasswordError = "Parola Hatası.";
+        public static string SuccessfullEntry = "Başarılı Giriş yapıldı.";
+        public static string UserIsValid = "Bu Kullanıcı Mevcuttur";
+        public static string TokenCreated = "Token Oluşturuldu";
+        public static string PasswordResetLinkHasBeenSentToYourEmailAddress = "Şifre sıfırlama linki mail adresinize gönderilmiştir.";
+        public static string ThisEmailAddressIsNotRegisteredInTheSystem = "Sistemde bu mail adresi kayıtlı degildir.";
+
+        /*Survey Messages*/
+        public static string SameSurveyLinkError = "Bu Anket Linki sistemde bulunmaktadır.";
+
+        public static string SameOrganizationNameError = "Aynı isimli Organizasyon Adı bulunmaktadır.";
     }
 }

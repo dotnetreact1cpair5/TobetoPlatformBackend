@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Core.Extensions;
+using System.Security.Cryptography;
 
 namespace Core.Security.JWT
 {
@@ -39,6 +40,8 @@ namespace Core.Security.JWT
                 Expiration = _accessTokenExpiration
             };
 
+          
+
         }
 
         public JwtSecurityToken CreateJwtSecurityToken(TokenOptions tokenOptions, User user,
@@ -67,9 +70,25 @@ namespace Core.Security.JWT
             return claims;
         }
 
-        //public AccessToken CreateToken(User user, ICollection<OperationClaim> operationClaims)
+        //public RefreshToken CreateRefreshToken(User user, string ipAdress)
         //{
-        //    throw new NotImplementedException();
+        //    RefreshToken refreshToken =
+        //           new()
+        //           {
+        //               UserId = user.Id,
+        //               Token=RandomRefreshToken(),
+        //               Expires = DateTime.UtcNow.AddDays(7),
+        //               CreatedByIp=ipAdress
+        //           };
+        //    return refreshToken;
+        //}
+
+        //private string RandomRefreshToken()
+        //{
+        //    byte[] numberByte = new byte[32];
+        //    using var random = RandomNumberGenerator.Create();
+        //    random.GetBytes(numberByte);
+        //    return Convert.ToBase64String(numberByte);
         //}
     }
 }

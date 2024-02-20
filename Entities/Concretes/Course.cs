@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using Core.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,19 +10,24 @@ namespace Entities.Concretes
 {
     public class Course : Entity<int>
     {
-        //public int CourseContentId { get; set; }
-        //public int CourseAboutId { get; set; }
-        //public int LessonId { get; set; }
-        public string Image { get; set; }
+      //  public int? UserId { get; set; }
+        public int CategoryId { get; set; }
+        public int OrganizationId { get; set; }
+        public int ContentTypeId { get; set; }
+        public int PathFileId { get; set; }
         public string Name { get; set; }
-        public int Duration { get; set; }
+        public string EstimatedVideoDuration { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+      //  public virtual User? User { get; set; }
+        public virtual ContentType? ContentType { get; set; }
+        public virtual Category? Category { get; set; }
+        public virtual PathFile? PathFile { get; set; }
+        public virtual Organization? Organization { get; set; }
+        public virtual ICollection<Lesson>? Lessons { get; set; }
+      
 
 
-        //Navigation Properties
-        //public CourseDetail CourseDetail { get; set; }
-        //public virtual ICollection<CourseContent> CourseContents { get; set; }
-        //public virtual ICollection<AccountCourse> AccountCourse { get; set; }
     }
 }
+

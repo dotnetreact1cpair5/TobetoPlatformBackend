@@ -7,6 +7,14 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="CloudinaryDotNet" Version="1.25.0" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.14">
+	    <PrivateAssets>all</PrivateAssets>
+	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
 	  <ProjectReference Include="..\Core\Core.csproj" />
 	  <ProjectReference Include="..\Entities\Entities.csproj" />
 	</ItemGroup>

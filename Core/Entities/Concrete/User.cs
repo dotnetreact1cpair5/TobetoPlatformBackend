@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Core.Security.JWT;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace Core.Entities.Concrete
 {
@@ -17,7 +19,8 @@ namespace Core.Entities.Concrete
         public byte[] PasswordSalt { get; set; }
         public bool Status { get; set; }
 
-
-
+        public virtual ICollection<UserOperationClaim>? UserOperationClaims { get; set; } = null!;
+     
+       
     }
 }

@@ -1,4 +1,4 @@
-﻿using Core.IoC;
+﻿using Core.Utilities.IoC;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -19,9 +19,26 @@ namespace Core.CrossCuttingConcerns.Caching.Microsoft
             _memoryCache = ServiceTool.ServiceProvider.GetService<IMemoryCache>();
         }
 
-        public void Add(string key, object value, int duration)
+        public void Add(string key, object value, int duration, Type type)
         {
             _memoryCache.Set(key, value, TimeSpan.FromMinutes(duration));
+        }
+
+        
+
+        public void Add(string key, object data, Type type)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Add(string key, object data)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Add(string key, object data, int duration)
+        {
+            throw new NotImplementedException();
         }
 
         public T Get<T>(string key)
@@ -32,6 +49,11 @@ namespace Core.CrossCuttingConcerns.Caching.Microsoft
         public object Get(string key)
         {
             return _memoryCache.Get(key);
+        }
+
+        public object Get(string key, Type type)
+        {
+            throw new NotImplementedException();
         }
 
         public bool IsAdd(string key)

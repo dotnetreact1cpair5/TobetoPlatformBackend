@@ -1,4 +1,5 @@
 using Core.Entities.Concrete;
+using Core.Security.JWT;
 using Entities.Concretes;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace DataAccess.Context
 {
@@ -15,7 +17,6 @@ namespace DataAccess.Context
     {
         protected IConfiguration Configuration { get; set; }
 
-        public DbSet<Course> Courses { get; set; }
         public DbSet<Account> Accounts { get; set; }
         public DbSet<AccountCertificate> AccountCertificates { get; set; }
         public DbSet<AccountEducation> AccountEducations { get; set; }
@@ -34,10 +35,49 @@ namespace DataAccess.Context
         public DbSet<SocialMediaPlatform> SocialMediaPlatforms { get; set; }
         public DbSet<University> Universities { get; set; }
 
+        /*User */
+        public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<OperationClaim> OperationClaims { get; set; }
+
+
+        /*Course */
+        public DbSet<AccountCourse> AccountCourses { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<ContentType> ContentTypes { get; set; }
+        public DbSet<CourseCompletion> CourseCompletions { get; set; }
+        public DbSet<Lesson> Lessons { get; set; }
+        public DbSet<LessonStatus> LessonStatuses { get; set; }
+        public DbSet<LessonFavourite> LessonFavourites { get; set; }
+        public DbSet<CourseTimeSpent> CourseTimeSpents { get; set; }
+        public DbSet<Content> Contents { get; set; }
+        public DbSet<CourseFavourite> CourseFavourites { get; set; }
+        public DbSet<Instructor> Instructors { get; set; }
+        public DbSet<SessionRecord> SessionRecords { get; set; }
+
+        /*PathFile */
+        public DbSet<PathFile> PathFiles { get; set; }
+
+        /*Organization */
+        public DbSet<Organization> Organizations { get; set; }
+
+        /*Survey */
+        public DbSet<Survey> Surveys { get; set; }
+
+        /*Application */
+        public DbSet<AccountApplication> AccountApplications { get; set; }
+        public DbSet<Entities.Concretes.Application> Applications {  get; set; }  
+        public DbSet<ApplicationStep> ApplicationSteps { get; set; }
+
+        /*Announcement */
+        public DbSet<Announcement> Announcements { get; set; }
+        public DbSet<AnnouncementType> AnnouncementTypes { get; set; }
+
         public TobetoContext(DbContextOptions dbContextOptions, IConfiguration configuration) : base(dbContextOptions)
         {
             Configuration = configuration;
-            Database.EnsureCreated();
+           // Database.EnsureCreated();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

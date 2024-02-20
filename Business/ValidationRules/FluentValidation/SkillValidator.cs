@@ -1,5 +1,5 @@
 ﻿using Business.Constants.Messages;
-using Business.Dtos.Request;
+using Business.Dtos.Request.CreateRequest;
 using FluentValidation;
 using System;
 using System.Collections.Generic;

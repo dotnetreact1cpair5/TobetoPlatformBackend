@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
-using Business.Dtos.Request;
+using Business.Dtos.Request.CreateRequest;
+using Business.Dtos.Request.DeleteRequest;
+using Business.Dtos.Request.UpdateRequest;
 using Core.DataAccess.Paging;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,9 +19,25 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
+        public async Task<IActionResult> GetList()
         {
-            var result = await _courseService.GetListCourse(pageRequest);
+            var result = await _courseService.GetListCourse();
+            return Ok(result);
+        }
+
+        
+
+        [HttpGet("getbycourseid")]
+        public async Task<IActionResult> GetByCourseId([FromQuery] int courseId)
+        {
+            var result = await _courseService.GetByCourseId(courseId);
+            return Ok(result);
+        }
+
+        [HttpGet("getbyuserid")]
+        public async Task<IActionResult> GetByUserId([FromQuery] int userId)
+        {
+            var result = await _courseService.GetByUserId(userId);
             return Ok(result);
         }
 
@@ -29,6 +47,7 @@ namespace WebApi.Controllers
             var result = await _courseService.Add(createCourseRequest);
             return Ok(result);
         }
+
 
         [HttpPost("Update")]
         public async Task<IActionResult> Update([FromBody] UpdateCourseRequest updateCourseRequest)

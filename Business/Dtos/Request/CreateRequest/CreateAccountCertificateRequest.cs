@@ -1,5 +1,4 @@
-﻿using Entities.Concretes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +10,5 @@ namespace Business.Dtos.Request.CreateRequest
     {
         public int AccountId { get; set; }
         public string Name { get; set; }
-        public string FileFormat { get; set; }
     }
 }

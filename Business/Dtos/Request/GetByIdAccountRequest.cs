@@ -20,5 +20,6 @@ namespace Business.Dtos.Request
         public int CountryId { get; set; }
         public int CityId { get; set; }
         public int DistrictId { get; set; }
+        public int UserId { get; set; }
     }
 }

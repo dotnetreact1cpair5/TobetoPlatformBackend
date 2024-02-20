@@ -8,6 +8,7 @@ namespace Business.Dtos.Request.CreateRequest
 {
     public class CreateSkillRequest
     {
+
         public string Name { get; set; }
     }
 }

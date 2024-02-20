@@ -12,6 +12,5 @@ namespace Entities.Concretes
         public int CityId { get; set; }
         public City City { get; set; }
         public string Name { get; set; }
-        public Account Account { get; set; }
     }
 }

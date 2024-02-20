@@ -20,7 +20,7 @@ namespace DataAccess.EntityConfigurations
             builder.HasQueryFilter(e => !e.DeletedDate.HasValue);
 
             builder.HasOne(c => c.Country)
-                   .WithMany(country => country.Cities)
+                   .WithMany(country=>country.Cities)
                    .HasForeignKey(c => c.CountryId)
                    .IsRequired()
                    .OnDelete(DeleteBehavior.NoAction);

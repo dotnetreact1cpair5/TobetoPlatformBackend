@@ -26,7 +26,7 @@ namespace DataAccess.EntityConfigurations
                 .IsRequired()
                 .OnDelete(DeleteBehavior.NoAction);
 
-            builder.HasOne(a => a.SocialMediaPlatforms)
+            builder.HasOne(a => a.SocialMediaPlatform)
                 .WithMany()
                 .HasForeignKey(a => a.SocialMediaPlatformId)
                 .IsRequired()

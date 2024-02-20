@@ -8,6 +8,8 @@ using Business.Dtos.Response.DeletedResponse;
 using Business.Dtos.Response.GetListResponse;
 using Business.Dtos.Response.UpdatedResponse;
 using Business.Rules;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
 using DataAccess.Concretes;
@@ -32,10 +34,10 @@ namespace Business.Concrete
             _mapper = mapper;
             _accountBusinessRules = accountBusinessRules;
         }
+
+        [ValidationAspect(typeof(AccountValidator))]
         public async Task<CreatedAccountResponse> Add(CreateAccountRequest createAccountRequest)
         {
-            await _accountBusinessRules.MaxNationalIdLength(createAccountRequest.NationalId);
-            await _accountBusinessRules.MailFormat(createAccountRequest.Email);
             Account account = _mapper.Map<Account>(createAccountRequest);
             var createdAccount = await _accountDal.AddAsync(account);
             CreatedAccountResponse result = _mapper.Map<CreatedAccountResponse>(createdAccount);
@@ -44,9 +46,17 @@ namespace Business.Concrete
 
         public async Task<DeletedAccountResponse> Delete(DeleteAccountRequest deleteAccountRequest)
         {
-            Account account = await _accountDal.GetAsync(a => a.Id == deleteAccountRequest.Id);
+            //Account account = _mapper.Map<Account>(deleteAccountRequest);
+            Account account = await _accountDal.GetAsync(d => d.Id == deleteAccountRequest.Id);
             var deletedAccount = await _accountDal.DeleteAsync(account, false);
             DeletedAccountResponse result = _mapper.Map<DeletedAccountResponse>(deletedAccount);
+            return result;
+        }
+
+        public async Task<GetListAccountResponse> GetByIdAccount(GetByIdAccountRequest getByIdAccountRequest)
+        {
+            var account = await _accountDal.GetListAsync(a => a.Id == getByIdAccountRequest.Id);
+            var result = _mapper.Map<GetListAccountResponse>(account);
             return result;
         }
 
@@ -56,14 +66,15 @@ namespace Business.Concrete
                 include: a => a.Include(b => b.Country).ThenInclude(c => c.Cities).ThenInclude(d => d.Districts),
                 orderBy: a => a.OrderBy(a => a.Id),
                 index: pageRequest.PageIndex,
-                size: pageRequest.PageSize);
+                size: pageRequest.PageSize); ;
             var result = _mapper.Map<Paginate<GetListAccountResponse>>(account);
             return result;
         }
 
         public async Task<UpdatedAccountResponse> Update(UpdateAccountRequest updateAccountRequest)
         {
-            Account account = await _accountDal.GetAsync(a => a.Id == updateAccountRequest.Id);
+            //Account account = _mapper.Map<Account>(updateAccountRequest);
+            Account account = await _accountDal.GetAsync(i => i.Id == updateAccountRequest.Id);
             _mapper.Map(updateAccountRequest, account);
             var updatedAccount = await _accountDal.UpdateAsync(account);
             UpdatedAccountResponse result = _mapper.Map<UpdatedAccountResponse>(updatedAccount);

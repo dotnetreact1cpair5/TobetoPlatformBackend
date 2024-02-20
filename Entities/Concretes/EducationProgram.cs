@@ -12,6 +12,5 @@ namespace Entities.Concretes
         public string Name { get; set; }
         public int UniversityId { get; set; }
         public University University { get; set; }
-        public AccountEducation AccountEducation { get; set; }
     }
 }

@@ -10,6 +10,7 @@ namespace Business.Dtos.Request.UpdateRequest
     {
         public int Id { get; set; }
         public int AccountId { get; set; }
+        public int CityId { get; set; }
         public string CompanyName { get; set; }
         public string Position { get; set; }
         public string Sector { get; set; }

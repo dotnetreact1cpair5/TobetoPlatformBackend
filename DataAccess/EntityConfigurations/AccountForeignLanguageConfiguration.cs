@@ -1,6 +1,6 @@
 ﻿using Entities.Concretes;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,13 +26,13 @@ namespace DataAccess.EntityConfigurations
                 .IsRequired()
                 .OnDelete(DeleteBehavior.NoAction);
 
-            builder.HasOne(a => a.ForeignLanguages)
+            builder.HasOne(a => a.ForeignLanguage)
                 .WithMany()
                 .HasForeignKey(a => a.ForeignLanguageId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.NoAction);
 
-            builder.HasOne(a => a.ForeignLanguageLevels)
+            builder.HasOne(a => a.ForeignLanguageLevel)
                 .WithMany()
                 .HasForeignKey(a => a.ForeignLanguageLevelId)
                 .IsRequired()

@@ -21,15 +21,15 @@ namespace Business.Profiles
             public SkillMappingProfile()
             {
                 CreateMap<CreateSkillRequest, Skill>().ReverseMap();
-                CreateMap<UpdateSkillRequest, Skill>().ReverseMap();
-                CreateMap<DeleteSkillRequest, Skill>().ReverseMap();
+                CreateMap<UpdateSkillsRequest, Skill>().ReverseMap();
+                CreateMap<DeleteSkillsRequest, Skill>().ReverseMap();
 
-                CreateMap<Skill, GetListSkillResponse>().ReverseMap();
-                CreateMap<Paginate<Skill>, Paginate<GetListSkillResponse>>().ReverseMap();
+                CreateMap<Skill, GetListSkillsResponse>().ReverseMap();
+                CreateMap<Paginate<Skill>, Paginate<GetListSkillsResponse>>().ReverseMap();
+                CreateMap<CreatedSkillsResponse, Skill>().ReverseMap();
 
-                CreateMap<CreatedSkillResponse, Skill>().ReverseMap();
-                CreateMap<UpdatedSkillResponse, Skill>().ReverseMap();
-                CreateMap<DeletedSkillResponse, Skill>().ReverseMap();
+                CreateMap<Skill, UpdatedSkillsResponse>().ReverseMap();
+                CreateMap<Skill, DeletedSkillsResponse>().ReverseMap();
             }
         }
     

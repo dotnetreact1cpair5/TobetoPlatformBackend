@@ -26,6 +26,7 @@ namespace DataAccess.EntityConfigurations
             builder.Property(a => a.CountryId).HasColumnName("CountryId");
             builder.Property(a => a.CityId).HasColumnName("CityId");
             builder.Property(a => a.DistrictId).HasColumnName("DistrictId");
+            builder.Property(a => a.UserId).HasColumnName("UserId");
             builder.HasIndex(indexExpression: a => a.NationalId, name: "UK_Accounts_NationalId").IsUnique();
             builder.HasQueryFilter(a => !a.DeletedDate.HasValue);
 
@@ -46,6 +47,12 @@ namespace DataAccess.EntityConfigurations
                 .HasForeignKey(a => a.DistrictId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.NoAction);
-        }
+
+            builder.HasOne(a => a.User)
+                .WithMany()
+                .HasForeignKey(a => a.UserId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.NoAction);
+        }     
     }
 }

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Entities.Concretes
 {
+
     public class Account : Entity<int>
     {
         public string FirstName { get; set; }
@@ -18,21 +19,21 @@ namespace Entities.Concretes
         public string PhoneNumber { get; set; }
         public string Description { get; set; }
         public string Address { get; set; }
-        public int UserId { get; set; }
         public int CountryId { get; set; }
+        public City City { get; set; }
         public int CityId { get; set; }
+        public District District { get; set; }
         public int DistrictId { get; set; }
+
         public Country Country { get; set; }
         public City City { get; set; }
         public District District { get; set; }
-        public User User { get; set; }
-        public PathFile? PathFile { get; set; }
+
         public ICollection<AccountExperience> AccountExperiences { get; set; }
         public ICollection<AccountEducation> AccountEducations { get; set; }
         public ICollection<AccountSkill> AccountSkills { get; set; }
         public ICollection<AccountCertificate> AccountCertificates { get; set; }
         public ICollection<AccountSocialMedia> AccountSocialMedias { get; set; }
         public ICollection<AccountForeignLanguage> AccountForeignLanguages { get; set; }
-
     }
 }

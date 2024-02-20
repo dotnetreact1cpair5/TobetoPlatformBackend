@@ -36,39 +36,39 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(SkillValidator))]
-        public async Task<CreatedSkillResponse> Add(CreateSkillRequest createSkillRequest)
+        public async Task<CreatedSkillsResponse> Add(CreateSkillRequest createSkillRequest)
         {
             await _skillBusinessRules.SameSkillName(createSkillRequest.Name);
             Skill skill = _mapper.Map<Skill>(createSkillRequest);
             var createdSkill = await _skillDal.AddAsync(skill);
-            CreatedSkillResponse result = _mapper.Map<CreatedSkillResponse>(createdSkill);
+            CreatedSkillsResponse result = _mapper.Map<CreatedSkillsResponse>(createdSkill);
             return result;
         }
 
-        public async Task<DeletedSkillResponse> Delete(DeleteSkillRequest deleteSkillRequest)
+        public async Task<DeletedSkillsResponse> Delete(DeleteSkillRequest deleteSkillRequest)
         {
             Skill skill = await _skillDal.GetAsync(s=>s.Id==deleteSkillRequest.Id);
             var deletedSkill = await _skillDal.DeleteAsync(skill, false);
-            DeletedSkillResponse result = _mapper.Map<DeletedSkillResponse>(deletedSkill);
+            DeletedSkillsResponse result = _mapper.Map<DeletedSkillsResponse>(deletedSkill);
             return result;
         }
 
-        public async Task<IPaginate<GetListSkillResponse>> GetListSkillInformation(PageRequest pageRequest)
+        public async Task<IPaginate<GetListSkillsResponse>> GetListSkillInformation(PageRequest pageRequest)
         {
             var skill = await _skillDal.GetListAsync(
                 orderBy: s => s.OrderBy(s => s.Id),
                 index: pageRequest.PageIndex,
                 size: pageRequest.PageSize);
-            var result = _mapper.Map<Paginate<GetListSkillResponse>>(skill);
+            var result = _mapper.Map<Paginate<GetListSkillsResponse>>(skill);
             return result;
         }
 
-        public async Task<UpdatedSkillResponse> Update(UpdateSkillRequest updateSkillRequest)
+        public async Task<UpdatedSkillsResponse> Update(UpdateSkillRequest updateSkillRequest)
         {
             Skill skill = await _skillDal.GetAsync(s=>s.Id==updateSkillRequest.Id);
             _mapper.Map(updateSkillRequest,skill);
             var updatedSkill = await _skillDal.UpdateAsync(skill);
-            UpdatedSkillResponse result = _mapper.Map<UpdatedSkillResponse>(updatedSkill);
+            UpdatedSkillsResponse result = _mapper.Map<UpdatedSkillsResponse>(updatedSkill);
             return result;
         }
     }

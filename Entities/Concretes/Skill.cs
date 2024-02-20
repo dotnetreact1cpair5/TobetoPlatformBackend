@@ -10,6 +10,5 @@ namespace Entities.Concretes
     public class Skill : Entity<int>
     {
         public string Name { get; set; }
-        public AccountSkill AccountSkill { get; set; }
     }
 }

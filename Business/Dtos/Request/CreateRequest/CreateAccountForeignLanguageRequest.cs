@@ -9,5 +9,7 @@ namespace Business.Dtos.Request.CreateRequest
     public class CreateAccountForeignLanguageRequest
     {
         public int AccountId { get; set; }
+        public int ForeignLanguageId { get; set; }
+        public int ForeignLanguageLevelId { get; set; }
     }
 }

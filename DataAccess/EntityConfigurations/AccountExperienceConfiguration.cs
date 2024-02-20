@@ -13,23 +13,23 @@ namespace DataAccess.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<AccountExperience> builder)
         {
-            builder.ToTable("AccountExperiences").HasKey(e => e.Id);
+            builder.ToTable("Experiences").HasKey(e => e.Id);
             builder.Property(e => e.Id).HasColumnName("Id").IsRequired();
             builder.Property(e => e.AccountId).HasColumnName("AccountId").IsRequired();
+            builder.Property(e => e.CityId).HasColumnName("CityId").IsRequired();
             builder.Property(e => e.CompanyName).HasColumnName("CompanyName").IsRequired();
             builder.Property(e => e.Position).HasColumnName("Position");
             builder.Property(e => e.Sector).HasColumnName("Sector");
             builder.Property(e => e.StartDate).HasColumnName("StartDate");
             builder.Property(e => e.EndDate).HasColumnName("EndDate");
             builder.Property(e => e.JobDescription).HasColumnName("JobDescription");
-            builder.Property(e => e.CityId).HasColumnName("CityId");
             builder.HasQueryFilter(e => !e.DeletedDate.HasValue);
 
             builder.HasOne(a => a.Account)
-               .WithMany(account => account.AccountExperiences)
-               .HasForeignKey(a => a.AccountId)
-               .IsRequired()
-               .OnDelete(DeleteBehavior.NoAction);
+                .WithMany(account => account.AccountExperiences)
+                .HasForeignKey(a => a.AccountId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.NoAction);
 
             builder.HasOne(a => a.City)
                 .WithMany()

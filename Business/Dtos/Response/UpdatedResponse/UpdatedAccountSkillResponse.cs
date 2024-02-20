@@ -10,5 +10,6 @@ namespace Business.Dtos.Response.UpdatedResponse
     {
         public int Id { get; set; }
         public int AccountId { get; set; }
+        public int SkillId { get; set; }
     }
 }

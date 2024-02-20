@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace Entities.Concretes
 {
+
     public class ForeignLanguageLevel : Entity<int>
     {
         public string Name { get; set; }
     }
+
 }

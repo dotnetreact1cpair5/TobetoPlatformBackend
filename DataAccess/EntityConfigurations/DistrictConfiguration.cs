@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.EntityConfigurations
 {
-    public class DistrictConfiguration : IEntityTypeConfiguration<District>
+    public class DistrictConfiguration:IEntityTypeConfiguration<District>
     {
         public void Configure(EntityTypeBuilder<District> builder)
         {

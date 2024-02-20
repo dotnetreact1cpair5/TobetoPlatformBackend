@@ -26,11 +26,13 @@ namespace Business.Concrete
     {
         IDistrictDal _districtDal;
         IMapper _mapper;
+        //DistrictBusinessRules _districtBusinessRules;
 
         public DistrictManager(IDistrictDal districtDal, IMapper mapper)
         {
             _districtDal = districtDal;
             _mapper = mapper;
+            //_districtBusinessRules = districtBusinessRules;
         }
 
         [ValidationAspect(typeof(DistrictValidator))]

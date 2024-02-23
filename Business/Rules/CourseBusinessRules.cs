@@ -12,7 +12,8 @@ namespace Business.Rules
 {
     public class CourseBusinessRules : BaseBusinessRules
     {
-        private readonly ICourseDal _courseDal;
+        private ICourseDal _courseDal;
+
         public CourseBusinessRules(ICourseDal courseDal)
         {
             _courseDal = courseDal;

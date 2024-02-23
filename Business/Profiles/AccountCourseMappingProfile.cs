@@ -45,6 +45,7 @@ namespace Business.Profiles
              .ReverseMap();
             CreateMap<List<AccountCourse>, Paginate<GetListAccountCourseResponse>>().ForMember(destinationMember:a=>a.Items,memberOptions:c=>c.MapFrom(ac=>ac.ToList())).ReverseMap();
 
+           
             CreateMap<Paginate<AccountCourse>, Paginate<GetListAccountCourseResponse>>().ReverseMap();
 
             CreateMap<AccountCourse, CreatedAccountCourseResponse>().ReverseMap();

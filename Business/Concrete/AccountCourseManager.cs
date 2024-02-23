@@ -46,7 +46,7 @@ namespace Business.Concrete
             return result;
         }
 
-        public async Task<IPaginate<GetListAccountCourseResponse>> GetByUserId(int userId)
+        public async Task<IPaginate<GetListAccountCourseResponse>> GetByUserId(int userId, PageRequest pageRequest)
         {
             var accountCourse = await _accountCourseDal.GetListAsync(predicate: a => a.UserId == userId,
                  include: c => c.Include(c => c.User)
@@ -68,7 +68,7 @@ namespace Business.Concrete
 
         public async Task<IPaginate<GetListAccountCourseResponse>> GetByCourseId(int courseId)
         {
-            var accountCourse = await _accountCourseDal.GetListAsync(predicate:c=>c.Lesson.Course.Id==courseId,
+            var accountCourse = await _accountCourseDal.GetListAsync(
                 include:c=>c.Include(c => c.User)
                 .Include(c => c.Lesson).ThenInclude(c => c.Course).ThenInclude(c => c.Organization)
                 .Include(c => c.Lesson).ThenInclude(c => c.Course).ThenInclude(c => c.Category)
@@ -82,7 +82,7 @@ namespace Business.Concrete
                 .Include(c => c.Lesson).ThenInclude(c => c.PathFile)
 
                );
-            var filteredCourses = accountCourse.Items.Where(a => a.Lesson.Course.Lessons.Any(c => c.Course.Id == courseId)).ToList();
+           var filteredCourses = accountCourse.Items.Where(a => a.Lesson.Course.Lessons.Any(c => c.Course.Id == courseId)).ToList();
             var result = _mapper.Map<Paginate<GetListAccountCourseResponse>>(filteredCourses);
             return result;
         }

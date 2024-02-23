@@ -24,10 +24,12 @@ namespace Entities.Concretes
         public int CityId { get; set; }
         public District District { get; set; }
         public int DistrictId { get; set; }
-
         public Country Country { get; set; }
-        public City City { get; set; }
-        public District District { get; set; }
+
+        //account configuration alanında usera ait kodlar yazıldıgından buraya da program hata vermesın dıye eklendı.Bir kullanım durumu yok 
+        public int UserId { get; set; }
+        public User? User { get; set; }
+
 
         public ICollection<AccountExperience> AccountExperiences { get; set; }
         public ICollection<AccountEducation> AccountEducations { get; set; }
@@ -35,5 +37,7 @@ namespace Entities.Concretes
         public ICollection<AccountCertificate> AccountCertificates { get; set; }
         public ICollection<AccountSocialMedia> AccountSocialMedias { get; set; }
         public ICollection<AccountForeignLanguage> AccountForeignLanguages { get; set; }
+        public ICollection<AccountAnswer> AccountAnswers { get; set; }
+        public ICollection<AccountQuestionSet> AccountQuestionSets { get; set; }
     }
 }

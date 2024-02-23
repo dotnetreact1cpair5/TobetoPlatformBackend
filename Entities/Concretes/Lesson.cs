@@ -31,6 +31,8 @@ namespace Entities.Concretes
         public virtual SessionRecord? SessionRecord { get; set; }
         public virtual Instructor? Instructor { get; set; }
         public virtual PathFile? PathFile { get; set; }
+        public virtual ICollection<LessonStatus>? Lessons { get; set; }  
+        public virtual ICollection<LessonFavourite>? LessonsFavourites { get; set; }
 
 
 

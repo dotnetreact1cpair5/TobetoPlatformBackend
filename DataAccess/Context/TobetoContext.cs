@@ -39,9 +39,7 @@ namespace DataAccess.Context
         public DbSet<Answer> Answers { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<QuestionSet> QuestionSets { get; set; }
-        public DbSet<User> Users { get; set; }
-        public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
-        public DbSet<OperationClaim> OperationClaims { get; set; }
+        
 
         /*User */
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
@@ -85,7 +83,7 @@ namespace DataAccess.Context
         public TobetoContext(DbContextOptions dbContextOptions, IConfiguration configuration) : base(dbContextOptions)
         {
             Configuration = configuration;
-           // Database.EnsureCreated();
+          // Database.EnsureCreated();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

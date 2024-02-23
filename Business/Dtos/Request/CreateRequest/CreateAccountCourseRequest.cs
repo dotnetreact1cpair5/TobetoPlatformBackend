@@ -8,7 +8,7 @@ namespace Business.Dtos.Request.CreateRequest
 {
     public class CreateAccountCourseRequest
     {
-        public int AccountId { get; set; }
-        public int StudentClassId { get; set; }
+        public int? UserId { get; set; }
+        public int LessonId { get; set; }
     }
 }

@@ -36,6 +36,51 @@ namespace DataAccess
             services.AddScoped<IAccountForeignLanguageDal, EfAccountForeignLanguageDal>();
             services.AddScoped<IAccountCertificateDal, EfAccountCertificateDal>();
             services.AddScoped<IAccountExperienceDal, EfAccountExperienceDal>();
+
+            /*Course Services */
+            services.AddScoped<ICategoryDal, EfCategoryDal>();
+            services.AddScoped<IContentTypeDal, EfContentTypeDal>();
+            services.AddScoped<ICourseContentDal, EfCourseContentDal>();
+            services.AddScoped<ILessonDal, EfLessonDal>();
+            services.AddScoped<ILessonStatusDal, EfLessonStatusDal>();
+            services.AddScoped<ICourseDal, EfCourseDal>();
+            services.AddScoped<ICourseDetailDal, EfCourseDetailDal>();
+            services.AddScoped<IAccountCourseDal, EfAccountCourseDal>();
+            services.AddScoped<ICourseDal, EfCourseDal>();
+            services.AddScoped<IContentDal, EfContentDal>();
+            services.AddScoped<ILessonFavouriteDal, EfLessonFavouriteDal>();
+            services.AddScoped<ICourseFavouriteDal, EfCourseFavouriteDal>();
+            services.AddScoped<ICourseCompletionDal, EfCourseCompletionDal>();
+          //  services.AddScoped<ICourseTimeSpentDal, EfCourseTimeSpentDal>();
+            services.AddScoped<IInstructorDal, EfInstructorDal>();
+            services.AddScoped<ISessionRecordDal, EfSessionRecordDal>();
+
+            /*Exam/Test Service */
+            services.AddScoped<IAccountAnswerDal, EfAccountAnswerDal>();
+            services.AddScoped<IAccountQuestionSetDal, EfAccountQuestionSetDal>();
+            services.AddScoped<IAnswerDal, EfAnswerDal>();
+            services.AddScoped<IQuestionDal,EfQuestionDal>();
+            services.AddScoped<IQuestionSetDal,EfQuestionSetDal>();
+
+            /*User Service */
+            services.AddScoped<IUserDal, EfUserDal>();
+
+            /*PathFile Service */
+            services.AddScoped<IPathFileDal, EfPathFileDal>();
+
+            /*Application Service */
+            services.AddScoped<IAccountApplicationDal, EfAccountApplicationDal>();
+            services.AddScoped<IApplicationDal, EfApplicationDal>();
+            services.AddScoped<IApplicationStepDal, EfApplicationStepDal>();
+
+            /*Announcement Service */
+            services.AddScoped<IAnnouncementDal, EfAnnouncementDal>();
+            services.AddScoped<IAnnouncementTypeDal, EfAnnouncementTypeDal>();
+
+
+            services.AddScoped<ISurveyDal, EfSurveyDal>();
+            services.AddScoped<IOrganizationDal, EfOrganizationDal>();
+
             return services;
         }
     }

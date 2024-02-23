@@ -20,7 +20,7 @@ namespace Business.Abstract
         Task<IPaginate<GetListAccountCourseResponse>> GetListAccountCourse();
         Task<UpdatedAccountCourseResponse> Update(UpdateAccountCourseRequest updateAccountCourse);
         Task<DeletedAccountCourseResponse> Delete(DeleteAccountCourseRequest deleteAccountCourse);
-        Task<IPaginate<GetListAccountCourseResponse>> GetByUserId(int userId);
+        Task<IPaginate<GetListAccountCourseResponse>> GetByUserId(int userId, PageRequest pageRequest);
         Task<IPaginate<GetListAccountCourseResponse>> GetByCourseId(int courseId);
     }
 }

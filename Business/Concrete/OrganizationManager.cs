@@ -25,18 +25,15 @@ namespace Business.Concrete
     {
         IOrganizationDal _organizationDal;
         IMapper _mapper;
-        OrganizationBusinessRules _organizationBusinessRules;
-
-        public OrganizationManager(IOrganizationDal organizationDal, IMapper mapper, OrganizationBusinessRules organizationBusinessRules)
+        public OrganizationManager(IOrganizationDal organizationDal,IMapper mapper)
         {
             _organizationDal = organizationDal;
             _mapper = mapper;
-            _organizationBusinessRules = organizationBusinessRules;
         }
 
         public async Task<CreatedOrganizationResponse> Add(CreateOrganizationRequest createOrganizationRequest)
         {
-            await _organizationBusinessRules.CheckIfOrganizationNameExists(createOrganizationRequest.Name);
+          //  await _organizationBusinessRules.CheckIfOrganizationNameExists(createOrganizationRequest.Name);
             Organization organization = _mapper.Map<Organization>(createOrganizationRequest);
             var createdOrganization = await _organizationDal.AddAsync(organization);
             CreatedOrganizationResponse result = _mapper.Map<CreatedOrganizationResponse>(createdOrganization);
@@ -51,12 +48,19 @@ namespace Business.Concrete
             return result;
         }
 
+        //public override bool Equals(object? obj)
+        //{
+        //    return obj is OrganizationManager manager &&
+        //           EqualityComparer<IOrganizationDal>.Default.Equals(_organizationDal, manager._organizationDal) &&
+        //           EqualityComparer<IMapper>.Default.Equals(_mapper, manager._mapper) &&
+        //           EqualityComparer<OrganizationBusinessRules>.Default.Equals(_organizationBusinessRules, manager._organizationBusinessRules);
+        //}
+
         public async Task<IPaginate<GetListOrganizationResponse>> GetListOrganization(PageRequest pageRequest)
         {
             var organization = await _organizationDal.GetListAsync(include:o=>o.Include(o=>o.City)
                 .Include(o=>o.District).Include(o=>o.Country),
-                orderBy: o => o.OrderBy(o => o.Id),
-                index: pageRequest.PageIndex,
+                 index: pageRequest.PageIndex,
                 size: pageRequest.PageSize);
             var result = _mapper.Map<Paginate<GetListOrganizationResponse>>(organization);
             return result;
@@ -64,7 +68,7 @@ namespace Business.Concrete
 
         public async Task<UpdatedOrganizationResponse> Update(UpdateOrganizationRequest updateOrganizationRequest)
         {
-            await _organizationBusinessRules.CheckIfOrganizationNameExists(updateOrganizationRequest.Name);
+          //  await _organizationBusinessRules.CheckIfOrganizationNameExists(updateOrganizationRequest.Name);
             Organization organization = _mapper.Map<Organization>(updateOrganizationRequest);
             var updatedOrganization = await _organizationDal.UpdateAsync(organization);
             UpdatedOrganizationResponse result = _mapper.Map<UpdatedOrganizationResponse>(updatedOrganization);

@@ -1,4 +1,6 @@
-﻿namespace Business.Dtos.Response.GetListResponse
+﻿using Entities.Concretes;
+
+namespace Business.Dtos.Response.GetListResponse
 {
     public class GetListAccountCourseResponse
     {
@@ -21,5 +23,6 @@
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public DateTime CreatedDate { get; set; }
+        
     }
 }

@@ -2,6 +2,7 @@
 using Business.Dtos.Request.CreateRequest;
 using Business.Dtos.Request.DeleteRequest;
 using Business.Dtos.Request.UpdateRequest;
+using Core.DataAccess.Paging;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -26,9 +27,9 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("getbyuserid")]
-        public async Task<IActionResult> GetByUserId([FromQuery] int userId)
+        public async Task<IActionResult> GetByUserId(int userId, [FromQuery] PageRequest pageRequest)
         {
-            var result = await _accountCourseService.GetByUserId(userId);
+            var result = await _accountCourseService.GetByUserId(userId,pageRequest);
             return Ok(result);
         }
 

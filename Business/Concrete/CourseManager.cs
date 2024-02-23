@@ -34,18 +34,20 @@ namespace Business.Concrete
         ICourseDal _courseDal;
         IMapper _mapper;
         CourseBusinessRules _courseBusinessRules;
-        public CourseManager(ICourseDal courseDal, IMapper mapper, CourseBusinessRules courseBusinessRules)
+        public CourseManager(ICourseDal courseDal,IMapper mapper,CourseBusinessRules courseBusinessRules)
         {
             _courseDal = courseDal;
             _mapper = mapper;
             _courseBusinessRules = courseBusinessRules;
         }
+
+
         //  [SecuredOperation("admin")]
         [ValidationAspect(typeof(CourseValidator))]
         // [CacheRemoveAspect("ICourseService.Get")]
         public async Task<CreatedCourseResponse> Add(CreateCourseRequest createCourseRequest)
         {
-            // await _courseBusinessRules.CheckIfCourseNameExists(createCourseRequest.Name);
+             await _courseBusinessRules.CheckIfCourseNameExists(createCourseRequest.Name);
             Course course = _mapper.Map<Course>(createCourseRequest);
             var createdCourse = await _courseDal.AddAsync(course);
             CreatedCourseResponse result = _mapper.Map<CreatedCourseResponse>(createdCourse);
@@ -111,7 +113,7 @@ namespace Business.Concrete
         public async Task<UpdatedCourseResponse> Update(UpdateCourseRequest updateCourseRequest)
         {
 
-            await _courseBusinessRules.CheckIfCourseNameExists(updateCourseRequest.Name);
+         //   await _courseBusinessRules.CheckIfCourseNameExists(updateCourseRequest.Name);
             Course course = _mapper.Map<Course>(updateCourseRequest);
             var updatedCourse = await _courseDal.UpdateAsync(course);
             UpdatedCourseResponse result = _mapper.Map<UpdatedCourseResponse>(updatedCourse);

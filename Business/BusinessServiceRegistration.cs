@@ -39,7 +39,13 @@ namespace Business
             services.AddScoped<ISkillService, SkillManager>();
             services.AddScoped<ISocialMediaPlatformService, SocialMediaPlatformManager>();
             services.AddScoped<IUniversityService, UniversityManager>();
-            services.AddScoped<IUserService, UserManager>();
+
+            /*Exam/Test Services */
+            services.AddScoped<IAccountAnswerService, AccountAnswerManager>();
+            services.AddScoped<IAccountQuestionSetService, AccountQuestionSetManager>();
+            services.AddScoped<IAnswerService, AnswerManager>();
+            services.AddScoped<IQuestionService, QuestionManager>();
+            services.AddScoped<IQuestionSetService, QuestionSetManager>();
 
             /*Course Services */
 
@@ -52,6 +58,8 @@ namespace Business
             services.AddScoped<ILessonStatusService, LessonStatusManager>();
             services.AddScoped<IAccountCourseService, AccountCourseManager>();
             services.AddScoped<ICourseFavouriteService, CourseFavouriteManager>();
+           // services.AddScoped<ICourseTimeSpentService, CourseTimeSpentManager>();
+
             services.AddScoped<IInstructorService, InstructorManager>();
             services.AddScoped<ISessionRecordService, SessionRecordManager>();
 
@@ -76,6 +84,7 @@ namespace Business
             services.AddScoped<IOrganizationService, OrganizationManager>();
             services.AddScoped<ISurveyService, SurveyManager>();
 
+            services.AddSubClassesOfType(Assembly.GetExecutingAssembly(), typeof(BaseBusinessRules));
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             return services;
         }

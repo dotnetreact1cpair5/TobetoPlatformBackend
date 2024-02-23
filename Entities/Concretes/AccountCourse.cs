@@ -10,7 +10,7 @@ namespace Entities.Concretes
         public User? User { get; set; }  
         public Lesson? Lesson { get; set; }
       
-
+      
     }
 
 }

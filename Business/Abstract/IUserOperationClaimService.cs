@@ -5,13 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Security.JWT
+namespace Business.Abstract
 {
-    public interface ITokenHelper
+    public interface IUserOperationClaimService
     {
-        Task<AccessToken> CreateToken(User user, IList<OperationClaim> operationClaims);
-
-
+        Task<IList<OperationClaim>> GetClaims(int id);
     }
 }
-

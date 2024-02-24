@@ -9,5 +9,6 @@ namespace Core.Utilities.Messages
     public static class AspectMessages
     {
         public static string WrongValidation = "This is not a validation class.Bu bir doğrulama sınıfı değildir.";
+        public static string WrongLoggerType = "Wrong Logger Type.Yanlış log tipi";
     }
 }

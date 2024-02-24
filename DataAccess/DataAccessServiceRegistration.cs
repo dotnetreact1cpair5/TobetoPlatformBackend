@@ -51,7 +51,7 @@ namespace DataAccess
             services.AddScoped<ILessonFavouriteDal, EfLessonFavouriteDal>();
             services.AddScoped<ICourseFavouriteDal, EfCourseFavouriteDal>();
             services.AddScoped<ICourseCompletionDal, EfCourseCompletionDal>();
-          //  services.AddScoped<ICourseTimeSpentDal, EfCourseTimeSpentDal>();
+            //  services.AddScoped<ICourseTimeSpentDal, EfCourseTimeSpentDal>();
             services.AddScoped<IInstructorDal, EfInstructorDal>();
             services.AddScoped<ISessionRecordDal, EfSessionRecordDal>();
 
@@ -59,11 +59,13 @@ namespace DataAccess
             services.AddScoped<IAccountAnswerDal, EfAccountAnswerDal>();
             services.AddScoped<IAccountQuestionSetDal, EfAccountQuestionSetDal>();
             services.AddScoped<IAnswerDal, EfAnswerDal>();
-            services.AddScoped<IQuestionDal,EfQuestionDal>();
-            services.AddScoped<IQuestionSetDal,EfQuestionSetDal>();
+            services.AddScoped<IQuestionDal, EfQuestionDal>();
+            services.AddScoped<IQuestionSetDal, EfQuestionSetDal>();
 
             /*User Service */
             services.AddScoped<IUserDal, EfUserDal>();
+            services.AddScoped<IOperationClaimDal, EfOperationClaimDal>();
+            services.AddScoped<IUserOperationClaimDal, EfUserOperationClaimDal>();
 
             /*PathFile Service */
             services.AddScoped<IPathFileDal, EfPathFileDal>();
@@ -73,11 +75,9 @@ namespace DataAccess
             services.AddScoped<IApplicationDal, EfApplicationDal>();
             services.AddScoped<IApplicationStepDal, EfApplicationStepDal>();
 
-            /*Announcement Service */
+            /*Announcement,Survey,Organization Service */
             services.AddScoped<IAnnouncementDal, EfAnnouncementDal>();
             services.AddScoped<IAnnouncementTypeDal, EfAnnouncementTypeDal>();
-
-
             services.AddScoped<ISurveyDal, EfSurveyDal>();
             services.AddScoped<IOrganizationDal, EfOrganizationDal>();
 

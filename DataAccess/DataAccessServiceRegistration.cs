@@ -64,6 +64,8 @@ namespace DataAccess
 
             /*User Service */
             services.AddScoped<IUserDal, EfUserDal>();
+            services.AddScoped<IOperationClaimDal, EfOperationClaimDal>();
+            services.AddScoped<IUserOperationClaimDal, EfUserOperationClaimDal>();
 
             /*PathFile Service */
             services.AddScoped<IPathFileDal, EfPathFileDal>();
@@ -73,11 +75,9 @@ namespace DataAccess
             services.AddScoped<IApplicationDal, EfApplicationDal>();
             services.AddScoped<IApplicationStepDal, EfApplicationStepDal>();
 
-            /*Announcement Service */
+            /*Announcement,Survey,Organization Service */
             services.AddScoped<IAnnouncementDal, EfAnnouncementDal>();
             services.AddScoped<IAnnouncementTypeDal, EfAnnouncementTypeDal>();
-
-
             services.AddScoped<ISurveyDal, EfSurveyDal>();
             services.AddScoped<IOrganizationDal, EfOrganizationDal>();
 

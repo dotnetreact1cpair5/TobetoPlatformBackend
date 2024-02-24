@@ -25,7 +25,7 @@ namespace Core.Security.JWT
             _tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
         }
-        public AccessToken CreateToken(User user, List<OperationClaim> operationClaims)
+        public async Task<AccessToken> CreateToken(User user, IList<OperationClaim> operationClaims)
         {
             _accessTokenExpiration = DateTime.Now.AddMinutes(_tokenOptions.AccessTokenExpiration);
             var securityKey = SecurityKeyHelper.CreateSecurityKey(_tokenOptions.SecurityKey);
@@ -45,7 +45,7 @@ namespace Core.Security.JWT
         }
 
         public JwtSecurityToken CreateJwtSecurityToken(TokenOptions tokenOptions, User user,
-            SigningCredentials signingCredentials, List<OperationClaim> operationClaims)
+            SigningCredentials signingCredentials, IList<OperationClaim> operationClaims)
         {
             var jwt = new JwtSecurityToken(
                 issuer: tokenOptions.Issuer,
@@ -58,7 +58,7 @@ namespace Core.Security.JWT
             return jwt;
         }
 
-        private IEnumerable<Claim> SetClaims(User user, List<OperationClaim> operationClaims)
+        private IEnumerable<Claim> SetClaims(User user, IList<OperationClaim> operationClaims)
         {
             var claims = new List<Claim>();
 
@@ -70,25 +70,6 @@ namespace Core.Security.JWT
             return claims;
         }
 
-        //public RefreshToken CreateRefreshToken(User user, string ipAdress)
-        //{
-        //    RefreshToken refreshToken =
-        //           new()
-        //           {
-        //               UserId = user.Id,
-        //               Token=RandomRefreshToken(),
-        //               Expires = DateTime.UtcNow.AddDays(7),
-        //               CreatedByIp=ipAdress
-        //           };
-        //    return refreshToken;
-        //}
-
-        //private string RandomRefreshToken()
-        //{
-        //    byte[] numberByte = new byte[32];
-        //    using var random = RandomNumberGenerator.Create();
-        //    random.GetBytes(numberByte);
-        //    return Convert.ToBase64String(numberByte);
-        //}
+        
     }
 }

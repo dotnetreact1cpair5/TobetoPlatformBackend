@@ -11,9 +11,11 @@ using Business.Dtos.Response.UpdatedResponse;
 using Business.Rules;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Logging;
 using Core.Aspects.Autofac.Performance;
 using Core.Aspects.Autofac.Transaction;
 using Core.Aspects.Autofac.Validation;
+using Core.CrossCuttingConcerns.Logging.Log4Net.Loggers;
 using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
 using DataAccess.Concretes;
@@ -43,7 +45,7 @@ namespace Business.Concrete
 
 
         //  [SecuredOperation("admin")]
-        [ValidationAspect(typeof(CourseValidator))]
+      //  [ValidationAspect(typeof(CourseValidator))]
         // [CacheRemoveAspect("ICourseService.Get")]
         public async Task<CreatedCourseResponse> Add(CreateCourseRequest createCourseRequest)
         {
@@ -92,6 +94,8 @@ namespace Business.Concrete
             return result;
         }
 
+
+        //[LogAspect(typeof(FileLogger))]
         // [CacheAspect]
         // [PerformanceAspect(5)]//gecen sure 5snyeyi gecerse bildir
         public async Task<IPaginate<GetListCourseResponse>> GetListCourse()
@@ -107,7 +111,7 @@ namespace Business.Concrete
             return result;
         }
 
-        [ValidationAspect(typeof(CourseValidator))]
+       // [ValidationAspect(typeof(CourseValidator))]
         //  [CacheRemoveAspect("ICourseService.Get")]
         //  [TransactionScopeAspect]
         public async Task<UpdatedCourseResponse> Update(UpdateCourseRequest updateCourseRequest)

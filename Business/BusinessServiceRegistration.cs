@@ -75,6 +75,8 @@ namespace Business
             /*User Services */
             services.AddScoped<IUserService, UserManager>();
             services.AddScoped<IAuthService, AuthManager>();
+            services.AddScoped<IOperationClaimService, OperationClaimManager>();
+            services.AddScoped<IUserOperationClaimService, UserOperationClaimManager>();
 
             /*Path Service */
             services.AddScoped<IPathFileService, PathFileManager>();

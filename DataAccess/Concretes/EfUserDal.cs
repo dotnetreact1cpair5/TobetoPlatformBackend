@@ -19,7 +19,7 @@ namespace DataAccess.Concretes
             _context = context;
         }
 
-        public List<OperationClaim> GetClaims(User user)
+        public async Task<List<OperationClaim>> GetClaims(User user)
         {
             var result = from operationClaim in _context.OperationClaims
                          join userOperationClaim in _context.UserOperationClaims

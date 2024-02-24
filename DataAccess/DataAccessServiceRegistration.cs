@@ -51,7 +51,7 @@ namespace DataAccess
             services.AddScoped<ILessonFavouriteDal, EfLessonFavouriteDal>();
             services.AddScoped<ICourseFavouriteDal, EfCourseFavouriteDal>();
             services.AddScoped<ICourseCompletionDal, EfCourseCompletionDal>();
-          //  services.AddScoped<ICourseTimeSpentDal, EfCourseTimeSpentDal>();
+            //  services.AddScoped<ICourseTimeSpentDal, EfCourseTimeSpentDal>();
             services.AddScoped<IInstructorDal, EfInstructorDal>();
             services.AddScoped<ISessionRecordDal, EfSessionRecordDal>();
 
@@ -59,8 +59,8 @@ namespace DataAccess
             services.AddScoped<IAccountAnswerDal, EfAccountAnswerDal>();
             services.AddScoped<IAccountQuestionSetDal, EfAccountQuestionSetDal>();
             services.AddScoped<IAnswerDal, EfAnswerDal>();
-            services.AddScoped<IQuestionDal,EfQuestionDal>();
-            services.AddScoped<IQuestionSetDal,EfQuestionSetDal>();
+            services.AddScoped<IQuestionDal, EfQuestionDal>();
+            services.AddScoped<IQuestionSetDal, EfQuestionSetDal>();
 
             /*User Service */
             services.AddScoped<IUserDal, EfUserDal>();

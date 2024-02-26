@@ -136,7 +136,5 @@ namespace Business.Concrete
         }
 
     }
-
-
 }
 

@@ -64,12 +64,12 @@ namespace Business.Concrete
             return result;
         }
 
-        public async Task<UpdatedSkillsResponse> Update(UpdateSkillRequest updateSkillRequest)
+        public async Task<UpdatedSkillResponse> Update(UpdateSkillRequest updateSkillRequest)
         {
             Skill skill = await _skillDal.GetAsync(s=>s.Id==updateSkillRequest.Id);
             _mapper.Map(updateSkillRequest,skill);
             var updatedSkill = await _skillDal.UpdateAsync(skill);
-            UpdatedSkillsResponse result = _mapper.Map<UpdatedSkillsResponse>(updatedSkill);
+            UpdatedSkillResponse result = _mapper.Map<UpdatedSkillResponse>(updatedSkill);
             return result;
         }
     }

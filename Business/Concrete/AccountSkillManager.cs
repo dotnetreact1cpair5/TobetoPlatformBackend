@@ -12,6 +12,7 @@ using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
 using DataAccess.Concretes;
 using Entities.Concretes;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,7 +52,8 @@ namespace Business.Concrete
         public async Task<IPaginate<GetListAccountSkillResponse>> GetListAccountSkill(PageRequest pageRequest)
         {
             var accountSkills = await _accountSkillDal.GetListAsync(
-                //orderBy: ac => ac.OrderBy(ac => ac.SkillId),
+                include: a => a.Include(b => b.Skill),
+                orderBy: a => a.OrderBy(a => a.Id),
                 index: pageRequest.PageIndex,
                 size: pageRequest.PageSize);
             var result = _mapper.Map<Paginate<GetListAccountSkillResponse>>(accountSkills);
@@ -60,7 +62,8 @@ namespace Business.Concrete
 
         public async Task<UpdatedAccountSkillResponse> Update(UpdateAccountSkillRequest updateAccountSkillRequest)
         {
-            AccountSkill accountSkill = _mapper.Map<AccountSkill>(updateAccountSkillRequest);
+            AccountSkill accountSkill = await _accountSkillDal.GetAsync(a => a.Id == updateAccountSkillRequest.Id);
+            _mapper.Map(updateAccountSkillRequest, accountSkill);
             var updatedAccountSkill = await _accountSkillDal.UpdateAsync(accountSkill);
             UpdatedAccountSkillResponse result = _mapper.Map<UpdatedAccountSkillResponse>(updatedAccountSkill);
             return result;

@@ -18,9 +18,7 @@ namespace Business.Abstract
     {
         Task<IPaginate<GetListQuestionSetResponse>> GetList(PageRequest pageRequest);
         Task<CreatedQuestionSetResponse> Add(CreateQuestionSetRequest createQuestionSetRequest);
-
         Task<UpdatedQuestionSetResponse> Update(UpdateQuestionSetRequest updateQuestionSetRequest);
-
         Task<DeletedQuestionSetResponse> Delete(DeleteQuestionSetRequest deleteQuestionSetRequest);
     }
 }

@@ -24,7 +24,9 @@ namespace Business.Profiles
             CreateMap<AccountEducation, UpdatedAccountEducationResponse>().ReverseMap();
             CreateMap<AccountEducation, DeletedAccountEducationResponse>().ReverseMap();
 
-            CreateMap<AccountEducation, GetListAccountEducationResponse>().ReverseMap();
+            CreateMap<AccountEducation, GetListAccountEducationResponse>().ForMember(dest => dest.EducationStatusName, opt => opt.MapFrom(src => src.EducationStatus.Name))
+    .ForMember(dest => dest.UniversityName, opt => opt.MapFrom(src => src.University.Name))
+    .ForMember(dest => dest.EducationProgramName, opt => opt.MapFrom(src => src.EducationProgram.Name)).ReverseMap();
             CreateMap<Paginate<AccountEducation>, Paginate<GetListAccountEducationResponse>>().ReverseMap();
         }
     }

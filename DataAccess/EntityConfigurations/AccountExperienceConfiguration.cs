@@ -13,7 +13,7 @@ namespace DataAccess.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<AccountExperience> builder)
         {
-            builder.ToTable("Experiences").HasKey(e => e.Id);
+            builder.ToTable("AccountExperiences").HasKey(e => e.Id);
             builder.Property(e => e.Id).HasColumnName("Id").IsRequired();
             builder.Property(e => e.AccountId).HasColumnName("AccountId").IsRequired();
             builder.Property(e => e.CityId).HasColumnName("CityId").IsRequired();

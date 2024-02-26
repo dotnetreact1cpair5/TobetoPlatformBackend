@@ -19,7 +19,7 @@ namespace Business.Abstract
     {
         Task<IPaginate<GetListSkillsResponse>> GetListSkillInformation(PageRequest pageRequest);
         Task<CreatedSkillsResponse> Add(CreateSkillRequest createSkillRequest);
-        Task<UpdatedSkillsResponse> Update(UpdateSkillRequest updateSkillsRequest);
+        Task<UpdatedSkillResponse> Update(UpdateSkillRequest updateSkillsRequest);
         Task<DeletedSkillsResponse> Delete(DeleteSkillRequest deleteSkillsRequest);
     }
 }

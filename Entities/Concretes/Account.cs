@@ -25,12 +25,6 @@ namespace Entities.Concretes
         public District District { get; set; }
         public int DistrictId { get; set; }
         public Country Country { get; set; }
-
-        //account configuration alanında usera ait kodlar yazıldıgından buraya da program hata vermesın dıye eklendı.Bir kullanım durumu yok 
-        public int UserId { get; set; }
-        public User? User { get; set; }
-
-
         public ICollection<AccountExperience> AccountExperiences { get; set; }
         public ICollection<AccountEducation> AccountEducations { get; set; }
         public ICollection<AccountSkill> AccountSkills { get; set; }

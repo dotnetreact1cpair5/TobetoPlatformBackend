@@ -22,7 +22,5 @@ namespace Business.Dtos.Request.UpdateRequest
         public int CityId { get; set; }
         public int DistrictId { get; set; }
         public string Address { get; set; }
-        public int UserId { get; set; }
-        //public Country Country { get; set; } //Phone number kodu için gerekli alan bkz. automapper
     }
 }

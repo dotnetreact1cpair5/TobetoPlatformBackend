@@ -12,6 +12,7 @@ using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
 using DataAccess.Concretes;
 using Entities.Concretes;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,6 +52,8 @@ namespace Business.Concrete
         public async Task<IPaginate<GetListAccountForeignLanguageResponse>> GetListAccount(PageRequest pageRequest)
         {
             var accountForeignLanguage = await _accountForeignLanguageDal.GetListAsync(
+                include: a => a.Include(b => b.ForeignLanguage)
+                                .Include(b => b.ForeignLanguageLevel),
                 orderBy: a => a.OrderBy(a => a.Id),
                 index: pageRequest.PageIndex,
                 size: pageRequest.PageSize);

@@ -20,10 +20,9 @@ namespace Business.DependencyResolvers.Autofac
     {
         protected override void Load(ContainerBuilder builder)
         {
-           
             builder.RegisterType<AuthManager>().As<IAuthService>();
             builder.RegisterType<JwtHelper>().As<ITokenHelper>();
-          //  builder.RegisterType<HttpContextAccessor>().As<IHttpContextAccessor>().SingleInstance(); //Core.DependencyResolvers katmanında mevcut
+            //  builder.RegisterType<HttpContextAccessor>().As<IHttpContextAccessor>().SingleInstance(); //Core.DependencyResolvers katmanında mevcut
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 

@@ -14,6 +14,7 @@ using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
 using DataAccess.Concretes;
 using Entities.Concretes;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,6 +57,7 @@ namespace Business.Concrete
         public async Task<IPaginate<GetListAccountExperienceResponse>> GetListAccountExperience(PageRequest pageRequest)
         {
             var experiences = await _accountExperienceDal.GetListAsync(
+                include: a => a.Include(b => b.City),
                 orderBy: e => e.OrderBy(e => e.Id),
                 index: pageRequest.PageIndex,
                 size: pageRequest.PageSize);
@@ -66,6 +68,7 @@ namespace Business.Concrete
         public async Task<UpdatedAccountExperienceResponse> Update(UpdateAccountExperienceRequest updateAccountExperienceRequest)
         {
             AccountExperience accountExperience = await _accountExperienceDal.GetAsync(ae => ae.Id == updateAccountExperienceRequest.Id);
+            _mapper.Map(updateAccountExperienceRequest,accountExperience);
             var updatedAccountExperience = await _accountExperienceDal.UpdateAsync(accountExperience);
             UpdatedAccountExperienceResponse result = _mapper.Map<UpdatedAccountExperienceResponse>(updatedAccountExperience);
             return result;

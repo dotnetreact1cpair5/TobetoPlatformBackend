@@ -15,6 +15,7 @@ using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
 using DataAccess.Concretes;
 using Entities.Concretes;
+using Microsoft.EntityFrameworkCore;
 
 namespace Business.Concrete
 {
@@ -53,7 +54,10 @@ namespace Business.Concrete
         public async Task<IPaginate<GetListAccountEducationResponse>> GetListAccountEducation(PageRequest pageRequest)
         {
             var accountEducation = await _accountEducationDal.GetListAsync(
-                orderBy: a => a.OrderBy(a => a.UniversityId),
+                include: a => a.Include(b => b.EducationStatus)
+                                .Include(b => b.University)
+                                .Include(b => b.EducationProgram),
+                orderBy: a => a.OrderBy(a => a.Id),
                 index: pageRequest.PageIndex,
                 size: pageRequest.PageSize);
             var result = _mapper.Map<Paginate<GetListAccountEducationResponse>>(accountEducation);

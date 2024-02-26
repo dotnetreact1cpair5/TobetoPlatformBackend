@@ -31,7 +31,7 @@ namespace DataAccess.Context
         public DbSet<EducationProgram> EducationPrograms { get; set; }
         public DbSet<EducationStatus> EducationStatuses { get; set; }
         public DbSet<ForeignLanguage> ForeignLanguages { get; set; }
-        public DbSet<ForeignLanguageLevel> ForeignLanguagesLevels { get; set; }
+        public DbSet<ForeignLanguageLevel> ForeignLanguageLevels { get; set; }
         public DbSet<Skill> Skills { get; set; }
         public DbSet<SocialMediaPlatform> SocialMediaPlatforms { get; set; }
         public DbSet<University> Universities { get; set; }

@@ -21,6 +21,5 @@ namespace Business.Dtos.Response.GetListResponse
         public string CountryName { get; set; }
         public string CityName { get; set; }
         public string DistrictName { get; set; }
-        public string UserName { get; set; }
     }
 }

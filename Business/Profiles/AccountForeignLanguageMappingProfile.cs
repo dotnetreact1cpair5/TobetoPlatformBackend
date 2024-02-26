@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace Business.Profiles
 {
-    public class AccountForeignLanguageMappingProfile:Profile
+    public class AccountForeignLanguageMappingProfile : Profile
     {
         public AccountForeignLanguageMappingProfile()
         {
@@ -24,7 +24,8 @@ namespace Business.Profiles
             CreateMap<UpdateAccountForeignLanguageRequest, AccountForeignLanguage>().ReverseMap();
             CreateMap<DeleteAccountRequest, AccountForeignLanguage>().ReverseMap();
 
-            CreateMap<AccountForeignLanguage, GetListAccountForeignLanguageResponse>().ReverseMap();
+            CreateMap<AccountForeignLanguage, GetListAccountForeignLanguageResponse>().ForMember(dest => dest.ForeignLanguageName, opt => opt.MapFrom(src => src.ForeignLanguage.Name))
+                .ForMember(dest => dest.ForeignLanguageLevelName, opt => opt.MapFrom(src => src.ForeignLanguageLevel.Name)).ReverseMap();
             CreateMap<Paginate<AccountForeignLanguage>, Paginate<GetListAccountForeignLanguageResponse>>().ReverseMap();
 
             CreateMap<AccountForeignLanguage, CreatedAccountForeignLanguageResponse>().ReverseMap();

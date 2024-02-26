@@ -24,7 +24,7 @@ namespace Business.Profiles
         {
             CreateMap<CreateAccountRequest, Account>().ReverseMap();
             CreateMap<Account, CreatedAccountResponse>()
-            .ForMember(dest => dest.PhoneNumber, opt => opt.MapFrom(src => $"{src.Country.Code} {src.PhoneNumber} {src.User.FirstName}")).ReverseMap();
+            .ForMember(dest => dest.PhoneNumber, opt => opt.MapFrom(src => $"{src.Country.Code} {src.PhoneNumber}")).ReverseMap();
             CreateMap<UpdateAccountRequest, Account>().ReverseMap();
             CreateMap<Account, UpdatedAccountResponse>().ReverseMap();
             CreateMap<DeleteAccountRequest, Account>().ReverseMap();
@@ -33,33 +33,6 @@ namespace Business.Profiles
             CreateMap<Account, GetListAccountResponse>().ReverseMap();
             CreateMap<GetByIdAccountRequest, Account>().ReverseMap();
 
-
-
-            //.ForMember(dest => dest.PhoneNumber, opt => opt.MapFrom(src => $"{src.Country.Code} {src.PhoneNumber}"))
-            //.ForMember(dest => dest.CountryId, opt => opt.MapFrom(src => src.Country.Id))
-            //.ForMember(dest => dest.CityId, opt => opt.MapFrom(src => src.City.Id))
-            //.ForMember(dest => dest.DistrictId, opt => opt.MapFrom(src => src.District.Id))
-
-            //.ForMember(dest => dest.CountryId, opt => opt.MapFrom(src => src.Country.Id))
-            //.ForMember(dest => dest.CityId, opt => opt.MapFrom(src => src.City.Id))
-            //.ForMember(dest => dest.DistrictId, opt => opt.MapFrom(src => src.District.Id))
-
-            //.ForMember(dest => dest.PhoneNumber, opt => opt.MapFrom(src => $"{src.Country.Code} {src.PhoneNumber}"))
-            //.ForMember(dest => dest.CountryName, opt => opt.MapFrom(src => $"{src.Country.Name}"))
-            //.ForMember(dest => dest.CityName, opt => opt.MapFrom(src => $"{src.City.Name}"))
-            //.ForMember(dest => dest.DistrictName, opt => opt.MapFrom(src => $"{src.District.Name}"))
-
-
-            //.ForMember(dest => dest.PhoneNumber, opt => opt.MapFrom(src => $"{src.Country.Code} {src.PhoneNumber}"))
-            //.ForMember(dest => dest.CountryId, opt => opt.MapFrom(src => src.Country.Id))
-            //.ForMember(dest => dest.CityId, opt => opt.MapFrom(src => src.City.Id))
-            //.ForMember(dest => dest.DistrictId, opt => opt.MapFrom(src => src.District.Id))
-
-
-            //.ForMember(dest => dest.PhoneNumber, opt => opt.MapFrom(src => $"{src.Country.Code} {src.PhoneNumber}"))
-            //.ForMember(dest => dest.CountryId, opt => opt.MapFrom(src => src.Country.Id))
-            //.ForMember(dest => dest.CityId, opt => opt.MapFrom(src => src.City.Id))
-            //.ForMember(dest => dest.DistrictId, opt => opt.MapFrom(src => src.District.Id))
         }
     }
 }

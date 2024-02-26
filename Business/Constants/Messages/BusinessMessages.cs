@@ -48,6 +48,7 @@ namespace Business.Constants.Messages
         public static string RequiredField = "Doldurulması zorunlu alan!";
         public static string MinLengthError2 = "En az 2 karakter girmelisiniz!";
         public static string MaxLengthError50 = "En fazla 50 karakter girebilirsiniz!";
+        public static string MaxLengthError100 = "En fazla 100 karakter girebilirsiniz!";
         public static string MinLengthError5 = "En az 5 karakter girmelisiniz!";
         public static string MaxLengthError300 = "En fazla 300 karakter girebilirsiniz!";
         public static string MaxLengthError30 = "En fazla 30 karakter girebilirsiniz!";

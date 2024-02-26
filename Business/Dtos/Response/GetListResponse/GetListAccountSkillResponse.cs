@@ -10,6 +10,6 @@ namespace Business.Dtos.Response.GetListResponse
     {
         public int Id { get; set; }
         public int AccountId { get; set; }
-        public int SkillId { get; set; }
+        public string SkillName { get; set; }
     }
 }

@@ -79,9 +79,8 @@ namespace Business.Concrete
 
         public async Task<User> GetByMail(string email)
         {
-            User user = await _userDal.GetAsync(u => u.Email == email);
-            var result = _mapper.Map<User>(user);
-            return result;
+            var user = await _userDal.GetAsync(u => u.Email == email);
+            return user;
         }
 
         public async Task<IPaginate<GetListUserResponse>> GetListAsync(PageRequest pageRequest)

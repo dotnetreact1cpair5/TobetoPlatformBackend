@@ -29,7 +29,7 @@ namespace Business.Profiles
             CreateMap<AccountSocialMedia, UpdatedAccountSocialMediaResponse>().ReverseMap();
             CreateMap<AccountSocialMedia, DeletedAccountSocialMediaResponse>().ReverseMap();
 
-            CreateMap<AccountSocialMedia, GetListAccountSocialMediaResponse>().ReverseMap();
+            CreateMap<AccountSocialMedia, GetListAccountSocialMediaResponse>().ForMember(dest => dest.SocialMediaPlatformName, opt => opt.MapFrom(src => src.SocialMediaPlatform.Name)).ReverseMap();
             CreateMap<Paginate<AccountSocialMedia>, Paginate<GetListAccountSocialMediaResponse>>().ReverseMap();
         }
     }

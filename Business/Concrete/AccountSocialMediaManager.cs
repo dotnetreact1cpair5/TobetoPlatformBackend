@@ -15,6 +15,7 @@ using Core.DataAccess.Paging;
 using DataAccess.Abstracts;
 using DataAccess.Concretes;
 using Entities.Concretes;
+using Microsoft.EntityFrameworkCore;
 
 namespace Business.Concrete
 {
@@ -53,6 +54,7 @@ namespace Business.Concrete
         public async Task<IPaginate<GetListAccountSocialMediaResponse>> GetListAccountSocialMedia(PageRequest pageRequest)
         {
             var accountSocialMedia = await _accountSocialMediaDal.GetListAsync(
+                include: a => a.Include(b => b.SocialMediaPlatform),
                 orderBy: a => a.OrderBy(a => a.Id),
                 index: pageRequest.PageIndex,
                 size: pageRequest.PageSize);

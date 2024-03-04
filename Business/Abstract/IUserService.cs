@@ -17,15 +17,11 @@ namespace Business.Abstract
 {
     public interface IUserService
     {
-        //List<OperationClaim> GetClaims(User user);
-        //void Add(User user);
-        //User GetByMail(string email);
-
         Task<IPaginate<GetListUserResponse>> GetListAsync(PageRequest pageRequest);
         Task<User> Add(User user);
         Task<UpdatedUserResponse> Update(UpdateUserRequest updateUserRequest);
         Task<DeletedUserResponse> Delete(DeleteUserRequest deleteUserRequest);
         Task<User> GetByMail(string email);
-   
+
     }
 }

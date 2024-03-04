@@ -12,8 +12,8 @@ namespace Business.Rules
 {
     public class LessonStatusBusinessRules : BaseBusinessRules
     {
-        private readonly ILessonStatusDal _lessonStatusDal;
-        public LessonStatusBusinessRules(ILessonStatusDal lessonStatusDal)
+        private readonly ILessonStatuDal _lessonStatusDal;
+        public LessonStatusBusinessRules(ILessonStatuDal lessonStatusDal)
         {
             _lessonStatusDal = lessonStatusDal;
         }

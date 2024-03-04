@@ -39,38 +39,7 @@ namespace Business.Concrete
             _mapper = mapper;
         }
 
-        //public IDataResult<User> Register(UserForRegisterDto userForRegisterDto, string password)
-        //{
-        //    byte[] passwordHash, passwordSalt;
-        //    HashingHelper.CreatePasswordHash(password, out passwordHash, out passwordSalt);
-        //    var user = new User
-        //    {
-        //        Email = userForRegisterDto.Email,
-        //        FirstName = userForRegisterDto.FirstName,
-        //        LastName = userForRegisterDto.LastName,
-        //        PasswordHash = passwordHash,
-        //        PasswordSalt = passwordSalt,
-        //        Status = true
-        //    };
-        //    _userService.Add(user);
-        //    return new SuccessDataResult<User>(user, BusinessMessages.RegistrationSuccessfully);
-        //}
-
-        //public IDataResult<User> Login(UserForLoginDto userForLoginDto)
-        //{
-        //    var userToCheck = _userService.GetByMail(userForLoginDto.Email);
-        //    if (userToCheck == null)
-        //    {
-        //        return new ErrorDataResult<User>(BusinessMessages.UserOrEmailNotFound);
-        //    }
-
-        //    if (!HashingHelper.VerifyPasswordHash(userForLoginDto.Password, userToCheck.PasswordHash, userToCheck.PasswordSalt))
-        //    {
-        //        return new ErrorDataResult<User>(BusinessMessages.PasswordError);
-        //    }
-
-        //    return new SuccessDataResult<User>(userToCheck, BusinessMessages.SuccessfullEntry);
-        //}
+        
 
         public IResult UserExists(string email)
         {
@@ -81,22 +50,7 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        //public IDataResult<AccessToken> CreateAccessToken(User user)
-        //{
-        //    var claims = _userService.GetClaims(user);
-        //    var accessToken = _tokenHelper.CreateToken(user, claims);
-        //    return new SuccessDataResult<AccessToken>(accessToken, BusinessMessages.TokenCreated);
-        //}
-
-
-        //public IResult EmailForPasswordUpdate(string email)
-        //{
-        //    if (_userService.GetByMail(email) != null)
-        //    {
-        //        return new SuccessResult(BusinessMessages.PasswordResetLinkHasBeenSentToYourEmailAddress);
-        //    }
-        //    return new ErrorResult(BusinessMessages.ThisEmailAddressIsNotRegisteredInTheSystem);
-        //}
+       
 
         public async Task<AccessToken> Register(UserForRegisterRequest userForRegisterRequest, string password)
         {

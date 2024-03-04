@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Business.Abstract;
+using Business.Dtos.Request.CreateRequest;
 using Business.Dtos.Request.DeleteRequest;
 using Business.Dtos.Request.UpdateRequest;
 using Business.Dtos.Response;
@@ -32,26 +33,11 @@ namespace Business.Concrete
             _userDal = userDal;
         }
 
-        //public List<OperationClaim> GetClaims(User user)
-        //{
-        //    return _userDal.GetClaims(user);
-        //}
-
-        //public void Add(User user)
-        //{
-        //    _userDal.Add(user);
-        //}
-
-        //public User GetByMail(string email)
-        //{
-        //    return _userDal.Get(u => u.Email == email);
-        //}
 
         public async Task<User> Add(User user)
         {
 
             User userCreated = await _userDal.AddAsync(user);
-            // User userAuthMap = _mapper.Map<User>(userCreated);
             return userCreated;
         }
 
@@ -79,8 +65,9 @@ namespace Business.Concrete
 
         public async Task<User> GetByMail(string email)
         {
-            var user = await _userDal.GetAsync(u => u.Email == email);
-            return user;
+
+            var getUser = await _userDal.GetAsync(u => u.Email == email);
+            return getUser;
         }
 
         public async Task<IPaginate<GetListUserResponse>> GetListAsync(PageRequest pageRequest)

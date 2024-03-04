@@ -42,16 +42,15 @@ namespace DataAccess
             services.AddScoped<IContentTypeDal, EfContentTypeDal>();
             services.AddScoped<ICourseContentDal, EfCourseContentDal>();
             services.AddScoped<ILessonDal, EfLessonDal>();
-            services.AddScoped<ILessonStatusDal, EfLessonStatusDal>();
+            services.AddScoped<ILessonStatuDal, EfLessonStatuDal>();
             services.AddScoped<ICourseDal, EfCourseDal>();
             services.AddScoped<ICourseDetailDal, EfCourseDetailDal>();
             services.AddScoped<IAccountCourseDal, EfAccountCourseDal>();
             services.AddScoped<ICourseDal, EfCourseDal>();
             services.AddScoped<IContentDal, EfContentDal>();
-            services.AddScoped<ILessonFavouriteDal, EfLessonFavouriteDal>();
-            services.AddScoped<ICourseFavouriteDal, EfCourseFavouriteDal>();
+            services.AddScoped<IFavouriteDal, EfFavouriteDal>();
             services.AddScoped<ICourseCompletionDal, EfCourseCompletionDal>();
-            //  services.AddScoped<ICourseTimeSpentDal, EfCourseTimeSpentDal>();
+            services.AddScoped<ICourseTimeSpentDal, EfCourseTimeSpentDal>();
             services.AddScoped<IInstructorDal, EfInstructorDal>();
             services.AddScoped<ISessionRecordDal, EfSessionRecordDal>();
 

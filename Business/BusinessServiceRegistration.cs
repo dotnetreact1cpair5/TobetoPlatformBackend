@@ -54,11 +54,10 @@ namespace Business
             services.AddScoped<IContentTypeService, ContentTypeManager>();
             services.AddScoped<ICourseService, CourseManager>();
             services.AddScoped<ILessonService, LessonManager>();
-            services.AddScoped<ILessonFavouriteService, LessonFavouriteManager>();
-            services.AddScoped<ILessonStatusService, LessonStatusManager>();
+            services.AddScoped<ILessonStatuService, LessonStatuManager>();
             services.AddScoped<IAccountCourseService, AccountCourseManager>();
-            services.AddScoped<ICourseFavouriteService, CourseFavouriteManager>();
-           // services.AddScoped<ICourseTimeSpentService, CourseTimeSpentManager>();
+            services.AddScoped<IFavouriteService, FavouriteManager>();
+            services.AddScoped<ICourseTimeSpentService, CourseTimeSpentManager>();
 
             services.AddScoped<IInstructorService, InstructorManager>();
             services.AddScoped<ISessionRecordService, SessionRecordManager>();

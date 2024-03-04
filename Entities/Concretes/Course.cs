@@ -23,7 +23,7 @@ namespace Entities.Concretes
         public virtual PathFile? PathFile { get; set; }
         public virtual Organization? Organization { get; set; }
         public virtual ICollection<Lesson>? Lessons { get; set; }
-        public virtual ICollection<CourseFavourite>? CourseFavourites { get; set; }
+        public virtual ICollection<Favourite>? CourseFavourites { get; set; }
         public virtual ICollection<CourseCompletion>? CourseCompletions { get; set;}
         public virtual ICollection<CourseTimeSpent>? CourseTimeSpents { get; set; }
 
